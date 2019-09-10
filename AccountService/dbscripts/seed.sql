@@ -6,9 +6,9 @@ CREATE TABLE people (
   other_name  TEXT
 ) WITH (OIDS=FALSE);
 
-ALTER TABLE app OWNER TO ya;
+ALTER TABLE people OWNER TO ya;
 
-INSERT INTO app(name, other_name) VALUES(
+INSERT INTO people(name, other_name) VALUES(
   'Anders Brams',
   'The literal god'
 );

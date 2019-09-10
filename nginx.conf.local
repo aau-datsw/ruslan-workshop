@@ -54,8 +54,8 @@ http {
       return 200 'You are now using the API.';
     }
 
-    location /apps/ {
-      proxy_pass http://app-locker-service:80/;
+    location /leaderboards/ {
+      proxy_pass http://leaderboard-api:80/;
     }
   }
 }

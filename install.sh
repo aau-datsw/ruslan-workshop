@@ -16,5 +16,3 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
-# Create a self-signed certificate for ruslan.local so we can develop locally
-sudo sh cert-gen/gen_self_signed.sh ruslan.local

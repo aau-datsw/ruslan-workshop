@@ -33,9 +33,10 @@ services:
       - ruslan-workshop-shared
     
   leaderboard-api:
-    image: app-locker:latest
+    image: leaderboard-api:latest
+    container_name: leaderboard-api
     build:
-      context: app-locker
+      context: LeaderboardService
       dockerfile: ./Dockerfile
     expose:
       - 80

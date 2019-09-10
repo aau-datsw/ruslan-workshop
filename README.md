@@ -17,19 +17,16 @@ Det inkluderer følgende:
 
 # Services
 ## Leaderboards
-[Gruppe 1](https://github.com/aau-datsw/ruslan-workshop)
+[Gruppe 1](LeaderboardService/)
 
 ## Matchmaking
-[Gruppe 2](https://github.com/aau-datsw/ruslan-workshop)
+[Gruppe 2](MatchmakingService/)
 
 ## Spilplanlægning
-[Gruppe 3](https://github.com/aau-datsw/ruslan-workshop)
-
-## Leaderboards
-[Gruppe 4](https://github.com/aau-datsw/ruslan-workshop)
+[Gruppe 3](TournamentService/)
 
 ## Profiler
-[Gruppe 5](https://github.com/aau-datsw/ruslan-workshop)
+[Gruppe 4](AccountService/)
 
 ## Eventstatistikker
-[Gruppe 6](https://github.com/aau-datsw/ruslan-workshop)
+[Gruppe 5](StatisticsService/)

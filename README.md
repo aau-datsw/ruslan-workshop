@@ -3,6 +3,8 @@ Repository til alle underprojekter der bygges under RUSLAN 2019 Workshoppen.
 
 Systemet bygges som en SOA arkitektur, og hvert underprojekt agerer således som sin egen isolerede service der leverer en API der kan anvendes af andre services. 
 
+![Overordnet arkitektur](https://i.imgur.com/hFYbzRr.png)
+
 # Hvad skal det bruges til?
 Overordnet skal systemet tilbyde en masse funktionaliteter der ville være brugbare i et stort LAN event som dette. 
 Det inkluderer følgende: 

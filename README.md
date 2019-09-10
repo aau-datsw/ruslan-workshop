@@ -30,3 +30,22 @@ Det inkluderer følgende:
 
 ## Eventstatistikker
 [Gruppe 5](StatisticsService/)
+
+# How to use
+Gør følgende for at kunne besøge `https://ruslan.local` og `https://api.ruslan.local` i din browser for at teste din API: 
+## Installér Docker og Docker Compose
+Kør `sudo sh install.sh` i terminalen. Prøv derefter at køre `docker --version` og `docker-compose --version` i terminalen. Hvis du i nogen af tilfældene ikke får et versionsnummer ud, men i stedet en "command not found" eller lignende fejlbesked er noget gået galt i installeringsprocessen. Dette kan normalt fixes ved at manuelt køre hver linje i `install.sh` hver for sig i terminalen.
+## Generér SSL certifikater
+Kør `sudo sh generate_certs.sh`. 
+## Lad loalhost pege på ruslan.local 
+I din `/etc/hosts` fil skal du tilføje følgende to linjer i bunden: 
+``` 
+127.0.0.1     ruslan.local
+127.0.0.1 api.ruslan.local
+```
+## Kør serveren
+Kør `sudo sh restart-local.sh`. 
+Besøg herefter `https://ruslan.local`. Du vil se en advarselsbesked om usikkert SSL certifikat. Bypass denne, vi ved godt det ikke er ret rigtigt certifikat vi har genereret. 
+Besøg herefter `https://api.ruslan.local` og gør det samme. 
+
+For at besøge Leaderboards API'en, besøg `https://api.ruslan.local/leaderboards/`. 

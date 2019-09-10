@@ -9,21 +9,32 @@
 PROJECT_NAME="$1"
 SERVICE_NAME=$PROJECT_NAME"Service"
 API_NAME=$PROJECT_NAME"API"
-DOCKERFILE='
-FROM microsoft/dotnet:2.2-sdk AS build\n
-WORKDIR /app\n
-COPY ./'"$API_NAME"'/*.csproj ./\n
-RUN dotnet restore '"$API_NAME"'.csproj\n
-COPY ./'"$API_NAME"'/. ./\n
-RUN dotnet publish '"$API_NAME"'.csproj -c Release -o pub\n
-\n
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime\n
-WORKDIR /app\n
-COPY --from=0 /app/pub .\n
-ENTRYPOINT ["dotnet", "'"$API_NAME"'.dll"]\n
-'
-DBSCRIPT="
-\connect ""${PROJECT_NAME,,}-db""
+DATABASE_NAME=$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]')-db
+
+# Create the service directory and a Dockerfile
+mkdir $SERVICE_NAME && cd $SERVICE_NAME
+cat <<EOF > Dockerfile
+FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /app
+COPY ./${API_NAME}/*.csproj ./
+RUN dotnet restore ${API_NAME}.csproj
+COPY ./${API_NAME}/. ./
+RUN dotnet publish ${API_NAME}.csproj -c Release -o pub
+
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime
+WORKDIR /app
+COPY --from=0 /app/pub .
+ENTRYPOINT ["dotnet", "${API_NAME}.dll"]
+EOF
+
+
+# Create the .NET project
+dotnet new webapi -o $API_NAME
+
+# Create the database seed
+mkdir dbscripts && cd dbscripts
+cat <<EOF > seed.sql
+\connect ${DATABASE_NAME}
 
 CREATE TABLE people (
   id          SERIAL       PRIMARY KEY,
@@ -37,14 +48,5 @@ INSERT INTO app(name, other_name) VALUES(
   'Anders Brams',
   'The literal god'
 );
-"
+EOF
 
-# Create the service directory and a Dockerfile
-mkdir $SERVICE_NAME && cd $SERVICE_NAME
-echo $DOCKERFILE > Dockerfile
-
-# Create the .NET project
-dotnet new webapi -o $API_NAME
-
-mkdir dbscripts && cd dbscripts 
-echo $DBSCRIPT > seed.sql

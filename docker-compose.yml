@@ -1,0 +1,50 @@
+version: "3"
+
+networks:
+  ruslan-workshop-shared:
+
+services: 
+  reverse-proxy:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - ruslan-workshop-shared
+    depends_on:
+      - leaderboard-api
+
+  leaderboard-db: 
+    image: postgres:latest
+    expose: 
+      - 5432
+    restart: always
+    volumes: 
+      - ./LeaderboardService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      - leaderboard-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "leaderboard-db"
+    networks:
+      - ruslan-workshop-shared
+    
+  leaderboard-api:
+    image: app-locker:latest
+    build:
+      context: app-locker
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    environment:
+      DB_CONNECTION_STRING: "host=leaderboard-db;port=5432;database=leaderboard-db;username=ya;password=yeet"
+    depends_on:
+      - leaderboard-db
+    networks:
+      - ruslan-workshop-shared                                        
+
+volumes:                                                                              
+  leaderboard-db-volume:

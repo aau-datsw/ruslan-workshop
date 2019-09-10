@@ -16,7 +16,7 @@ http {
   # on port 443 instead.
   server {
     listen 80 default_server;
-    server_name abrams.local www.abrams.local;
+    server_name ruslan.local www.ruslan.local;
     return 301 https://$server_name$request_uri;
   }
 
@@ -25,10 +25,10 @@ http {
   # and returns some text.
   server {
     listen 443 ssl;
-    server_name abrams.local www.abrams.local;
+    server_name ruslan.local www.ruslan.local;
     
-    ssl_certificate     /etc/letsencrypt/live/abrams.local/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/abrams.local/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/ruslan.local/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/ruslan.local/privkey.pem;
 
     location / {
       return 200 'You are now using the website.';
@@ -39,16 +39,16 @@ http {
   # Create some servers that server our api.example.com subdomain
   server {
     listen 80;
-    server_name api.abrams.local www.api.abrams.local;
+    server_name api.ruslan.local www.api.ruslan.local;
     return 301 https://$server_name$request_uri;
   }
   
   server {
     listen 443 ssl;
-    server_name api.abrams.local www.api.abrams.local;
+    server_name api.ruslan.local www.api.ruslan.local;
     
-    ssl_certificate     /etc/letsencrypt/live/api.abrams.local/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/api.abrams.local/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/api.ruslan.local/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.ruslan.local/privkey.pem;
     
     location / {
       return 200 'You are now using the API.';

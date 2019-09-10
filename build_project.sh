@@ -22,6 +22,22 @@ WORKDIR /app\n
 COPY --from=0 /app/pub .\n
 ENTRYPOINT ["dotnet", "'"$API_NAME"'.dll"]\n
 '
+DBSCRIPT="
+\connect ""${PROJECT_NAME,,}-db""
+
+CREATE TABLE people (
+  id          SERIAL       PRIMARY KEY,
+  name        TEXT,
+  other_name  TEXT
+) WITH (OIDS=FALSE);
+
+ALTER TABLE app OWNER TO ya;
+
+INSERT INTO app(name, other_name) VALUES(
+  'Anders Brams',
+  'The literal god'
+);
+"
 
 # Create the service directory and a Dockerfile
 mkdir $SERVICE_NAME && cd $SERVICE_NAME
@@ -29,3 +45,6 @@ echo $DOCKERFILE > Dockerfile
 
 # Create the .NET project
 dotnet new webapi -o $API_NAME
+
+mkdir dbscripts && cd dbscripts 
+echo $DBSCRIPT > seed.sql

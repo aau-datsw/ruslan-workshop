@@ -1,5 +1,3 @@
- 
- 
 version: "3"
 
 networks:
@@ -17,13 +15,13 @@ services:
     networks:
       - ruslan-workshop-shared
     depends_on:
-
       - leaderboard-api
       - matchmaking-api
       - account-api
       - statistics-api
       - tournament-api
- 
+
+
   leaderboard-db: 
     image: postgres:latest
     expose: 
@@ -52,9 +50,8 @@ services:
     depends_on:
       - leaderboard-db
     networks:
-      - ruslan-workshop-shared        
+      - ruslan-workshop-shared
 
- 
   matchmaking-db: 
     image: postgres:latest
     expose: 
@@ -83,9 +80,8 @@ services:
     depends_on:
       - matchmaking-db
     networks:
-      - ruslan-workshop-shared        
+      - ruslan-workshop-shared
 
- 
   account-db: 
     image: postgres:latest
     expose: 
@@ -114,9 +110,8 @@ services:
     depends_on:
       - account-db
     networks:
-      - ruslan-workshop-shared        
+      - ruslan-workshop-shared
 
- 
   statistics-db: 
     image: postgres:latest
     expose: 
@@ -145,9 +140,8 @@ services:
     depends_on:
       - statistics-db
     networks:
-      - ruslan-workshop-shared        
+      - ruslan-workshop-shared
 
- 
   tournament-db: 
     image: postgres:latest
     expose: 
@@ -176,13 +170,13 @@ services:
     depends_on:
       - tournament-db
     networks:
-      - ruslan-workshop-shared        
+      - ruslan-workshop-shared
 
- 
+
+
 volumes:
-  leaderboard-db-volume: 
-  matchmaking-db-volume: 
-  account-db-volume: 
-  statistics-db-volume: 
-  tournament-db-volume: 
-    
+  leaderboard-db-volume:
+  matchmaking-db-volume:
+  account-db-volume:
+  statistics-db-volume:
+  tournament-db-volume:

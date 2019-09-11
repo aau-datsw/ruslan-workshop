@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+  ruslan-workshop-shared:
+
+services: 
+  reverse-proxy:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf.local:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - ruslan-workshop-shared
+    depends_on:
+{depends_on_list}
+
+{services}
+
+volumes:
+{volume_list}

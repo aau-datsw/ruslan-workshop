@@ -1,14 +1,15 @@
 \connect statistics-db
 
-CREATE TABLE people (
-    id          SERIAL       PRIMARY KEY,
+CREATE TABLE person (
+    id          SERIAL PRIMARY KEY,
     name        TEXT,
     other_name  TEXT
 ) WITH (OIDS=FALSE);
 
-ALTER TABLE people OWNER TO ya;
+ALTER TABLE person OWNER TO ya;
 
-INSERT INTO people(name, other_name) VALUES(
-    'Anders Brams',
-    'The literal god'
-);
+INSERT INTO person(name, other_name) 
+VALUES 
+    ('Anders Brams', 'The literal god'),
+    ('Frederik Spang', 'DuckerKongen'),
+    ('Tobias Palludan', 'Danernes Lys');

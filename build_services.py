@@ -10,12 +10,16 @@ def read_project_names():
   return [project_name for project_name in sys.argv[1:]]
 
 
+# For every key X with a value Y in args, this function
+# replaces all substrings in the template of the form '{X}' with 'Y'. 
 def fill_template(template, args): 
   for key, value in args.items(): 
     template = template.replace(f'{{{key}}}', value)
   return template
 
 
+# Function for building the seed.sql file for every 
+# API that needs one.
 def build_db_seed_v2(args={}, base_path=None): 
   if not os.path.exists(f'{base_path}/dbscripts'):
     os.mkdir(f'{base_path}/dbscripts')
@@ -26,16 +30,63 @@ def build_db_seed_v2(args={}, base_path=None):
       fp.write(content)
 
 
+# Builds a new .NET Core 2.2 Web API project, creates dummy Models and a 
+# database context and modifies Startup.cs so it is automatically connected 
+# to its assigned PostgreSQL Docker container. 
 def build_api_v2(args={}, base_path=None):
-  os.system(f"dotnet new webapi -o Services/{args['project_name']}Service/{args['project_name']}API --force")
+  project_path = f"./Services/{args['project_name']}Service/{args['project_name']}API"
+  models_path = f'{project_path}/Models'
+  controllers_path = f'{project_path}/Controllers'
+  
+  # Create the project and add PostgreSQL as a dependency
+  os.system(f"dotnet new webapi -o {project_path} --force --no-restore")
+  os.system(f"dotnet add {project_path} package Npgsql.EntityFrameworkCore.PostgreSQL --no-restore")
+
+  # Create the model(s) and database context
+  if not os.path.exists(models_path): 
+    os.mkdir(models_path)
+
+  with open(f'{models_path}/Person.cs', 'w+') as fp: 
+    with open(f'templates/Person.cs.template') as t: 
+      fp.write(fill_template(t.read(), {
+        'project_name' : args['project_name']
+      }))
+
+  with open(f'{models_path}/{project_name}APIContext.cs', 'w+') as fp: 
+    with open(f'templates/DbContext.cs.template') as t: 
+      fp.write(fill_template(t.read(), {
+        'project_name' : args['project_name']
+      }))
+
+  # Correct the Startup.cs file  
+  with open(f'{project_path}/Startup.cs', 'w+') as fp: 
+    with open(f'templates/Startup.cs.template') as t: 
+      fp.write(fill_template(t.read(), {
+        'project_name' : args['project_name']
+      }))
+
+  # Delete the existing controller, create a new one 
+  os.system(f'sudo rm {controllers_path}/ValuesController.cs')
+  with open(f'{controllers_path}/{project_name}Controller.cs', 'w+') as fp: 
+    with open(f'templates/Controller.cs.template') as t: 
+      fp.write(fill_template(t.read(), {
+        'project_name' : args['project_name']
+      }))
+  
 
 
+# Creates the Dockerfile for a .NET Core 2.2 Web API. 
 def build_dockerfile_v2(args={}, base_path=None): 
   with open('templates/Dockerfile.template') as t: 
     with open(f'{base_path}/Dockerfile', 'w+') as fp: 
       fp.write(fill_template(t.read(), args))
 
 
+# Builds a docker-compose.yml file (or a docker-compose-local.yml file if local=True) 
+# that composes services for all provided names. For every name, a .NET Core 2.2 Web API 
+# and an associated PostgreSQL database is created, each of which is run inside its own 
+# Docker container. Each database uses its own volume. Configures an Nginx reverse proxy 
+# that should redirect to all underlying services. 
 def build_docker_compose(service_args=[], local=False, apis=[], volumes=[]): 
   service_template = None 
   services = ''
@@ -63,12 +114,27 @@ def build_docker_compose(service_args=[], local=False, apis=[], volumes=[]):
         })
       )
             
+
+# Main entrypoint
 if __name__ == '__main__': 
   apis = []
   databases = []
   volumes = []
   service_paths = []
 
+  # Should we rebuild the API projects or just create the docker-compose.yml file?
+  rebuild_response = input('''
+      Do you want to re-build all .NET APIs? 
+      This will replace all existing projects with the provided names. 
+      This cannot be undone. [Yes/No]''').lower()
+  while not ('yes' in rebuild_response or 'no' in rebuild_response): 
+    rebuild_response = input("Please write 'Yes' or 'No': ").lower()
+
+  rebuild_apis = 'yes' in rebuild_response
+
+  # For all project names passed in the command line arguments, create an API project
+  # (if so provided) and add various names to their corresponding lists so we can
+  # build the docker-compose.yml file later.
   for project_name in read_project_names():
     service_path  = f'./Services/{project_name}Service'
     database_name = f'{project_name.lower()}-db'
@@ -79,20 +145,25 @@ if __name__ == '__main__':
     databases.append(database_name)
     volumes.append(volume)
     service_paths.append(service_path)
-  
-    build_api_v2(args={
-      'project_name' : project_name
-    }, base_path='.')
 
-    build_db_seed_v2(args={
-      'database_name' : database_name
-    }, base_path=service_path)
+    if rebuild_apis:
+      build_api_v2(args={
+        'project_name' : project_name
+      }, base_path='.')
 
-    build_dockerfile_v2(args={
-      'api_name' : f'{project_name}API'
-    }, base_path=service_path)
+      build_db_seed_v2(args={
+        'database_name' : database_name
+      }, base_path=service_path)
+
+      build_dockerfile_v2(args={
+        'api_name' : f'{project_name}API'
+      }, base_path=service_path)
+
+      # Restore with sudo 
+      os.system(f'sudo dotnet restore {service_path}/{project_name}API/{project_name}API.csproj')
 
 
+  # Create a docker-compose.yml file and write it to disk.
   build_docker_compose(service_args=[
     {
       'api_name' : api_name,
@@ -105,6 +176,7 @@ if __name__ == '__main__':
   ], apis=apis, volumes=volumes)
 
 
+  # Create a local one, too. 
   build_docker_compose(service_args=[
     {
       'api_name' : api_name,
@@ -115,3 +187,14 @@ if __name__ == '__main__':
   
     for api_name, database_name, volume, service_path in zip(apis, databases, volumes, service_paths)
   ], apis=apis, volumes=volumes, local=True)
+
+  print(f'----------------------------------------------------------------')
+  print(f'Summary:')
+  if rebuild_apis: 
+    print(f'    - Built .NET Core 2.2 Web APIs in the following directories:')
+    for i, project_name in enumerate(read_project_names()):
+      print(f'        {i+1}. ./Services/{project_name}Service/{project_name}API')
+  print(f'    - Created file:   ./docker-compose.yml')
+  print(f'    - Created file:   ./docker-compose-local.yml')
+
+  

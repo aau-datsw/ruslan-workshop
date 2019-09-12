@@ -15,12 +15,24 @@ services:
     networks:
       - ruslan-workshop-shared
     depends_on:
+      - ruslan-app
       - leaderboard-api
       - matchmaking-api
       - account-api
       - statistics-api
       - tournament-api
 
+
+  ruslan-app:
+    image: ruslan-app:latest
+    container_name: ruslan-app
+    build:
+      context: ./web/ruslan-app
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    networks:
+      - ruslan-workshop-shared
 
   leaderboard-db: 
     image: postgres:latest

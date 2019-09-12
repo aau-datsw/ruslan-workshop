@@ -15,7 +15,19 @@ services:
     networks:
       - ruslan-workshop-shared
     depends_on:
+      - ruslan-app
 {depends_on_list}
+
+  ruslan-app:
+    image: ruslan-app:latest
+    container_name: ruslan-app
+    build:
+      context: ./web/ruslan-app
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    networks:
+      - ruslan-workshop-shared
 
 {services}
 

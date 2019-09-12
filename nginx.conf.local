@@ -31,7 +31,7 @@ http {
     ssl_certificate_key /etc/letsencrypt/live/ruslan.local/privkey.pem;
 
     location / {
-      return 200 'You are now using the website.';
+      proxy_pass http://ruslan-app:80/;
     }
   }
  

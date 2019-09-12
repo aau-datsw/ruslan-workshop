@@ -48,4 +48,10 @@ Kør `sudo sh restart-local.sh`.
 Besøg herefter `https://ruslan.local`. Du vil se en advarselsbesked om usikkert SSL certifikat. Bypass denne, vi ved godt det ikke er ret rigtigt certifikat vi har genereret. 
 Besøg herefter `https://api.ruslan.local` og gør det samme. 
 
-For at besøge Leaderboards API'en, besøg `https://api.ruslan.local/leaderboards/`. 
+For at besøge Leaderboards API'en, besøg `https://api.ruslan.local/leaderboards/all`. Hvis du får en JSON liste af personer virker alt som det skal. 
+
+![Sample svar fra serveren](img/ruslan_sample_response.png)
+
+# FAQ 
+## Jeg har ændret i `seed.sql` for min API, men der sker ikke noget med databasen
+Databasens `seed.sql` bliver kun kørt når databasen laves. Da databasen allerede eksistere på disken køres det ikke. For at slette databasen kan du køre `sudo sh scripts/clean_docker.sh`. Bemærk at du mister al data i din database hvis du gør dette!

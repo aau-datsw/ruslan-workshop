@@ -32,11 +32,20 @@ Det inkluderer følgende:
 [Gruppe 5](StatisticsService/)
 
 # How to use
+
+*Denne guide virker kun for Mac OS X og Linux brugere - ikke Windows, sorry :-(*
+*Hvis du bruger Windows anbefaler vi varmt at du kører en virtuel maskine med Ubuntu 18.04 LTS på (google VirtualBox) eller installerer en variant af Ubuntu ved siden af Windows som dualboot.*
+
 Gør følgende for at kunne besøge `https://ruslan.local` og `https://api.ruslan.local` i din browser for at teste din API: 
 ## Installér Docker og Docker Compose
-Kør `sudo sh install.sh` i terminalen. Prøv derefter at køre `docker --version` og `docker-compose --version` i terminalen. Hvis du i nogen af tilfældene ikke får et versionsnummer ud, men i stedet en "command not found" eller lignende fejlbesked er noget gået galt i installeringsprocessen. Dette kan normalt fixes ved at manuelt køre hver linje i `install.sh` hver for sig i terminalen.
-## Generér SSL certifikater
-Kør `sudo sh generate_certs.sh`. 
+Kør `sudo sh scripts/install.sh` i terminalen. Prøv derefter at køre `docker --version` og `docker-compose --version` i terminalen. Hvis du i nogen af tilfældene ikke får et versionsnummer ud, men i stedet en "command not found" eller lignende fejlbesked er noget gået galt i installeringsprocessen. Dette kan normalt fixes ved at manuelt køre hver linje i `scripts/install.sh` hver for sig i terminalen.
+## Generér SSL certifikater til lokal udvikling
+Kør `sudo sh cert-gen/gen-self-signed.sh ruslan.dk` og `sudo sh cert-gen/gen-self-signed.sh api.ruslan.dk`. Du burde nu have to directories `cert-gen/ruslan.dk/` og `cert-gen/api.ruslan.dk/`. For at emulere server-tilstanden skal disse ligge i `/etc/letsencrypt/live`. Dette har du højst sandsynligt ikke endnu, da du nok ikke har brugt Let's Encrypt på din computer, så lav det med `sudo mkdir -p /etc/letsencrypt/live`. 
+Kopiér de to mapper ind med `sudo mv cert-gen/api.ruslan.dk /etc/letsencrypt/live` og `sudo mv cert-gen/ruslan.dk /etc/letsencrypt/live`. For at sikre, at SSL certifikaterne er blevet rykket korrekt, kør `ls /etc/letsencrypt/live` hvor outputtet burde være: 
+```
+api.ruslan.dk
+ruslan.dk
+```
 ## Lad loalhost pege på ruslan.local 
 I din `/etc/hosts` fil skal du tilføje følgende to linjer i bunden: 
 ``` 

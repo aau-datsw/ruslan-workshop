@@ -3,7 +3,7 @@ version: "3"
 networks:
   ruslan-workshop-shared:
 
-services:
+services: 
   reverse-proxy:
     image: nginx:latest
     volumes:
@@ -16,11 +16,7 @@ services:
       - ruslan-workshop-shared
     depends_on:
       - ruslan-app
-      - leaderboard-api
-      - matchmaking-api
-      - account-api
-      - statistics-api
-      - tournament-api
+      - market-api
 
 
   ruslan-app:
@@ -34,161 +30,37 @@ services:
     networks:
       - ruslan-workshop-shared
 
-  leaderboard-db:
+  market-db: 
     image: postgres:latest
-    expose:
+    expose: 
       - 5432
     restart: always
-    volumes:
-      - ./services/LeaderboardService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
-      - leaderboard-db-volume:/var/lib/postgresql/data
+    volumes: 
+      - ./services/MarketService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      - market-db-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "ya"
       POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "leaderboard-db"
+      POSTGRES_DB: "market-db"
     networks:
       - ruslan-workshop-shared
-
-  leaderboard-api:
-    image: leaderboard-api:latest
-    container_name: leaderboard-api
+    
+  market-api:
+    image: market-api:latest
+    container_name: market-api
     build:
-      context: ./services/LeaderboardService
+      context: ./services/MarketService
       dockerfile: ./Dockerfile
     expose:
       - 80
     environment:
-      DB_CONNECTION_STRING: "host=leaderboard-db;port=5432;database=leaderboard-db;username=ya;password=yeet"
+      DB_CONNECTION_STRING: "host=market-db;port=5432;database=market-db;username=ya;password=yeet"
     depends_on:
-      - leaderboard-db
-    networks:
-      - ruslan-workshop-shared
-
-  matchmaking-db:
-    image: postgres:latest
-    expose:
-      - 5432
-    restart: always
-    volumes:
-      - ./services/MatchmakingService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
-      - matchmaking-db-volume:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "ya"
-      POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "matchmaking-db"
-    networks:
-      - ruslan-workshop-shared
-
-  matchmaking-api:
-    image: matchmaking-api:latest
-    container_name: matchmaking-api
-    build:
-      context: ./services/MatchmakingService
-      dockerfile: ./Dockerfile
-    expose:
-      - 80
-    environment:
-      DB_CONNECTION_STRING: "host=matchmaking-db;port=5432;database=matchmaking-db;username=ya;password=yeet"
-    depends_on:
-      - matchmaking-db
-    networks:
-      - ruslan-workshop-shared
-
-  account-db:
-    image: postgres:latest
-    expose:
-      - 5432
-    restart: always
-    volumes:
-      - ./services/AccountService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
-      - account-db-volume:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "ya"
-      POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "account-db"
-    networks:
-      - ruslan-workshop-shared
-
-  account-api:
-    image: account-api:latest
-    container_name: account-api
-    build:
-      context: ./services/AccountService
-      dockerfile: ./Dockerfile
-    expose:
-      - 80
-    environment:
-      DB_CONNECTION_STRING: "host=account-db;port=5432;database=account-db;username=ya;password=yeet"
-    depends_on:
-      - account-db
-    networks:
-      - ruslan-workshop-shared
-
-  statistics-db:
-    image: postgres:latest
-    expose:
-      - 5432
-    restart: always
-    volumes:
-      - ./services/StatisticsService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
-      - statistics-db-volume:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "ya"
-      POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "statistics-db"
-    networks:
-      - ruslan-workshop-shared
-
-  statistics-api:
-    image: statistics-api:latest
-    container_name: statistics-api
-    build:
-      context: ./services/StatisticsService
-      dockerfile: ./Dockerfile
-    expose:
-      - 80
-    environment:
-      DB_CONNECTION_STRING: "host=statistics-db;port=5432;database=statistics-db;username=ya;password=yeet"
-    depends_on:
-      - statistics-db
-    networks:
-      - ruslan-workshop-shared
-
-  tournament-db:
-    image: postgres:latest
-    expose:
-      - 5432
-    restart: always
-    volumes:
-      - ./services/TournamentService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
-      - tournament-db-volume:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "ya"
-      POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "tournament-db"
-    networks:
-      - ruslan-workshop-shared
-
-  tournament-api:
-    image: tournament-api:latest
-    container_name: tournament-api
-    build:
-      context: ./services/TournamentService
-      dockerfile: ./Dockerfile
-    expose:
-      - 80
-    environment:
-      DB_CONNECTION_STRING: "host=tournament-db;port=5432;database=tournament-db;username=ya;password=yeet"
-    depends_on:
-      - tournament-db
+      - market-db
     networks:
       - ruslan-workshop-shared
 
 
 
 volumes:
-  leaderboard-db-volume:
-  matchmaking-db-volume:
-  account-db-volume:
-  statistics-db-volume:
-  tournament-db-volume:
+  market-db-volume:

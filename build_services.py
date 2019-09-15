@@ -123,14 +123,16 @@ if __name__ == '__main__':
   service_paths = []
 
   # Should we rebuild the API projects or just create the docker-compose.yml file?
-  rebuild_response = input('''
-      Do you want to re-build all .NET APIs? 
-      This will replace all existing projects with the provided names. 
-      This cannot be undone. [Yes/No]''').lower()
-  while not ('yes' in rebuild_response or 'no' in rebuild_response): 
-    rebuild_response = input("Please write 'Yes' or 'No': ").lower()
+  user_choice = int(input(''' 
+      Please select one of the following options: 
+        [1] Create .NET APIs and Docker Compose files
+        [2] Only create .NET APIs
+        [3] Only create Docker Compose files
+  '''))
 
-  rebuild_apis = 'yes' in rebuild_response
+  if user_choice not in [1, 2, 3]: 
+    print('Choice must be a number. Aborting...')
+    quit()
 
   # For all project names passed in the command line arguments, create an API project
   # (if so provided) and add various names to their corresponding lists so we can
@@ -146,7 +148,7 @@ if __name__ == '__main__':
     volumes.append(volume)
     service_paths.append(service_path)
 
-    if rebuild_apis:
+    if user_choice in [1, 2]:
       build_api_v2(args={
         'project_name' : project_name
       }, base_path='.')
@@ -163,38 +165,40 @@ if __name__ == '__main__':
       os.system(f'sudo dotnet restore {service_path}/{project_name}API/{project_name}API.csproj')
 
 
-  # Create a docker-compose.yml file and write it to disk.
-  build_docker_compose(service_args=[
-    {
-      'api_name' : api_name,
-      'database_name' : database_name, 
-      'volume' : volume,
-      'service_path' : service_path
-    }
-  
-    for api_name, database_name, volume, service_path in zip(apis, databases, volumes, service_paths)
-  ], apis=apis, volumes=volumes)
+  if user_choice in [1, 3]: 
+    # Create a docker-compose.yml file and write it to disk.
+    build_docker_compose(service_args=[
+      {
+        'api_name' : api_name,
+        'database_name' : database_name, 
+        'volume' : volume,
+        'service_path' : service_path
+      }
+    
+      for api_name, database_name, volume, service_path in zip(apis, databases, volumes, service_paths)
+    ], apis=apis, volumes=volumes)
 
 
-  # Create a local one, too. 
-  build_docker_compose(service_args=[
-    {
-      'api_name' : api_name,
-      'database_name' : database_name, 
-      'volume' : volume,
-      'service_path' : service_path
-    }
-  
-    for api_name, database_name, volume, service_path in zip(apis, databases, volumes, service_paths)
-  ], apis=apis, volumes=volumes, local=True)
+    # Create a local one, too. 
+    build_docker_compose(service_args=[
+      {
+        'api_name' : api_name,
+        'database_name' : database_name, 
+        'volume' : volume,
+        'service_path' : service_path
+      }
+    
+      for api_name, database_name, volume, service_path in zip(apis, databases, volumes, service_paths)
+    ], apis=apis, volumes=volumes, local=True)
 
   print(f'----------------------------------------------------------------')
   print(f'Summary:')
-  if rebuild_apis: 
+  if user_choice in [1, 2]: 
     print(f'    - Built .NET Core 2.2 Web APIs in the following directories:')
     for i, project_name in enumerate(read_project_names()):
       print(f'        {i+1}. ./services/{project_name}Service/{project_name}API')
-  print(f'    - Created file:   ./docker-compose.yml')
-  print(f'    - Created file:   ./docker-compose-local.yml')
+  if user_choice in [1, 3]: 
+    print(f'    - Created file:   ./docker-compose.yml')
+    print(f'    - Created file:   ./docker-compose-local.yml')
 
   

@@ -42,7 +42,7 @@ if __name__ == "__main__":
             companies.append({
                 'name' : name,
                 'price' : price,
-                'volatility' : ['volatile', 'normal', 'slow'].index(volatility)
+                'volatility' : ['slow', 'normal', 'volatile'].index(volatility)
             })
 
     with open('companies.json', 'w+') as fp: 

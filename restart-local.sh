@@ -3,7 +3,7 @@ docker-compose down
 if [ ! -d "./web/ruslan-app/dist"]
 then 
     echo "Building the Angular 7 app..."
-    pushd /web/ruslan-app 
+    pushd ./web/ruslan-app 
     ng build --prod
     popd
 fi

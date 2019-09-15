@@ -20,21 +20,38 @@ namespace MarketAPI.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        [HttpGet]
-        [Route("all")]
-        public ActionResult<IEnumerable<Person>> GetAllPersons()
+        [HttpPost]
+        [Route("companies/add-range")]
+        public ActionResult AddCompanies(IEnumerable<Company> companies)
         {
-            return _dbContext.Persons.ToList();
+            try
+            {
+                _dbContext.Companies.AddRange(companies);
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                if (_hostingEnvironment.IsDevelopment())
+                    return BadRequest(e.Message);
+                return BadRequest();
+            }
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public ActionResult<Person> GetPersonById(int id)
+        [Route("companies/all")]
+        public ActionResult<IEnumerable<Company>> GetAllCompanies()
         {
-            var person = _dbContext.Persons.FirstOrDefault(p => p.Id == id);
-            if (person == null) 
-                return NotFound($"Could not find a person with ID {id}.");
-            return Ok(person);
+            try
+            {
+                return _dbContext.Companies;
+            }
+            catch (Exception e)
+            {
+                if (_hostingEnvironment.IsDevelopment())
+                    return BadRequest(e.Message);
+                return BadRequest();
+            }
         }
     }
 }

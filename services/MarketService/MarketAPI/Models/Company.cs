@@ -2,13 +2,15 @@ using Newtonsoft.Json;
 
 namespace MarketAPI.Models
 {
-  public partial class Person
+  public partial class Company
   {
     [JsonProperty("id")]
     public int Id { get; set; } 
     [JsonProperty("name")]
     public string Name { get; set; }
-    [JsonProperty("other_name")]
-    public string OtherName { get; set; }
+    [JsonProperty("price")]
+    public string Price { get; set; }
+    [JsonProperty("volatility")]
+    public int Volatility { get; set; }
   }
 }

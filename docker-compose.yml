@@ -3,7 +3,7 @@ version: "3"
 networks:
   ruslan-workshop-shared:
 
-services: 
+services:
   reverse-proxy:
     image: nginx:latest
     volumes:
@@ -34,12 +34,12 @@ services:
     networks:
       - ruslan-workshop-shared
 
-  leaderboard-db: 
+  leaderboard-db:
     image: postgres:latest
-    expose: 
+    expose:
       - 5432
     restart: always
-    volumes: 
+    volumes:
       - ./services/LeaderboardService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - leaderboard-db-volume:/var/lib/postgresql/data
     environment:
@@ -48,7 +48,7 @@ services:
       POSTGRES_DB: "leaderboard-db"
     networks:
       - ruslan-workshop-shared
-    
+
   leaderboard-api:
     image: leaderboard-api:latest
     container_name: leaderboard-api
@@ -64,12 +64,12 @@ services:
     networks:
       - ruslan-workshop-shared
 
-  matchmaking-db: 
+  matchmaking-db:
     image: postgres:latest
-    expose: 
+    expose:
       - 5432
     restart: always
-    volumes: 
+    volumes:
       - ./services/MatchmakingService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - matchmaking-db-volume:/var/lib/postgresql/data
     environment:
@@ -78,7 +78,7 @@ services:
       POSTGRES_DB: "matchmaking-db"
     networks:
       - ruslan-workshop-shared
-    
+
   matchmaking-api:
     image: matchmaking-api:latest
     container_name: matchmaking-api
@@ -94,12 +94,12 @@ services:
     networks:
       - ruslan-workshop-shared
 
-  account-db: 
+  account-db:
     image: postgres:latest
-    expose: 
+    expose:
       - 5432
     restart: always
-    volumes: 
+    volumes:
       - ./services/AccountService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - account-db-volume:/var/lib/postgresql/data
     environment:
@@ -108,7 +108,7 @@ services:
       POSTGRES_DB: "account-db"
     networks:
       - ruslan-workshop-shared
-    
+
   account-api:
     image: account-api:latest
     container_name: account-api
@@ -124,12 +124,12 @@ services:
     networks:
       - ruslan-workshop-shared
 
-  statistics-db: 
+  statistics-db:
     image: postgres:latest
-    expose: 
+    expose:
       - 5432
     restart: always
-    volumes: 
+    volumes:
       - ./services/StatisticsService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - statistics-db-volume:/var/lib/postgresql/data
     environment:
@@ -138,7 +138,7 @@ services:
       POSTGRES_DB: "statistics-db"
     networks:
       - ruslan-workshop-shared
-    
+
   statistics-api:
     image: statistics-api:latest
     container_name: statistics-api
@@ -154,12 +154,12 @@ services:
     networks:
       - ruslan-workshop-shared
 
-  tournament-db: 
+  tournament-db:
     image: postgres:latest
-    expose: 
+    expose:
       - 5432
     restart: always
-    volumes: 
+    volumes:
       - ./services/TournamentService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - tournament-db-volume:/var/lib/postgresql/data
     environment:
@@ -168,7 +168,7 @@ services:
       POSTGRES_DB: "tournament-db"
     networks:
       - ruslan-workshop-shared
-    
+
   tournament-api:
     image: tournament-api:latest
     container_name: tournament-api

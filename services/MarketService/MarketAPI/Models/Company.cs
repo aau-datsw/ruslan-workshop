@@ -12,5 +12,7 @@ namespace MarketAPI.Models
     public string Price { get; set; }
     [JsonProperty("volatility")]
     public int Volatility { get; set; }
+
+    public override string ToString() => $"{Name}@{Price}DKK ({(Volatility == 0 ? "SLOW" : Volatility == 1 ? "NORMAL" : "VOLATILE")})";
   }
 }

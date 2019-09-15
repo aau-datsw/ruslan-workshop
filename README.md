@@ -18,17 +18,12 @@ Kør `sudo sh scripts/install.sh` i terminalen. Prøv derefter at køre `docker 
 
 ## Installér Angular 7
 Følg [denne guide](https://www.techomoro.com/how-to-install-and-setup-angular-7-on-ubuntu-18-04-1/) for at installere Angular.
-Kør følgende kommandoer efter installationen for at sikre, at du kan bygge Angular projektet.
-```
-sudo npm install --save-dev @angular-devkit/build-angular
-sudo npm i --save-dev @angular/compiler-cli
-```
 
 ## Generér SSL certifikater til lokal udvikling
 Kør følgende kommandoer hver for sig: 
 ```
-sudo sh scripts/cert-gen/gen-self-signed.sh ruslan.local
-sudo sh scripts/cert-gen/gen-self-signed.sh api.ruslan.local
+sudo sh scripts/cert-gen/gen_self_signed.sh ruslan.local
+sudo sh scripts/cert-gen/gen_self_signed.sh api.ruslan.local
 ```
 
 For at emulere server-tilstanden skal disse ligge i `/etc/letsencrypt/live`. Dette har du højst sandsynligt ikke endnu, da du nok ikke har brugt Let's Encrypt på din computer. Lav det med kommandoen:
@@ -40,7 +35,7 @@ Kopiér de to mapper ind i `/etc/letsencrypt/live/`:
 
 ```
 sudo mv scripts/cert-gen/api.ruslan.local /etc/letsencrypt/live
-sudo mv scripts/cert-gen/ruslan.local /etc/letsencrypt/live. 
+sudo mv scripts/cert-gen/ruslan.local /etc/letsencrypt/live
 ```
 
 For at sikre, at SSL certifikaterne er blevet rykket korrekt, kør `ls /etc/letsencrypt/live` hvor outputtet burde være:

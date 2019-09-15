@@ -35,8 +35,8 @@ namespace MarketAPI
             services.AddDbContext<MarketAPIContext>(options =>                             
             options.UseNpgsql(connectionString));                                           
             services.AddMvc()
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-            .AddJsonOptions(options => options.SerializerSettings.Formatting = Formatting.Indented);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => options.SerializerSettings.Formatting = Formatting.Indented);
 
         }
 

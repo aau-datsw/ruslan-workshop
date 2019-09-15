@@ -4,8 +4,8 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:24434",
-      "sslPort": 44351
+      "applicationUrl": "http://localhost:63989",
+      "sslPort": 44331
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "LeaderboardAPI": {
+    "TournamentAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

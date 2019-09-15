@@ -34,7 +34,7 @@ def build_db_seed_v2(args={}, base_path=None):
 # database context and modifies Startup.cs so it is automatically connected 
 # to its assigned PostgreSQL Docker container. 
 def build_api_v2(args={}, base_path=None):
-  project_path = f"./Services/{args['project_name']}Service/{args['project_name']}API"
+  project_path = f"./services/{args['project_name']}Service/{args['project_name']}API"
   models_path = f'{project_path}/Models'
   controllers_path = f'{project_path}/Controllers'
   
@@ -136,7 +136,7 @@ if __name__ == '__main__':
   # (if so provided) and add various names to their corresponding lists so we can
   # build the docker-compose.yml file later.
   for project_name in read_project_names():
-    service_path  = f'./Services/{project_name}Service'
+    service_path  = f'./services/{project_name}Service'
     database_name = f'{project_name.lower()}-db'
     api_name      = f'{project_name.lower()}-api'
     volume        = f'{database_name}-volume'
@@ -193,7 +193,7 @@ if __name__ == '__main__':
   if rebuild_apis: 
     print(f'    - Built .NET Core 2.2 Web APIs in the following directories:')
     for i, project_name in enumerate(read_project_names()):
-      print(f'        {i+1}. ./Services/{project_name}Service/{project_name}API')
+      print(f'        {i+1}. ./services/{project_name}Service/{project_name}API')
   print(f'    - Created file:   ./docker-compose.yml')
   print(f'    - Created file:   ./docker-compose-local.yml')
 

@@ -44,8 +44,8 @@ Kør `sudo sh scripts/install.sh` i terminalen. Prøv derefter at køre `docker 
 Følg [denne guide](https://www.techomoro.com/how-to-install-and-setup-angular-7-on-ubuntu-18-04-1/) for at installere Angular.
 
 ## Generér SSL certifikater til lokal udvikling
-Kør `sudo sh cert-gen/gen-self-signed.sh ruslan.local` og `sudo sh cert-gen/gen-self-signed.sh api.ruslan.local`. Du burde nu have to directories `cert-gen/ruslan.local/` og `cert-gen/api.ruslan.local/`. For at emulere server-tilstanden skal disse ligge i `/etc/letsencrypt/live`. Dette har du højst sandsynligt ikke endnu, da du nok ikke har brugt Let's Encrypt på din computer, så lav det med `sudo mkdir -p /etc/letsencrypt/live`. 
-Kopiér de to mapper ind med `sudo mv cert-gen/api.ruslan.local /etc/letsencrypt/live` og `sudo mv cert-gen/ruslan.local /etc/letsencrypt/live`. For at sikre, at SSL certifikaterne er blevet rykket korrekt, kør `ls /etc/letsencrypt/live` hvor outputtet burde være: 
+Kør `sudo sh scripts/cert-gen/gen-self-signed.sh ruslan.local` og `sudo sh scripts/cert-gen/gen-self-signed.sh api.ruslan.local`. Du burde nu have to directories `scripts/cert-gen/ruslan.local/` og `scripts/cert-gen/api.ruslan.local/`. For at emulere server-tilstanden skal disse ligge i `/etc/letsencrypt/live`. Dette har du højst sandsynligt ikke endnu, da du nok ikke har brugt Let's Encrypt på din computer, så lav det med `sudo mkdir -p /etc/letsencrypt/live`. 
+Kopiér de to mapper ind med `sudo mv scripts/cert-gen/api.ruslan.local /etc/letsencrypt/live` og `sudo mv scripts/cert-gen/ruslan.local /etc/letsencrypt/live`. For at sikre, at SSL certifikaterne er blevet rykket korrekt, kør `ls /etc/letsencrypt/live` hvor outputtet burde være: 
 ```
 api.ruslan.local
 ruslan.local

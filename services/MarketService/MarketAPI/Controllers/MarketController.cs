@@ -24,12 +24,14 @@ namespace MarketAPI.Controllers
         [Route("companies/add-range")]
         public ActionResult AddCompanies(IEnumerable<Company> companies)
         {
-            foreach (var company in companies)
-                System.Console.WriteLine(company);
             try
             {
-                _dbContext.Companies.AddRange(companies.ToList());
-                _dbContext.SaveChanges();
+                foreach (var company in companies)
+                {
+                    System.Console.WriteLine(company);
+                    _dbContext.Companies.Add(company);
+                    _dbContext.SaveChanges();
+                }
                 return Ok();
             }
             catch (Exception e)

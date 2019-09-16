@@ -93,7 +93,7 @@ def build_docker_compose(service_args=[], local=False, apis=[], volumes=[]):
   depends_on_list = ''
   volume_list = ''
 
-  with open('templates/docker-compose-service.template') as t: 
+  with open('templates/docker-compose-service-local.template' if local else 'templates/docker-compose-service.template') as t: 
     service_template = t.read()
 
   for args in service_args: 

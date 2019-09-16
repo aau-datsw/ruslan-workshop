@@ -50,7 +50,7 @@ services:
     container_name: market-api
     build:
       context: ./services/MarketService
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile.local
     expose:
       - 80
     environment:

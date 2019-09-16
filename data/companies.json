@@ -1,1282 +1,1282 @@
 [
     {
         "name": "Ledner-Goldner",
-        "price": 1175,
+        "price": 2551,
         "volatility": 2
     },
     {
         "name": "Glover-Waters",
-        "price": 1332,
+        "price": 1313,
         "volatility": 2
     },
     {
         "name": "Erdman-Maggio",
-        "price": 2061,
-        "volatility": 2
-    },
-    {
-        "name": "Heller Group",
-        "price": 2328,
-        "volatility": 2
-    },
-    {
-        "name": "Krajcik Inc",
-        "price": 2448,
-        "volatility": 2
-    },
-    {
-        "name": "Beier, Satterfield and Douglas",
-        "price": 2861,
-        "volatility": 2
-    },
-    {
-        "name": "Zboncak Inc",
-        "price": 2686,
-        "volatility": 2
-    },
-    {
-        "name": "Mayert-Gleichner",
-        "price": 2453,
-        "volatility": 2
-    },
-    {
-        "name": "Ryan Inc",
-        "price": 2402,
-        "volatility": 2
-    },
-    {
-        "name": "McClure-Borer",
-        "price": 1190,
-        "volatility": 2
-    },
-    {
-        "name": "Oberbrunner-Mraz",
-        "price": 1031,
-        "volatility": 2
-    },
-    {
-        "name": "Bosco-Sporer",
-        "price": 1400,
-        "volatility": 2
-    },
-    {
-        "name": "Dooley and Sons",
-        "price": 2384,
-        "volatility": 2
-    },
-    {
-        "name": "Rolfson-Fadel",
-        "price": 1087,
-        "volatility": 2
-    },
-    {
-        "name": "Mraz Group",
-        "price": 2040,
-        "volatility": 2
-    },
-    {
-        "name": "O'Kon-Mayert",
-        "price": 2107,
-        "volatility": 2
-    },
-    {
-        "name": "Blanda, Halvorson and Collins",
         "price": 1386,
         "volatility": 2
     },
     {
+        "name": "Heller Group",
+        "price": 2726,
+        "volatility": 2
+    },
+    {
+        "name": "Krajcik Inc",
+        "price": 1615,
+        "volatility": 2
+    },
+    {
+        "name": "Beier, Satterfield and Douglas",
+        "price": 2147,
+        "volatility": 2
+    },
+    {
+        "name": "Zboncak Inc",
+        "price": 1221,
+        "volatility": 2
+    },
+    {
+        "name": "Mayert-Gleichner",
+        "price": 1809,
+        "volatility": 2
+    },
+    {
+        "name": "Ryan Inc",
+        "price": 2098,
+        "volatility": 2
+    },
+    {
+        "name": "McClure-Borer",
+        "price": 2626,
+        "volatility": 2
+    },
+    {
+        "name": "Oberbrunner-Mraz",
+        "price": 1125,
+        "volatility": 2
+    },
+    {
+        "name": "Bosco-Sporer",
+        "price": 2963,
+        "volatility": 2
+    },
+    {
+        "name": "Dooley and Sons",
+        "price": 1509,
+        "volatility": 2
+    },
+    {
+        "name": "Rolfson-Fadel",
+        "price": 2562,
+        "volatility": 2
+    },
+    {
+        "name": "Mraz Group",
+        "price": 1983,
+        "volatility": 2
+    },
+    {
+        "name": "O'Kon-Mayert",
+        "price": 1700,
+        "volatility": 2
+    },
+    {
+        "name": "Blanda, Halvorson and Collins",
+        "price": 1677,
+        "volatility": 2
+    },
+    {
         "name": "Rau, Yost and Hayes",
-        "price": 2918,
+        "price": 1103,
         "volatility": 2
     },
     {
         "name": "Greenholt LLC",
-        "price": 1319,
+        "price": 1868,
         "volatility": 2
     },
     {
         "name": "Stehr-Torphy",
-        "price": 1218,
+        "price": 1972,
         "volatility": 2
     },
     {
         "name": "Grady and Sons",
-        "price": 1971,
+        "price": 2593,
         "volatility": 2
     },
     {
         "name": "Ernser-Leannon",
-        "price": 1711,
+        "price": 2638,
         "volatility": 2
     },
     {
         "name": "O'Reilly-Schmitt",
-        "price": 2533,
+        "price": 2089,
         "volatility": 2
     },
     {
         "name": "Effertz and Sons",
-        "price": 1182,
+        "price": 1978,
         "volatility": 2
     },
     {
         "name": "Ondricka, Sporer and Hoeger",
-        "price": 1264,
-        "volatility": 2
-    },
-    {
-        "name": "Streich Inc",
-        "price": 1346,
-        "volatility": 2
-    },
-    {
-        "name": "Ebert-Prohaska",
-        "price": 2785,
-        "volatility": 2
-    },
-    {
-        "name": "Quitzon Inc",
-        "price": 2329,
-        "volatility": 2
-    },
-    {
-        "name": "Marvin, Fadel and Tillman",
-        "price": 2769,
-        "volatility": 2
-    },
-    {
-        "name": "Hermann-Bergnaum",
-        "price": 2116,
-        "volatility": 2
-    },
-    {
-        "name": "Mitchell-Schinner",
-        "price": 2498,
-        "volatility": 2
-    },
-    {
-        "name": "Tillman, Brown and Kovacek",
-        "price": 1404,
-        "volatility": 2
-    },
-    {
-        "name": "Brekke-O'Hara",
-        "price": 2693,
-        "volatility": 2
-    },
-    {
-        "name": "Hoppe LLC",
-        "price": 2911,
-        "volatility": 2
-    },
-    {
-        "name": "Beatty, Quitzon and Shanahan",
-        "price": 2743,
-        "volatility": 2
-    },
-    {
-        "name": "Spencer-Gusikowski",
         "price": 2655,
         "volatility": 2
     },
     {
-        "name": "Kutch, Towne and Ritchie",
-        "price": 1816,
+        "name": "Streich Inc",
+        "price": 2706,
         "volatility": 2
     },
     {
-        "name": "Pacocha, Kihn and Feeney",
-        "price": 2070,
+        "name": "Ebert-Prohaska",
+        "price": 1621,
         "volatility": 2
     },
     {
-        "name": "Klocko and Sons",
-        "price": 1472,
-        "volatility": 2
-    },
-    {
-        "name": "McCullough, Crooks and Bauch",
-        "price": 1932,
-        "volatility": 2
-    },
-    {
-        "name": "Koepp-Rice",
+        "name": "Quitzon Inc",
         "price": 1999,
         "volatility": 2
     },
     {
+        "name": "Marvin, Fadel and Tillman",
+        "price": 2965,
+        "volatility": 2
+    },
+    {
+        "name": "Hermann-Bergnaum",
+        "price": 1956,
+        "volatility": 2
+    },
+    {
+        "name": "Mitchell-Schinner",
+        "price": 1293,
+        "volatility": 2
+    },
+    {
+        "name": "Tillman, Brown and Kovacek",
+        "price": 1075,
+        "volatility": 2
+    },
+    {
+        "name": "Brekke-O'Hara",
+        "price": 1029,
+        "volatility": 2
+    },
+    {
+        "name": "Hoppe LLC",
+        "price": 2237,
+        "volatility": 2
+    },
+    {
+        "name": "Beatty, Quitzon and Shanahan",
+        "price": 2555,
+        "volatility": 2
+    },
+    {
+        "name": "Spencer-Gusikowski",
+        "price": 2737,
+        "volatility": 2
+    },
+    {
+        "name": "Kutch, Towne and Ritchie",
+        "price": 2091,
+        "volatility": 2
+    },
+    {
+        "name": "Pacocha, Kihn and Feeney",
+        "price": 2139,
+        "volatility": 2
+    },
+    {
+        "name": "Klocko and Sons",
+        "price": 1204,
+        "volatility": 2
+    },
+    {
+        "name": "McCullough, Crooks and Bauch",
+        "price": 1838,
+        "volatility": 2
+    },
+    {
+        "name": "Koepp-Rice",
+        "price": 1668,
+        "volatility": 2
+    },
+    {
         "name": "Walter, Reinger and Jast",
-        "price": 2883,
+        "price": 2212,
         "volatility": 2
     },
     {
         "name": "Willms, McKenzie and Harris",
-        "price": 1250,
+        "price": 2796,
         "volatility": 2
     },
     {
         "name": "Romaguera-Fay",
-        "price": 2285,
+        "price": 1820,
         "volatility": 2
     },
     {
         "name": "Marquardt, Gutmann and Leannon",
-        "price": 1543,
+        "price": 1450,
         "volatility": 2
     },
     {
         "name": "Considine LLC",
-        "price": 2095,
+        "price": 1625,
         "volatility": 2
     },
     {
         "name": "Rau-Fahey",
-        "price": 1080,
+        "price": 2815,
         "volatility": 2
     },
     {
         "name": "Klein-Labadie",
-        "price": 2955,
+        "price": 1436,
         "volatility": 2
     },
     {
         "name": "Turner-Dibbert",
-        "price": 2687,
+        "price": 1008,
         "volatility": 2
     },
     {
         "name": "Koelpin Inc",
-        "price": 1145,
+        "price": 1515,
         "volatility": 2
     },
     {
         "name": "Von, Altenwerth and Cassin",
-        "price": 2807,
+        "price": 2003,
         "volatility": 2
     },
     {
         "name": "Ruecker, Reynolds and Smith",
-        "price": 1007,
+        "price": 1465,
         "volatility": 2
     },
     {
         "name": "Walsh and Sons",
-        "price": 1347,
+        "price": 1150,
         "volatility": 2
     },
     {
         "name": "Jones, Davis and Beer",
-        "price": 1754,
+        "price": 2442,
         "volatility": 2
     },
     {
         "name": "Zboncak Group",
-        "price": 1418,
+        "price": 1077,
         "volatility": 2
     },
     {
         "name": "Gislason-Murray",
-        "price": 1107,
+        "price": 1645,
         "volatility": 2
     },
     {
         "name": "Kuhic Group",
-        "price": 2853,
+        "price": 2424,
         "volatility": 2
     },
     {
         "name": "Brakus LLC",
-        "price": 2296,
+        "price": 2798,
         "volatility": 2
     },
     {
         "name": "Schulist Inc",
-        "price": 1273,
+        "price": 1107,
         "volatility": 2
     },
     {
         "name": "Yost, Powlowski and Berge",
-        "price": 1755,
+        "price": 1568,
         "volatility": 2
     },
     {
         "name": "Waelchi LLC",
-        "price": 1913,
+        "price": 2862,
         "volatility": 2
     },
     {
         "name": "Wolf, Raynor and Streich",
-        "price": 2543,
+        "price": 1942,
         "volatility": 2
     },
     {
         "name": "Reichert LLC",
-        "price": 2073,
+        "price": 1580,
         "volatility": 2
     },
     {
         "name": "Jacobs Group",
-        "price": 2326,
+        "price": 1006,
         "volatility": 2
     },
     {
         "name": "Wisozk, Rohan and Hauck",
-        "price": 2047,
+        "price": 1525,
         "volatility": 2
     },
     {
         "name": "Herzog, Will and Ullrich",
-        "price": 1524,
+        "price": 1886,
         "volatility": 2
     },
     {
         "name": "Volkman and Sons",
-        "price": 2221,
+        "price": 1629,
         "volatility": 2
     },
     {
         "name": "Waters, Ziemann and Beier",
-        "price": 2904,
+        "price": 2508,
         "volatility": 2
     },
     {
         "name": "Spencer, Quitzon and Quigley",
-        "price": 1900,
+        "price": 1924,
         "volatility": 2
     },
     {
         "name": "Toy, Jakubowski and Pouros",
-        "price": 1000,
+        "price": 2182,
         "volatility": 2
     },
     {
         "name": "Hamill Inc",
-        "price": 1294,
+        "price": 1668,
         "volatility": 2
     },
     {
         "name": "Wolf-O'Connell",
-        "price": 2825,
+        "price": 1229,
         "volatility": 2
     },
     {
         "name": "Ferry, Kreiger and Koss",
-        "price": 2664,
+        "price": 2952,
         "volatility": 2
     },
     {
         "name": "Prosacco LLC",
-        "price": 2204,
+        "price": 1053,
         "volatility": 2
     },
     {
         "name": "Weber, Kozey and Rolfson",
-        "price": 1863,
+        "price": 2678,
         "volatility": 2
     },
     {
         "name": "Casper, Bergnaum and Kunze",
-        "price": 2663,
+        "price": 2640,
         "volatility": 2
     },
     {
         "name": "Rohan LLC",
-        "price": 2259,
+        "price": 1624,
         "volatility": 2
     },
     {
         "name": "Schumm-Hauck",
-        "price": 1566,
+        "price": 1751,
         "volatility": 2
     },
     {
         "name": "Vandervort Group",
-        "price": 1574,
+        "price": 1582,
         "volatility": 2
     },
     {
         "name": "Hegmann, Lebsack and Schiller",
-        "price": 1907,
+        "price": 1048,
         "volatility": 2
     },
     {
         "name": "Hilpert-Ortiz",
-        "price": 1342,
+        "price": 2432,
         "volatility": 2
     },
     {
         "name": "Kling, Durgan and Zboncak",
-        "price": 1244,
+        "price": 2519,
         "volatility": 2
     },
     {
         "name": "Collins-Sipes",
-        "price": 2827,
+        "price": 2546,
         "volatility": 2
     },
     {
         "name": "Adams, Windler and Emard",
-        "price": 1771,
+        "price": 2327,
         "volatility": 2
     },
     {
         "name": "Paucek and Sons",
-        "price": 2031,
+        "price": 2599,
         "volatility": 2
     },
     {
         "name": "Nicolas, Kerluke and Jacobson",
-        "price": 8150,
+        "price": 11302,
         "volatility": 1
     },
     {
         "name": "Blanda-Cormier",
-        "price": 8965,
+        "price": 11954,
         "volatility": 1
     },
     {
         "name": "O'Connell Group",
-        "price": 9900,
+        "price": 9534,
         "volatility": 1
     },
     {
         "name": "Bruen-Nader",
-        "price": 10695,
+        "price": 9190,
         "volatility": 1
     },
     {
         "name": "Bartoletti, Kozey and Stanton",
-        "price": 9085,
+        "price": 11703,
         "volatility": 1
     },
     {
         "name": "Dare-Abshire",
-        "price": 10372,
+        "price": 11998,
         "volatility": 1
     },
     {
         "name": "Weber, Connelly and Thompson",
-        "price": 11788,
+        "price": 8176,
         "volatility": 1
     },
     {
         "name": "Bashirian-Schmeler",
-        "price": 11347,
+        "price": 11361,
         "volatility": 1
     },
     {
         "name": "Kessler, Upton and Moen",
-        "price": 8213,
+        "price": 11342,
         "volatility": 1
     },
     {
         "name": "Walter LLC",
-        "price": 10702,
+        "price": 9567,
         "volatility": 1
     },
     {
         "name": "Renner, Lang and Halvorson",
-        "price": 8986,
+        "price": 10422,
         "volatility": 1
     },
     {
         "name": "Stroman, Rau and Champlin",
-        "price": 9745,
+        "price": 8126,
         "volatility": 1
     },
     {
         "name": "Bins-Hyatt",
-        "price": 10065,
+        "price": 8170,
         "volatility": 1
     },
     {
         "name": "Macejkovic-Lockman",
-        "price": 11477,
-        "volatility": 1
-    },
-    {
-        "name": "Gislason, Heidenreich and Waelchi",
-        "price": 9898,
-        "volatility": 1
-    },
-    {
-        "name": "O'Kon Group",
-        "price": 10595,
-        "volatility": 1
-    },
-    {
-        "name": "Yundt Group",
-        "price": 10761,
-        "volatility": 1
-    },
-    {
-        "name": "Friesen-Daniel",
-        "price": 11899,
-        "volatility": 1
-    },
-    {
-        "name": "Kessler-Walter",
-        "price": 9365,
-        "volatility": 1
-    },
-    {
-        "name": "Hodkiewicz Group",
-        "price": 10606,
-        "volatility": 1
-    },
-    {
-        "name": "Boyle, Rosenbaum and Reinger",
-        "price": 11982,
-        "volatility": 1
-    },
-    {
-        "name": "Hane Group",
-        "price": 9366,
-        "volatility": 1
-    },
-    {
-        "name": "Turner, Howell and Murazik",
-        "price": 8164,
-        "volatility": 1
-    },
-    {
-        "name": "O'Keefe Inc",
-        "price": 10823,
-        "volatility": 1
-    },
-    {
-        "name": "Schuster Inc",
-        "price": 10197,
-        "volatility": 1
-    },
-    {
-        "name": "Bednar Group",
-        "price": 11685,
-        "volatility": 1
-    },
-    {
-        "name": "Weissnat-Johnson",
-        "price": 11574,
-        "volatility": 1
-    },
-    {
-        "name": "Will and Sons",
-        "price": 9531,
-        "volatility": 1
-    },
-    {
-        "name": "Kirlin, Kuvalis and Kshlerin",
-        "price": 10677,
-        "volatility": 1
-    },
-    {
-        "name": "Hirthe and Sons",
-        "price": 8899,
-        "volatility": 1
-    },
-    {
-        "name": "Abbott-Thompson",
-        "price": 9560,
-        "volatility": 1
-    },
-    {
-        "name": "Schamberger-Kihn",
-        "price": 11704,
-        "volatility": 1
-    },
-    {
-        "name": "Cremin Group",
-        "price": 8788,
-        "volatility": 1
-    },
-    {
-        "name": "Johnston, Mertz and Harvey",
-        "price": 11172,
-        "volatility": 1
-    },
-    {
-        "name": "Daniel, McGlynn and Spinka",
-        "price": 10262,
-        "volatility": 1
-    },
-    {
-        "name": "Harber-Ziemann",
-        "price": 10813,
-        "volatility": 1
-    },
-    {
-        "name": "MacGyver-Frami",
-        "price": 11670,
-        "volatility": 1
-    },
-    {
-        "name": "Mante, Hauck and Gislason",
-        "price": 8342,
-        "volatility": 1
-    },
-    {
-        "name": "Altenwerth, Quigley and Rice",
-        "price": 11642,
-        "volatility": 1
-    },
-    {
-        "name": "Leannon-Larson",
-        "price": 11163,
-        "volatility": 1
-    },
-    {
-        "name": "Rohan, Howe and Dietrich",
-        "price": 11964,
-        "volatility": 1
-    },
-    {
-        "name": "Little Inc",
-        "price": 11071,
-        "volatility": 1
-    },
-    {
-        "name": "Lesch, Zieme and Wintheiser",
-        "price": 8794,
-        "volatility": 1
-    },
-    {
-        "name": "Jakubowski-Donnelly",
-        "price": 11487,
-        "volatility": 1
-    },
-    {
-        "name": "Kunze-Considine",
-        "price": 8779,
-        "volatility": 1
-    },
-    {
-        "name": "Ondricka and Sons",
-        "price": 11515,
-        "volatility": 1
-    },
-    {
-        "name": "O'Kon and Sons",
-        "price": 10304,
-        "volatility": 1
-    },
-    {
-        "name": "Gislason, Beatty and Crona",
-        "price": 10132,
-        "volatility": 1
-    },
-    {
-        "name": "Braun, Weimann and Gleason",
-        "price": 8436,
-        "volatility": 1
-    },
-    {
-        "name": "Zboncak Inc",
-        "price": 11330,
-        "volatility": 1
-    },
-    {
-        "name": "Moore, Breitenberg and Lindgren",
-        "price": 9706,
-        "volatility": 1
-    },
-    {
-        "name": "Krajcik Inc",
-        "price": 10502,
-        "volatility": 1
-    },
-    {
-        "name": "Kozey-Doyle",
-        "price": 8352,
-        "volatility": 1
-    },
-    {
-        "name": "Auer-Satterfield",
-        "price": 8305,
-        "volatility": 1
-    },
-    {
-        "name": "Ruecker-Kris",
-        "price": 9970,
-        "volatility": 1
-    },
-    {
-        "name": "Wehner, Padberg and Johnson",
-        "price": 8321,
-        "volatility": 1
-    },
-    {
-        "name": "Beatty Group",
-        "price": 8594,
-        "volatility": 1
-    },
-    {
-        "name": "Bednar, Tromp and Halvorson",
-        "price": 8602,
-        "volatility": 1
-    },
-    {
-        "name": "Conn and Sons",
-        "price": 10421,
-        "volatility": 1
-    },
-    {
-        "name": "Gibson LLC",
-        "price": 10218,
-        "volatility": 1
-    },
-    {
-        "name": "Barton-Feest",
-        "price": 11719,
-        "volatility": 1
-    },
-    {
-        "name": "Hamill LLC",
-        "price": 9402,
-        "volatility": 1
-    },
-    {
-        "name": "Luettgen and Sons",
-        "price": 11430,
-        "volatility": 1
-    },
-    {
-        "name": "Dickinson-Wolff",
-        "price": 8115,
-        "volatility": 1
-    },
-    {
-        "name": "Cole, Howe and Stamm",
-        "price": 9937,
-        "volatility": 1
-    },
-    {
-        "name": "Nitzsche, Johnson and Hilpert",
-        "price": 11796,
-        "volatility": 1
-    },
-    {
-        "name": "Franecki, Kassulke and Boehm",
-        "price": 11828,
-        "volatility": 1
-    },
-    {
-        "name": "Mosciski LLC",
-        "price": 8475,
-        "volatility": 1
-    },
-    {
-        "name": "Hirthe Group",
-        "price": 11714,
-        "volatility": 1
-    },
-    {
-        "name": "Gleason and Sons",
-        "price": 8545,
-        "volatility": 1
-    },
-    {
-        "name": "Wintheiser, Conn and Gleichner",
-        "price": 10007,
-        "volatility": 1
-    },
-    {
-        "name": "Hodkiewicz Inc",
-        "price": 11463,
-        "volatility": 1
-    },
-    {
-        "name": "Stamm LLC",
-        "price": 8626,
-        "volatility": 1
-    },
-    {
-        "name": "Yost LLC",
-        "price": 9388,
-        "volatility": 1
-    },
-    {
-        "name": "Purdy, Fritsch and Abernathy",
-        "price": 11019,
-        "volatility": 1
-    },
-    {
-        "name": "Block-Schmitt",
         "price": 10109,
         "volatility": 1
     },
     {
+        "name": "Gislason, Heidenreich and Waelchi",
+        "price": 9890,
+        "volatility": 1
+    },
+    {
+        "name": "O'Kon Group",
+        "price": 11991,
+        "volatility": 1
+    },
+    {
+        "name": "Yundt Group",
+        "price": 11682,
+        "volatility": 1
+    },
+    {
+        "name": "Friesen-Daniel",
+        "price": 11546,
+        "volatility": 1
+    },
+    {
+        "name": "Kessler-Walter",
+        "price": 11459,
+        "volatility": 1
+    },
+    {
+        "name": "Hodkiewicz Group",
+        "price": 9576,
+        "volatility": 1
+    },
+    {
+        "name": "Boyle, Rosenbaum and Reinger",
+        "price": 8467,
+        "volatility": 1
+    },
+    {
+        "name": "Hane Group",
+        "price": 10262,
+        "volatility": 1
+    },
+    {
+        "name": "Turner, Howell and Murazik",
+        "price": 11345,
+        "volatility": 1
+    },
+    {
+        "name": "O'Keefe Inc",
+        "price": 11192,
+        "volatility": 1
+    },
+    {
+        "name": "Schuster Inc",
+        "price": 10896,
+        "volatility": 1
+    },
+    {
+        "name": "Bednar Group",
+        "price": 9070,
+        "volatility": 1
+    },
+    {
+        "name": "Weissnat-Johnson",
+        "price": 11170,
+        "volatility": 1
+    },
+    {
+        "name": "Will and Sons",
+        "price": 8660,
+        "volatility": 1
+    },
+    {
+        "name": "Kirlin, Kuvalis and Kshlerin",
+        "price": 11780,
+        "volatility": 1
+    },
+    {
+        "name": "Hirthe and Sons",
+        "price": 8063,
+        "volatility": 1
+    },
+    {
+        "name": "Abbott-Thompson",
+        "price": 10421,
+        "volatility": 1
+    },
+    {
+        "name": "Schamberger-Kihn",
+        "price": 8819,
+        "volatility": 1
+    },
+    {
+        "name": "Cremin Group",
+        "price": 9978,
+        "volatility": 1
+    },
+    {
+        "name": "Johnston, Mertz and Harvey",
+        "price": 11068,
+        "volatility": 1
+    },
+    {
+        "name": "Daniel, McGlynn and Spinka",
+        "price": 9084,
+        "volatility": 1
+    },
+    {
+        "name": "Harber-Ziemann",
+        "price": 9346,
+        "volatility": 1
+    },
+    {
+        "name": "MacGyver-Frami",
+        "price": 9517,
+        "volatility": 1
+    },
+    {
+        "name": "Mante, Hauck and Gislason",
+        "price": 10871,
+        "volatility": 1
+    },
+    {
+        "name": "Altenwerth, Quigley and Rice",
+        "price": 9033,
+        "volatility": 1
+    },
+    {
+        "name": "Leannon-Larson",
+        "price": 10628,
+        "volatility": 1
+    },
+    {
+        "name": "Rohan, Howe and Dietrich",
+        "price": 9648,
+        "volatility": 1
+    },
+    {
+        "name": "Little Inc",
+        "price": 10699,
+        "volatility": 1
+    },
+    {
+        "name": "Lesch, Zieme and Wintheiser",
+        "price": 8027,
+        "volatility": 1
+    },
+    {
+        "name": "Jakubowski-Donnelly",
+        "price": 11606,
+        "volatility": 1
+    },
+    {
+        "name": "Kunze-Considine",
+        "price": 11228,
+        "volatility": 1
+    },
+    {
+        "name": "Ondricka and Sons",
+        "price": 11359,
+        "volatility": 1
+    },
+    {
+        "name": "O'Kon and Sons",
+        "price": 10606,
+        "volatility": 1
+    },
+    {
+        "name": "Gislason, Beatty and Crona",
+        "price": 8391,
+        "volatility": 1
+    },
+    {
+        "name": "Braun, Weimann and Gleason",
+        "price": 8502,
+        "volatility": 1
+    },
+    {
+        "name": "Zboncak Inc",
+        "price": 11495,
+        "volatility": 1
+    },
+    {
+        "name": "Moore, Breitenberg and Lindgren",
+        "price": 10477,
+        "volatility": 1
+    },
+    {
+        "name": "Krajcik Inc",
+        "price": 11795,
+        "volatility": 1
+    },
+    {
+        "name": "Kozey-Doyle",
+        "price": 8297,
+        "volatility": 1
+    },
+    {
+        "name": "Auer-Satterfield",
+        "price": 9362,
+        "volatility": 1
+    },
+    {
+        "name": "Ruecker-Kris",
+        "price": 11182,
+        "volatility": 1
+    },
+    {
+        "name": "Wehner, Padberg and Johnson",
+        "price": 11063,
+        "volatility": 1
+    },
+    {
+        "name": "Beatty Group",
+        "price": 10245,
+        "volatility": 1
+    },
+    {
+        "name": "Bednar, Tromp and Halvorson",
+        "price": 9675,
+        "volatility": 1
+    },
+    {
+        "name": "Conn and Sons",
+        "price": 8253,
+        "volatility": 1
+    },
+    {
+        "name": "Gibson LLC",
+        "price": 8511,
+        "volatility": 1
+    },
+    {
+        "name": "Barton-Feest",
+        "price": 10880,
+        "volatility": 1
+    },
+    {
+        "name": "Hamill LLC",
+        "price": 11501,
+        "volatility": 1
+    },
+    {
+        "name": "Luettgen and Sons",
+        "price": 9284,
+        "volatility": 1
+    },
+    {
+        "name": "Dickinson-Wolff",
+        "price": 11442,
+        "volatility": 1
+    },
+    {
+        "name": "Cole, Howe and Stamm",
+        "price": 11934,
+        "volatility": 1
+    },
+    {
+        "name": "Nitzsche, Johnson and Hilpert",
+        "price": 8486,
+        "volatility": 1
+    },
+    {
+        "name": "Franecki, Kassulke and Boehm",
+        "price": 10242,
+        "volatility": 1
+    },
+    {
+        "name": "Mosciski LLC",
+        "price": 10441,
+        "volatility": 1
+    },
+    {
+        "name": "Hirthe Group",
+        "price": 9175,
+        "volatility": 1
+    },
+    {
+        "name": "Gleason and Sons",
+        "price": 8420,
+        "volatility": 1
+    },
+    {
+        "name": "Wintheiser, Conn and Gleichner",
+        "price": 8949,
+        "volatility": 1
+    },
+    {
+        "name": "Hodkiewicz Inc",
+        "price": 8451,
+        "volatility": 1
+    },
+    {
+        "name": "Stamm LLC",
+        "price": 11478,
+        "volatility": 1
+    },
+    {
+        "name": "Yost LLC",
+        "price": 8729,
+        "volatility": 1
+    },
+    {
+        "name": "Purdy, Fritsch and Abernathy",
+        "price": 11196,
+        "volatility": 1
+    },
+    {
+        "name": "Block-Schmitt",
+        "price": 10238,
+        "volatility": 1
+    },
+    {
         "name": "Brekke-Howe",
-        "price": 10209,
+        "price": 9365,
         "volatility": 1
     },
     {
         "name": "Wilkinson, Carroll and Marquardt",
-        "price": 11637,
+        "price": 8174,
         "volatility": 1
     },
     {
         "name": "Zieme Inc",
-        "price": 8214,
+        "price": 9399,
         "volatility": 1
     },
     {
         "name": "Anderson-Roberts",
-        "price": 9953,
+        "price": 9171,
         "volatility": 1
     },
     {
         "name": "Beatty, Ondricka and Pollich",
-        "price": 10311,
+        "price": 9071,
         "volatility": 1
     },
     {
         "name": "Weissnat Group",
-        "price": 8916,
+        "price": 9876,
         "volatility": 1
     },
     {
         "name": "Satterfield-Rodriguez",
-        "price": 11497,
+        "price": 11701,
         "volatility": 1
     },
     {
         "name": "Cartwright, Langosh and Gerlach",
-        "price": 9612,
+        "price": 10935,
         "volatility": 1
     },
     {
         "name": "Lemke-Gleichner",
-        "price": 9660,
+        "price": 10125,
         "volatility": 1
     },
     {
         "name": "Block-Fay",
-        "price": 10735,
+        "price": 11058,
         "volatility": 1
     },
     {
         "name": "Casper, Padberg and Jacobs",
-        "price": 50992,
+        "price": 52526,
         "volatility": 0
     },
     {
         "name": "Weissnat, Kling and Bradtke",
-        "price": 48522,
+        "price": 54440,
         "volatility": 0
     },
     {
         "name": "West-Aufderhar",
-        "price": 45052,
+        "price": 51957,
         "volatility": 0
     },
     {
         "name": "Gottlieb Inc",
-        "price": 46722,
+        "price": 52139,
         "volatility": 0
     },
     {
         "name": "Medhurst-Kilback",
-        "price": 51003,
+        "price": 51681,
         "volatility": 0
     },
     {
         "name": "Walter LLC",
-        "price": 53220,
+        "price": 45082,
         "volatility": 0
     },
     {
         "name": "Haag-Weimann",
-        "price": 45633,
+        "price": 45853,
         "volatility": 0
     },
     {
         "name": "Kemmer Inc",
-        "price": 53652,
+        "price": 53295,
         "volatility": 0
     },
     {
         "name": "Hackett, Skiles and Bergstrom",
-        "price": 53119,
+        "price": 47767,
         "volatility": 0
     },
     {
         "name": "Keebler-Krajcik",
-        "price": 46335,
+        "price": 54628,
         "volatility": 0
     },
     {
         "name": "Kassulke-Reichel",
-        "price": 53866,
+        "price": 48956,
         "volatility": 0
     },
     {
         "name": "Kuphal LLC",
-        "price": 47355,
+        "price": 54570,
         "volatility": 0
     },
     {
         "name": "Wuckert, Botsford and Boyer",
-        "price": 46079,
+        "price": 51590,
         "volatility": 0
     },
     {
         "name": "Rowe-Zieme",
-        "price": 51295,
+        "price": 54904,
         "volatility": 0
     },
     {
         "name": "Davis Inc",
-        "price": 47080,
+        "price": 47049,
         "volatility": 0
     },
     {
         "name": "Volkman-Spinka",
-        "price": 47618,
+        "price": 49119,
         "volatility": 0
     },
     {
         "name": "McGlynn-Runolfsson",
-        "price": 51283,
+        "price": 46152,
         "volatility": 0
     },
     {
         "name": "Sauer Group",
-        "price": 48718,
+        "price": 54026,
         "volatility": 0
     },
     {
         "name": "Rogahn, Fritsch and Powlowski",
-        "price": 54128,
+        "price": 52295,
         "volatility": 0
     },
     {
         "name": "Quigley, Abshire and Boehm",
-        "price": 51277,
+        "price": 50812,
         "volatility": 0
     },
     {
         "name": "Lockman Inc",
-        "price": 49060,
+        "price": 49997,
         "volatility": 0
     },
     {
         "name": "Auer-Schoen",
-        "price": 50002,
+        "price": 48662,
         "volatility": 0
     },
     {
         "name": "Kautzer LLC",
-        "price": 47768,
+        "price": 47677,
         "volatility": 0
     },
     {
         "name": "Farrell, McGlynn and Koelpin",
-        "price": 47072,
+        "price": 51735,
         "volatility": 0
     },
     {
         "name": "Beier, Jacobi and Crona",
-        "price": 54336,
+        "price": 47351,
         "volatility": 0
     },
     {
         "name": "Sauer LLC",
-        "price": 53565,
+        "price": 51785,
         "volatility": 0
     },
     {
         "name": "Waelchi, Schuster and Schaden",
-        "price": 50216,
+        "price": 47262,
         "volatility": 0
     },
     {
         "name": "Reichert and Sons",
-        "price": 51105,
+        "price": 50154,
         "volatility": 0
     },
     {
         "name": "Zboncak, Yost and Schultz",
-        "price": 52025,
+        "price": 50788,
         "volatility": 0
     },
     {
         "name": "Crona-Williamson",
-        "price": 50224,
+        "price": 52382,
         "volatility": 0
     },
     {
         "name": "Dibbert, Stroman and Nitzsche",
-        "price": 46904,
+        "price": 54300,
         "volatility": 0
     },
     {
         "name": "Bailey, Watsica and Feest",
-        "price": 47234,
+        "price": 53188,
         "volatility": 0
     },
     {
         "name": "Wiza LLC",
-        "price": 54049,
+        "price": 50156,
         "volatility": 0
     },
     {
         "name": "Haley, Ratke and Kohler",
-        "price": 47081,
+        "price": 51140,
         "volatility": 0
     },
     {
         "name": "Ward-Veum",
-        "price": 50388,
+        "price": 51745,
         "volatility": 0
     },
     {
         "name": "Murphy, Von and Feil",
-        "price": 45220,
+        "price": 48323,
         "volatility": 0
     },
     {
         "name": "Schaden LLC",
-        "price": 48629,
+        "price": 49683,
         "volatility": 0
     },
     {
         "name": "Simonis-Thompson",
-        "price": 48229,
+        "price": 50859,
         "volatility": 0
     },
     {
         "name": "Kuvalis-Wunsch",
-        "price": 53049,
+        "price": 53493,
         "volatility": 0
     },
     {
         "name": "Oberbrunner-Wolf",
-        "price": 48319,
+        "price": 54465,
         "volatility": 0
     },
     {
         "name": "Jakubowski-Homenick",
-        "price": 50622,
+        "price": 45262,
         "volatility": 0
     },
     {
         "name": "McCullough Inc",
-        "price": 48657,
+        "price": 51942,
         "volatility": 0
     },
     {
         "name": "Pollich, Jerde and Hauck",
-        "price": 51907,
+        "price": 50995,
         "volatility": 0
     },
     {
         "name": "O'Hara, Pollich and Kiehn",
-        "price": 53625,
+        "price": 51955,
         "volatility": 0
     },
     {
         "name": "Beer-Bosco",
-        "price": 47473,
+        "price": 53643,
         "volatility": 0
     },
     {
         "name": "Bechtelar-Price",
-        "price": 49987,
+        "price": 54314,
         "volatility": 0
     },
     {
         "name": "Franecki-Parisian",
-        "price": 47672,
+        "price": 52973,
         "volatility": 0
     },
     {
         "name": "McCullough-Grant",
-        "price": 50223,
+        "price": 53836,
         "volatility": 0
     },
     {
         "name": "Hauck-Renner",
-        "price": 50847,
+        "price": 53041,
         "volatility": 0
     },
     {
         "name": "Treutel-Grant",
-        "price": 49982,
+        "price": 54007,
         "volatility": 0
     },
     {
         "name": "Metz, Rath and Ratke",
-        "price": 53574,
+        "price": 49056,
         "volatility": 0
     },
     {
         "name": "Herman-Frami",
-        "price": 47692,
+        "price": 48540,
         "volatility": 0
     },
     {
         "name": "Gerhold, Leannon and Rice",
-        "price": 53851,
+        "price": 47815,
         "volatility": 0
     },
     {
         "name": "Bauch Group",
-        "price": 52242,
+        "price": 54677,
         "volatility": 0
     },
     {
         "name": "Johns and Sons",
-        "price": 54114,
+        "price": 46925,
         "volatility": 0
     },
     {
         "name": "Shields-Koelpin",
-        "price": 48295,
+        "price": 46504,
         "volatility": 0
     },
     {
         "name": "Shanahan, Mraz and O'Conner",
-        "price": 47559,
+        "price": 50235,
         "volatility": 0
     },
     {
         "name": "Leannon-Predovic",
-        "price": 47577,
+        "price": 48305,
         "volatility": 0
     },
     {
         "name": "Purdy LLC",
-        "price": 51069,
+        "price": 48983,
         "volatility": 0
     },
     {
         "name": "O'Reilly Inc",
-        "price": 51009,
+        "price": 52270,
         "volatility": 0
     },
     {
         "name": "Marks, Zulauf and Schoen",
-        "price": 45851,
+        "price": 54907,
         "volatility": 0
     },
     {
         "name": "Stamm, Ferry and Heller",
-        "price": 45391,
+        "price": 53691,
         "volatility": 0
     },
     {
         "name": "Keebler, Gutkowski and Little",
-        "price": 49616,
+        "price": 49749,
         "volatility": 0
     },
     {
         "name": "Hackett, Deckow and Gutkowski",
-        "price": 48887,
+        "price": 48248,
         "volatility": 0
     },
     {
         "name": "Hansen Inc",
-        "price": 53645,
+        "price": 50576,
         "volatility": 0
     },
     {
         "name": "Langosh-Kovacek",
-        "price": 50809,
+        "price": 48925,
         "volatility": 0
     },
     {
         "name": "Rutherford, Hyatt and Waelchi",
-        "price": 46470,
+        "price": 51798,
         "volatility": 0
     },
     {
         "name": "Mosciski, Runolfsson and O'Conner",
-        "price": 52282,
+        "price": 46945,
         "volatility": 0
     },
     {
         "name": "Nitzsche Group",
-        "price": 45845,
+        "price": 46695,
         "volatility": 0
     },
     {
         "name": "Volkman Group",
-        "price": 45221,
+        "price": 47824,
         "volatility": 0
     },
     {
         "name": "Aufderhar, Simonis and Mohr",
-        "price": 47312,
+        "price": 46758,
         "volatility": 0
     },
     {
         "name": "Glover, Kirlin and Marquardt",
-        "price": 54374,
+        "price": 46341,
         "volatility": 0
     },
     {
         "name": "Koelpin, Brown and Gusikowski",
-        "price": 51726,
+        "price": 48603,
         "volatility": 0
     },
     {
         "name": "Reinger and Sons",
-        "price": 52021,
+        "price": 45152,
         "volatility": 0
     },
     {
         "name": "Labadie, Schoen and Price",
-        "price": 49737,
+        "price": 54488,
         "volatility": 0
     },
     {
         "name": "Parker, Blick and Quitzon",
-        "price": 47655,
+        "price": 48558,
         "volatility": 0
     },
     {
         "name": "Casper, Jacobi and Murray",
-        "price": 50142,
+        "price": 52547,
         "volatility": 0
     },
     {
         "name": "Barrows, McLaughlin and Hansen",
-        "price": 50148,
+        "price": 54222,
         "volatility": 0
     },
     {
         "name": "Walker Inc",
-        "price": 50635,
+        "price": 47411,
         "volatility": 0
     },
     {
         "name": "Barrows-Stracke",
-        "price": 46270,
+        "price": 53638,
         "volatility": 0
     },
     {
         "name": "Klein, McDermott and Lockman",
-        "price": 47690,
+        "price": 49566,
         "volatility": 0
     },
     {
         "name": "Rolfson Inc",
-        "price": 51238,
+        "price": 50532,
         "volatility": 0
     },
     {
         "name": "Kilback-Lindgren",
-        "price": 53169,
+        "price": 49123,
         "volatility": 0
     },
     {
         "name": "Oberbrunner-Hickle",
-        "price": 46574,
+        "price": 46861,
         "volatility": 0
     },
     {
         "name": "Kulas-Wehner",
-        "price": 50289,
+        "price": 53086,
         "volatility": 0
     }
 ]

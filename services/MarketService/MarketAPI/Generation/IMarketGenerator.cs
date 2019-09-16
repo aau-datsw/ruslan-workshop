@@ -6,6 +6,6 @@ namespace MarketAPI.Generation
 {
     public interface IMarketGenerator
     {
-        IEnumerable<(float x, float y)> GetMarketChanges(Company company, int from, int to);
+        IEnumerable<(double x, double y)> GetMarketChanges(Company company, int from, int to);
     }
 }

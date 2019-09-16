@@ -22,6 +22,7 @@ namespace MarketAPI.Models
 
   public partial class Record
   {
+    public int Id { get; set; }
     public int Timestamp { get; set; }
     public int Price { get; set; }
   }

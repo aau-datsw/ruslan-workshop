@@ -70,6 +70,9 @@ For at tillade dette, tilføj følgende til `launch.json` i VS Code:
 }
 ```
 
+## Log ind og ud 
+Bare gør det.
+
 ## Kør serveren
 Kør `sudo sh restart-local.sh`. 
 Besøg herefter `https://ruslan.local`. Du vil se en advarselsbesked om usikkert SSL certifikat. Bypass denne, vi ved godt det ikke er ret rigtigt certifikat vi har genereret. 

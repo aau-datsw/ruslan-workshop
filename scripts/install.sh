@@ -8,8 +8,8 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update
 sudo apt-cache policy docker-ce
 sudo apt install docker-ce
-sudo usermod -aG docker ${USER}  # Allow ourselves to run docker
-su - ${USER}                     # without writing sudo first
+sudo usermod -a -G docker ${USER}
+su - ${USER}                    
 
 # Install Docker Compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose

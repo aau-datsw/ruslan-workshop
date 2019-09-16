@@ -43,12 +43,33 @@ For at sikre, at SSL certifikaterne er blevet rykket korrekt, kør `ls /etc/lets
 api.ruslan.local
 ruslan.local
 ```
-## Lad loalhost pege på ruslan.local 
+## Lad localhost pege på ruslan.local 
 I din `/etc/hosts` fil skal du tilføje følgende to linjer i bunden: 
 ``` 
 127.0.0.1     ruslan.local
 127.0.0.1 api.ruslan.local
 ```
+
+## Tillad debugging af Docker Containers
+Hvis du bruger Visual Studio Code kan du lave "remote debugging" på din service imens den kører på din lokale server.
+For at tillade dette, tilføj følgende til `launch.json` i VS Code:
+```
+// Allow the debugger to attach do a Docker container
+{
+    "name": ".NET Core Docker Attach",
+    "type": "coreclr",
+    "request": "attach",
+    "processId": "${command:pickRemoteProcess}",
+    "pipeTransport": {
+        "pipeProgram": "docker",
+        "pipeArgs": [ "exec", "-i", "NAVNET PÅ DIN SERVICE HER - KIG I docker-compose-local.yml - EKSEMPELVIS 'market-api' FOR AT DEBUGGE MarketService" ],
+        "debuggerPath": "/vsdbg/vsdbg",
+        "pipeCwd": "${workspaceRoot}",
+        "quoteArgs": false
+    }
+}
+```
+
 ## Kør serveren
 Kør `sudo sh restart-local.sh`. 
 Besøg herefter `https://ruslan.local`. Du vil se en advarselsbesked om usikkert SSL certifikat. Bypass denne, vi ved godt det ikke er ret rigtigt certifikat vi har genereret. 
@@ -57,6 +78,8 @@ Besøg herefter `https://api.ruslan.local` og gør det samme.
 For at besøge Leaderboards API'en, besøg `https://api.ruslan.local/leaderboards/all`. Hvis du får en JSON liste af personer virker alt som det skal. 
 
 ![Sample svar fra serveren](img/ruslan_sample_response.png)
+
+
 
 # FAQ 
 ## Jeg har ændret i `seed.sql` for min API, men der sker ikke noget med databasen

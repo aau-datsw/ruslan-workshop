@@ -28,7 +28,6 @@ namespace MarketAPI.Controllers
             {
                 foreach (var company in companies)
                 {
-                    System.Console.WriteLine(company);
                     _dbContext.Companies.Add(company);
                     _dbContext.SaveChanges();
                 }

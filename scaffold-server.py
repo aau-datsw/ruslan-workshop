@@ -72,6 +72,17 @@ def build_docker_compose(api_names, database_names, volume_names, service_names,
             'volume_list' : volume_list
         }))        
 
+    
+def build_dockerfiles(api_names, service_names, local=False): 
+    for service_name, api_name in zip(service_names, api_names): 
+        build_path = f'{service_name}/Dockerfile.local' if local else f'{service_name}/Dockerfile'
+        template_path = 'scaffolding/services/Dockerfile.local' if local else 'scaffolding/services/Dockerfile'
+
+        with open(build_path, 'w+') as fp: 
+            fp.write(render_template(template_path=template_path, args={
+                'api_name' : api_name
+            }))
+
 
 
 # Main entrypoint
@@ -96,6 +107,9 @@ if __name__ == "__main__":
         build_docker_compose(api_names, database_names, volume_names, service_names)
         build_docker_compose(api_names, database_names, volume_names, service_names, local=True)
         build_docker_compose(api_names, database_names, volume_names, service_names, db_config=True)
+        build_dockerfiles(api_names, service_names)
+        build_dockerfiles(api_names, service_names, local=True)
+
 
     if should_build_nginx: 
         pass 

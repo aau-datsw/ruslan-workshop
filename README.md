@@ -1,42 +1,18 @@
-# RUSLAN Workshop
+# Wolf of RUSLAN
 Repository til alle underprojekter der bygges under RUSLAN 2019 Workshoppen. 
-
-Systemet bygges som en SOA arkitektur, og hvert underprojekt agerer således som sin egen isolerede service der leverer en API der kan anvendes af andre services. 
 
 ![Overordnet arkitektur](img/system_architecture.png)
 
 # Hvad skal det bruges til?
-Overordnet skal systemet tilbyde en masse funktionaliteter der ville være brugbare i et stort LAN event som dette. 
-Det inkluderer følgende: 
-- [ ] Leaderboards - hvem er de bedste til hvert spil?
-- [ ] Matchmaking - placér en spiller i en match hvor skill-level er optimalt passende
-- [ ] Spilplanlægning - uden at tænke på skill-level, lav en round-robin spilplan
-- [ ] Profiler - gør det muligt at oprette, ændre og slette egne profiler og se andres (søgefunktion)
-- [ ] Eventstatistikker - hvor mange spiller lige nu i et givent spil? Hvor mange matches har der været? Vis en graf med antal samtidige spillere over tid
-- [ ] Mere?
-
-# Services
-## Leaderboards
-[Gruppe 1](LeaderboardService/)
-
-## Matchmaking
-[Gruppe 2](MatchmakingService/)
-
-## Spilplanlægning
-[Gruppe 3](TournamentService/)
-
-## Profiler
-[Gruppe 4](AccountService/)
-
-## Eventstatistikker
-[Gruppe 5](StatisticsService/)
+Vi har brugt vore studiestart på at skrive en børs til jer; *STONKS Stock Exchange*, den bedst performende og mest stabile exchange der findes. 
+Alle grupper har deres egen service som de har fuld kontrol over. Service'en indeholder ét API endpoint, `Update()`, som vi kalder hvert 5. minut hvor vi giver jer al den aktieinformation vi har fra de sidste 5 minutter. Jeres job er at bruge denne aktieinformation til at købe og sælge aktier i STONKS Stock Exchange så I tjener flere penge end alle de andre grupper.
 
 # How to use
-
 *Denne guide virker kun for Mac OS X og Linux brugere - ikke Windows, sorry :-(*
+
 *Hvis du bruger Windows anbefaler vi varmt at du kører en virtuel maskine med Ubuntu 18.04 LTS på (google VirtualBox) eller installerer en variant af Ubuntu ved siden af Windows som dualboot.*
 
-Gør følgende for at kunne besøge `https://ruslan.local` og `https://api.ruslan.local` i din browser for at teste din API: 
+Gør følgende for at kunne besøge `https://ruslan.local` og `https://api.ruslan.local` i din browser for at teste din service: 
 ## Installér Docker og Docker Compose
 Kør `sudo sh scripts/install.sh` i terminalen. Prøv derefter at køre `docker --version` og `docker-compose --version` i terminalen. Hvis du i nogen af tilfældene ikke får et versionsnummer ud, men i stedet en "command not found" eller lignende fejlbesked er noget gået galt i installeringsprocessen. Dette kan normalt fixes ved at manuelt køre hver linje i `scripts/install.sh` hver for sig i terminalen.
 
@@ -46,8 +22,8 @@ Følg [denne guide](https://www.techomoro.com/how-to-install-and-setup-angular-7
 ## Generér SSL certifikater til lokal udvikling
 Kør følgende kommandoer hver for sig: 
 ```
-sudo sh scripts/cert-gen/gen-self-signed.sh ruslan.local
-sudo sh scripts/cert-gen/gen-self-signed.sh api.ruslan.local
+sudo sh scripts/cert-gen/gen_self_signed.sh ruslan.local
+sudo sh scripts/cert-gen/gen_self_signed.sh api.ruslan.local
 ```
 
 For at emulere server-tilstanden skal disse ligge i `/etc/letsencrypt/live`. Dette har du højst sandsynligt ikke endnu, da du nok ikke har brugt Let's Encrypt på din computer. Lav det med kommandoen:
@@ -59,7 +35,7 @@ Kopiér de to mapper ind i `/etc/letsencrypt/live/`:
 
 ```
 sudo mv scripts/cert-gen/api.ruslan.local /etc/letsencrypt/live
-sudo mv scripts/cert-gen/ruslan.local /etc/letsencrypt/live. 
+sudo mv scripts/cert-gen/ruslan.local /etc/letsencrypt/live
 ```
 
 For at sikre, at SSL certifikaterne er blevet rykket korrekt, kør `ls /etc/letsencrypt/live` hvor outputtet burde være:
@@ -67,12 +43,36 @@ For at sikre, at SSL certifikaterne er blevet rykket korrekt, kør `ls /etc/lets
 api.ruslan.local
 ruslan.local
 ```
-## Lad loalhost pege på ruslan.local 
+## Lad localhost pege på ruslan.local 
 I din `/etc/hosts` fil skal du tilføje følgende to linjer i bunden: 
 ``` 
 127.0.0.1     ruslan.local
 127.0.0.1 api.ruslan.local
 ```
+
+## Tillad debugging af Docker Containers
+Hvis du bruger Visual Studio Code kan du lave "remote debugging" på din service imens den kører på din lokale server.
+For at tillade dette, tilføj følgende til `launch.json` i VS Code:
+```
+// Allow the debugger to attach do a Docker container
+{
+    "name": ".NET Core Docker Attach",
+    "type": "coreclr",
+    "request": "attach",
+    "processId": "${command:pickRemoteProcess}",
+    "pipeTransport": {
+        "pipeProgram": "docker",
+        "pipeArgs": [ "exec", "-i", "NAVNET PÅ DIN SERVICE HER - KIG I docker-compose-local.yml - EKSEMPELVIS 'market-api' FOR AT DEBUGGE MarketService" ],
+        "debuggerPath": "/vsdbg/vsdbg",
+        "pipeCwd": "${workspaceRoot}",
+        "quoteArgs": false
+    }
+}
+```
+
+## Log ind og ud 
+Bare gør det.
+
 ## Kør serveren
 Kør `sudo sh restart-local.sh`. 
 Besøg herefter `https://ruslan.local`. Du vil se en advarselsbesked om usikkert SSL certifikat. Bypass denne, vi ved godt det ikke er ret rigtigt certifikat vi har genereret. 
@@ -81,6 +81,8 @@ Besøg herefter `https://api.ruslan.local` og gør det samme.
 For at besøge Leaderboards API'en, besøg `https://api.ruslan.local/leaderboards/all`. Hvis du får en JSON liste af personer virker alt som det skal. 
 
 ![Sample svar fra serveren](img/ruslan_sample_response.png)
+
+
 
 # FAQ 
 ## Jeg har ændret i `seed.sql` for min API, men der sker ikke noget med databasen

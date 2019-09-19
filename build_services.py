@@ -76,9 +76,9 @@ def build_api_v2(args={}, base_path=None):
 
 
 # Creates the Dockerfile for a .NET Core 2.2 Web API. 
-def build_dockerfile_v2(args={}, base_path=None): 
-  with open('templates/Dockerfile.template') as t: 
-    with open(f'{base_path}/Dockerfile', 'w+') as fp: 
+def build_dockerfile_v2(args={}, base_path=None, local=False): 
+  with open('templates/Dockerfile.local.template' if local else 'templates/Dockerfile.template') as t: 
+    with open(f'{base_path}/Dockerfile.local' if local else f'{base_path}/Dockerfile', 'w+') as fp: 
       fp.write(fill_template(t.read(), args))
 
 
@@ -93,7 +93,7 @@ def build_docker_compose(service_args=[], local=False, apis=[], volumes=[]):
   depends_on_list = ''
   volume_list = ''
 
-  with open('templates/docker-compose-service.template') as t: 
+  with open('templates/docker-compose-service-local.template' if local else 'templates/docker-compose-service.template') as t: 
     service_template = t.read()
 
   for args in service_args: 
@@ -113,7 +113,27 @@ def build_docker_compose(service_args=[], local=False, apis=[], volumes=[]):
           'volume_list' : volume_list
         })
       )
-            
+
+def build_restart(project_names=None, local=False): 
+  if local:
+    build_commands = []
+    with open('templates/restart-local-build-api.template') as t: 
+      for project_name in project_names: 
+        build_commands.append(fill_template(t.read(), {
+          'project_name' : project_name
+        }))
+
+    with open('templates/restart-local.sh.template') as t: 
+      with open('restart-local.sh', 'w+') as fp: 
+        fp.write(fill_template(t.read(), {
+          'build_commands' : '\n'.join(build_commands)
+        }))
+
+  else:
+    with open('templates/restart.sh.template') as t: 
+      with open('restart.sh', 'w+') as fp: 
+        fp.write(t.read())
+
 
 # Main entrypoint
 if __name__ == '__main__': 
@@ -159,7 +179,11 @@ if __name__ == '__main__':
 
       build_dockerfile_v2(args={
         'api_name' : f'{project_name}API'
-      }, base_path=service_path)
+      }, base_path=service_path, local=False)
+
+      build_dockerfile_v2(args={
+        'api_name' : f'{project_name}API'
+      }, base_path=service_path, local=True)
 
       # Restore with sudo 
       os.system(f'sudo dotnet restore {service_path}/{project_name}API/{project_name}API.csproj')
@@ -190,6 +214,9 @@ if __name__ == '__main__':
     
       for api_name, database_name, volume, service_path in zip(apis, databases, volumes, service_paths)
     ], apis=apis, volumes=volumes, local=True)
+
+  build_restart(project_names=read_project_names(), local=True)
+  build_restart()
 
   print(f'----------------------------------------------------------------')
   print(f'Summary:')

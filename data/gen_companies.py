@@ -41,7 +41,7 @@ if __name__ == "__main__":
             price = price_seed + variance if random() > 0.5 else price_seed - variance
             companies.append({
                 'name' : name,
-                'price' : price,
+                'price' : int(price),
                 'volatility' : ['slow', 'normal', 'volatile'].index(volatility)
             })
 

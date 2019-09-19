@@ -32,11 +32,12 @@ services:
 
   market-db: 
     image: postgres:latest
-    expose: 
-      - 5432
+    container_name: market-db
+    ports: 
+      - "5432:5432"
     restart: always
     volumes: 
-      - ./services/MarketService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      # - ./services/MarketService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - market-db-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "ya"
@@ -50,7 +51,7 @@ services:
     container_name: market-api
     build:
       context: ./services/MarketService
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile.local
     expose:
       - 80
     environment:

@@ -4,7 +4,6 @@
         "5432:5432"
     restart: always
     volumes: 
-      - {service_path}/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - {volume}:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "ya"

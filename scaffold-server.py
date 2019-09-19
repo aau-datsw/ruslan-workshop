@@ -72,6 +72,8 @@ def build_docker_compose(api_names, database_names, volume_names, service_names,
             'volume_list' : volume_list
         }))        
 
+    print(f'    - (Docker Compose) Built {build_path} composing {len(api_names)} services...')
+
     
 def build_dockerfiles(api_names, service_names, local=False): 
     for service_name, api_name in zip(service_names, api_names): 
@@ -82,6 +84,8 @@ def build_dockerfiles(api_names, service_names, local=False):
             fp.write(render_template(template_path=template_path, args={
                 'api_name' : api_name
             }))
+
+    print(f'    - (Docker) Built {"Dockerfile.local" if local else "Dockerfile"} for {len(api_names)} projects...')
 
 
 def build_web_api(service_name, api_name, database_name): 
@@ -117,6 +121,11 @@ def build_web_api(service_name, api_name, database_name):
     context_factory = {
         'build' : f'{models_path}/{api_name}ContextFactory.cs', 
         'template' : 'scaffolding/services/api/Models/t-APIContextFactory.cs'
+    }
+
+    controller = {
+        'build' : f'{controllers_path}/{api_name}Controller.cs',
+        'template' : 'scaffolding/services/api/Controllers/t-Controller.cs'
     }
 
     os.system(f"dotnet new webapi -o {project_path} --force --no-restore")
@@ -155,8 +164,42 @@ def build_web_api(service_name, api_name, database_name):
             'api_name' : api_name
         }))
 
+    with open(controller['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=controller['template'], args={
+            'api_name' : api_name
+        }))
 
 
+def build_web_apis(services_names, api_names, database_names): 
+    for service, api, db in zip(services_names, api_names, database_names): 
+        build_web_api(service, api, db)
+
+    print(f'    - (ASP.NET Core) Built {len(service_names)} .NET Core APIs...')
+
+
+def build_nginx_locations(api_names, api_urls): 
+    locations = []
+    template_path = 'scaffolding/misc/t-nginx-location'
+    for api, url in zip(api_names, api_urls): 
+        locations.append(render_template(template_path=template_path), args={
+            'api_name' : api, 
+            'api_url' : url
+        })
+
+    return '\n \n'.join(locations)
+
+
+def build_nginx(api_names, api_urls, local=False): 
+    locations = build_nginx_locations(api_names, api_urls)
+    build_path = 'nginx.conf.local' if local else 'nginx.conf'
+    template_path = 'scaffolding/t-nginx.conf.local' if local else 't-nginx.conf'
+
+    with open(build_path, 'w+') as fp: 
+        fp.write(render_template(template_path=template_path, args={
+            'api_locations' : locations
+        }))
+
+    print(f'    - (Nginx) Built {build_path} proxying {len(api_names)} APIs...')
     
 
 
@@ -171,6 +214,7 @@ if __name__ == "__main__":
     docker_api_names = [f'{group_name.lower()}-api' for group_name in group_names]
     database_names =   [f'{group_name.lower()}-db' for group_name in group_names]
     volume_names =     [f'{group_name.lower()}-db-volume' for group_name in group_names]
+    api_urls =         [f'{api.replace("-api", "")}' for api in docker_api_names]
 
     should_build_docker = usr_bool(input('''
         Should I build all Docker files for the projects (docker-compose.yml, docker-compose-local.yml, 
@@ -178,25 +222,25 @@ if __name__ == "__main__":
     should_build_dotnet_projects = usr_bool(input(''' 
         Should I (re)build all .NET Web APIs, potentially overwriting existing projects? [Y/n]'''))
     should_build_nginx = usr_bool(input(''' 
-        Should I build the nginx.conf and nginx.conf.local files redirecting to all projects?'''))
+        Should I build the nginx.conf and nginx.conf.local files redirecting to all projects? [Y/n]'''))
 
     if should_build_docker: 
-        build_docker_compose(api_names, database_names, volume_names, service_names)
-        build_docker_compose(api_names, database_names, volume_names, service_names, local=True)
-        build_docker_compose(api_names, database_names, volume_names, service_names, db_config=True)
+        build_docker_compose(docker_api_names, database_names, volume_names, service_names)
+        build_docker_compose(docker_api_names, database_names, volume_names, service_names, local=True)
+        build_docker_compose(docker_api_names, database_names, volume_names, service_names, db_config=True)
 
         build_dockerfiles(api_names, service_names)
         build_dockerfiles(api_names, service_names, local=True)
 
 
     if should_build_nginx: 
-        pass 
+        build_nginx(api_names, api_urls)
+        build_nginx(api_names, api_urls, local=True)
 
     if should_build_dotnet_projects: 
-        pass 
-
-
+        build_web_apis(service_names, api_names, database_names) 
+        
     
-
-    
-    print('Completed scaffolding.')
+    print('Completed scaffolding server for the following groups:')
+    for i, group_name in enumerate(group_names): 
+        print(f'    {i+1}. {group_name}')

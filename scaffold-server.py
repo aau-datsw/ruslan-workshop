@@ -1,4 +1,4 @@
-import json 
+import json, os
 
 '''
 A script for scaffolding the RUSLAN Workshop server provided a list of names 
@@ -84,6 +84,83 @@ def build_dockerfiles(api_names, service_names, local=False):
             }))
 
 
+def build_web_api(service_name, api_name, database_name): 
+    project_path = f'services/{service_name}/{api_name}'
+    models_path = f'{project_path}/Models'
+    controllers_path = f'{project_path}/Controllers'
+
+    startup = {
+        'build' : f'{project_path}/Startup.cs',
+        'template' : f'scaffolding/services/api/t-Startup.cs'
+    }
+
+    extensions = {
+        'build' : f'{project_path}/{api_name}Extensions.cs',
+        'template' : 'scaffolding/services/api/t-APIExtensions.cs'
+    }
+
+    appsettings = {
+        'build' : f'{project_path}/appsettings.json', 
+        'template' : 'scaffolding/services/api/t-appsettings.json'
+    }
+
+    model = {
+        'build' : f'{models_path}/Company.cs', 
+        'template' : 'scaffolding/services/api/Models/t-Company.cs'
+    }
+
+    context = {
+        'build' : f'{models_path}/{api_name}Context.cs', 
+        'template' : 'scaffolding/services/api/Models/t-APIContext.cs'
+    }
+
+    context_factory = {
+        'build' : f'{models_path}/{api_name}ContextFactory.cs', 
+        'template' : 'scaffolding/services/api/Models/t-APIContextFactory.cs'
+    }
+
+    os.system(f"dotnet new webapi -o {project_path} --force --no-restore")
+    os.system(f"dotnet add {project_path} package Npgsql.EntityFrameworkCore.PostgreSQL --no-restore")
+    os.system(f"dotnet add {project_path} package Microsoft.EntityFrameworkCore.Tools.DotNet -v 2.2.6 --no-restore")
+    os.system(f"sudo rm {controllers_path}/ValuesController.cs")
+    
+
+    with open(startup['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=startup['template'], args={
+            'api_name' : api_name
+        }))
+
+    with open(extensions['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=extensions['template'], args={
+            'api_name' : api_name
+        }))
+
+    with open(appsettings['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=appsettings['template'], args={
+            'database_name' : database_name
+        }))
+
+    with open(model['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=model['template'], args={
+            'api_name' : api_name
+        }))
+
+    with open(context['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=context['template'], args={
+            'api_name' : api_name
+        }))
+
+    with open(context_factory['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=context_factory['template'], args={
+            'api_name' : api_name
+        }))
+
+
+
+    
+
+
+
 
 # Main entrypoint
 if __name__ == "__main__": 
@@ -107,6 +184,7 @@ if __name__ == "__main__":
         build_docker_compose(api_names, database_names, volume_names, service_names)
         build_docker_compose(api_names, database_names, volume_names, service_names, local=True)
         build_docker_compose(api_names, database_names, volume_names, service_names, db_config=True)
+
         build_dockerfiles(api_names, service_names)
         build_dockerfiles(api_names, service_names, local=True)
 

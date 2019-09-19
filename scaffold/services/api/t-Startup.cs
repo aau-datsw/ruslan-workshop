@@ -1,4 +1,4 @@
-using MarketAPI.Models;
+using {api_name}.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
-namespace MarketAPI
+namespace {api_name}
 {
     public class Startup
     {
@@ -25,7 +25,7 @@ namespace MarketAPI
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             // By adding our DbContext to the services, we can inject it
             // into our controller's constructor later.         
-            services.AddDbContext<MarketAPIContext>(options =>                             
+            services.AddDbContext<{api_name}Context>(options =>                             
                 options.UseNpgsql(connectionString));             
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)

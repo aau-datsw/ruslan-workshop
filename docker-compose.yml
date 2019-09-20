@@ -1,9 +1,9 @@
-version: "3"
+version: "2"
 
 networks:
   ruslan-workshop-shared:
 
-services: 
+services:
   reverse-proxy:
     image: nginx:latest
     volumes:
@@ -30,12 +30,12 @@ services:
     networks:
       - ruslan-workshop-shared
 
-  market-db: 
+  market-db:
     image: postgres:latest
-    expose: 
+    expose:
       - 5432
     restart: always
-    volumes: 
+    volumes:
       - ./services/MarketService/dbscripts/seed.sql:/docker-entrypoint-initdb.d/seed.sql
       - market-db-volume:/var/lib/postgresql/data
     environment:
@@ -44,7 +44,7 @@ services:
       POSTGRES_DB: "market-db"
     networks:
       - ruslan-workshop-shared
-    
+
   market-api:
     image: market-api:latest
     container_name: market-api

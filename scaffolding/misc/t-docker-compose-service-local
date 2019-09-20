@@ -1,0 +1,29 @@
+  
+  {database_name}: 
+    image: postgres:latest
+    expose: 
+      - 5432
+    restart: always
+    volumes: 
+      - {volume}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "{database_name}"
+    networks:
+      - ruslan-workshop-shared
+    
+  {api_name}:
+    image: {api_name}:latest
+    container_name: {api_name}
+    build:
+      context: ../{service_path}
+      dockerfile: ./Dockerfile.local
+    expose:
+      - 80
+    environment:
+      DB_CONNECTION_STRING: "host={database_name};port=5432;database={database_name};username=ya;password=yeet"
+    depends_on:
+      - {database_name}
+    networks:
+      - ruslan-workshop-shared

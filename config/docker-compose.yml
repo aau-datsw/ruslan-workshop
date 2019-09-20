@@ -1,0 +1,136 @@
+version: "3"
+
+networks:
+  ruslan-workshop-shared:
+
+services: 
+  reverse-proxy:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - ruslan-workshop-shared
+    depends_on:
+      - ruslan-app
+      - ya-api
+      - yeet-api
+      - skeet-api
+
+  ruslan-app:
+    image: ruslan-app:latest
+    container_name: ruslan-app
+    build:
+      context: ./web/ruslan-app
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    networks:
+      - ruslan-workshop-shared
+
+
+          
+  ya-db: 
+    image: postgres:latest
+    expose: 
+      - 5432
+    restart: always
+    volumes: 
+      - ya-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "ya-db"
+    networks:
+      - ruslan-workshop-shared
+    
+  ya-api:
+    image: ya-api:latest
+    container_name: ya-api
+    build:
+      context: services/YaService
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    environment:
+      DB_CONNECTION_STRING: "host=ya-db;port=5432;database=ya-db;username=ya;password=yeet"
+    depends_on:
+      - ya-db
+    networks:
+      - ruslan-workshop-shared
+
+        
+ 
+
+          
+  yeet-db: 
+    image: postgres:latest
+    expose: 
+      - 5432
+    restart: always
+    volumes: 
+      - yeet-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "yeet-db"
+    networks:
+      - ruslan-workshop-shared
+    
+  yeet-api:
+    image: yeet-api:latest
+    container_name: yeet-api
+    build:
+      context: services/YeetService
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    environment:
+      DB_CONNECTION_STRING: "host=yeet-db;port=5432;database=yeet-db;username=ya;password=yeet"
+    depends_on:
+      - yeet-db
+    networks:
+      - ruslan-workshop-shared
+
+        
+ 
+
+          
+  skeet-db: 
+    image: postgres:latest
+    expose: 
+      - 5432
+    restart: always
+    volumes: 
+      - skeet-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "skeet-db"
+    networks:
+      - ruslan-workshop-shared
+    
+  skeet-api:
+    image: skeet-api:latest
+    container_name: skeet-api
+    build:
+      context: services/SkeetService
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    environment:
+      DB_CONNECTION_STRING: "host=skeet-db;port=5432;database=skeet-db;username=ya;password=yeet"
+    depends_on:
+      - skeet-db
+    networks:
+      - ruslan-workshop-shared
+
+        
+
+volumes:
+  ya-db-volume:
+  yeet-db-volume:
+  skeet-db-volume:

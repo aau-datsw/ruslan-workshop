@@ -4,73 +4,10 @@ networks:
   ruslan-workshop-shared:
 
 services: 
-  reverse-proxy:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf.local:/etc/nginx/nginx.conf
-      - /etc/letsencrypt/:/etc/letsencrypt/
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - ruslan-workshop-shared
-    depends_on:
-      - ruslan-app
-      - ya-db
-      - yeet-db
-      - skeet-db
-
-  ruslan-app:
-    image: ruslan-app:latest
-    container_name: ruslan-app
-    build:
-      context: ./web/ruslan-app
-      dockerfile: ./Dockerfile
-    expose:
-      - 80
-    networks:
-      - ruslan-workshop-shared
-
-
-          
-  ya-db: 
-    image: postgres:latest
-    ports:
-        "5432:5432"
-    restart: always
-    volumes: 
-      - ya-db-volume:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "ya"
-      POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "ya-db"
-    networks:
-      - ruslan-workshop-shared
-        
- 
-
-          
-  yeet-db: 
-    image: postgres:latest
-    ports:
-        "5432:5432"
-    restart: always
-    volumes: 
-      - yeet-db-volume:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "ya"
-      POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "yeet-db"
-    networks:
-      - ruslan-workshop-shared
-        
- 
-
-          
   skeet-db: 
     image: postgres:latest
     ports:
-        "5432:5432"
+      - "5432:5432"
     restart: always
     volumes: 
       - skeet-db-volume:/var/lib/postgresql/data
@@ -83,6 +20,4 @@ services:
         
 
 volumes:
-  ya-db-volume:
-  yeet-db-volume:
   skeet-db-volume:

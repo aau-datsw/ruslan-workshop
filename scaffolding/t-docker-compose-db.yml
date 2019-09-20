@@ -4,32 +4,20 @@ networks:
   ruslan-workshop-shared:
 
 services: 
-  reverse-proxy:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf.local:/etc/nginx/nginx.conf
-      - /etc/letsencrypt/:/etc/letsencrypt/
+  {database_name}: 
+    image: postgres:latest
     ports:
-      - "80:80"
-      - "443:443"
+      - "5432:5432"
+    restart: always
+    volumes: 
+      - {database_name}-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "{database_name}"
     networks:
       - ruslan-workshop-shared
-    depends_on:
-      - ruslan-app
-{depends_on_list}
-
-  ruslan-app:
-    image: ruslan-app:latest
-    container_name: ruslan-app
-    build:
-      context: ./web/ruslan-app
-      dockerfile: ./Dockerfile
-    expose:
-      - 80
-    networks:
-      - ruslan-workshop-shared
-
-{services}
+        
 
 volumes:
-{volume_list}
+  {database_name}-volume:

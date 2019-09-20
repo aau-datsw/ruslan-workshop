@@ -9,7 +9,5 @@ then
     cd ..
 fi
 
-sudo dotnet publish services/MarketService/MarketAPI/MarketAPI.csproj -c Debug
-
 docker-compose -f docker-compose-local.yml build
 docker-compose -f docker-compose-local.yml up 

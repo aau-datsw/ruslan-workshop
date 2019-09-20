@@ -2,7 +2,7 @@
   {database_name}: 
     image: postgres:latest
     ports:
-        "5432:5432"
+      - "5432:5432"
     restart: always
     volumes: 
       - {volume}:/var/lib/postgresql/data

@@ -266,4 +266,4 @@ if __name__ == "__main__":
     if should_compile_debug: 
         for group in group_names: 
             os.system(f'sudo dotnet restore services/{group}Service/{group}API')
-            os.system(f'sudo dotnet build services/{group}Service/{group}API --configuration Debug')
+            os.system(f'sudo dotnet publish services/{group}Service/{group}API/{group}API.csproj -c Debug')

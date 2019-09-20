@@ -1,5 +1,5 @@
 #!/bin/bash
-docker-compose down
+docker-compose -f config/docker-compose-local.yml down
 if [ -d "./web/ruslan-app/dist" ]
 then 
     echo "Building the Angular 7 app..."
@@ -9,5 +9,5 @@ then
     cd ..
 fi
 
-docker-compose -f docker-compose-local.yml build
-docker-compose -f docker-compose-local.yml up 
+docker-compose -f config/docker-compose-local.yml build
+docker-compose -f config/docker-compose-local.yml up 

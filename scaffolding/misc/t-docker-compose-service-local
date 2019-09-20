@@ -17,7 +17,7 @@
     image: {api_name}:latest
     container_name: {api_name}
     build:
-      context: {service_path}
+      context: ../{service_path}
       dockerfile: ./Dockerfile.local
     expose:
       - 80

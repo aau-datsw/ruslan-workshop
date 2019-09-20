@@ -65,7 +65,7 @@ def build_docker_compose(api_names, database_names, volume_names, service_names,
     build_path = 'docker-compose-db.yml' if db_config else 'docker-compose-local.yml' if local else 'docker-compose.yml'
     template_path = f'scaffolding/t-{build_path}'
 
-    with open(build_path, 'w+') as fp: 
+    with open(f'config/{build_path}', 'w+') as fp: 
         fp.write(render_template(template_path=template_path, args={
             'services' : services,
             'depends_on_list' : depends_on_list, 
@@ -209,7 +209,7 @@ def build_nginx_locations(api_names, api_urls):
 
 def build_nginx(api_names, api_urls, local=False): 
     locations = build_nginx_locations(api_names, api_urls)
-    build_path = 'nginx.conf.local' if local else 'nginx.conf'
+    build_path = 'config/nginx.conf.local' if local else 'config/nginx.conf'
     template_path = 'scaffolding/t-nginx.conf.local' if local else 'scaffolding/t-nginx.conf'
 
     with open(build_path, 'w+') as fp: 

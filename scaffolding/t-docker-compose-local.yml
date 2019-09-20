@@ -22,7 +22,7 @@ services:
     image: ruslan-app:latest
     container_name: ruslan-app
     build:
-      context: ./web/ruslan-app
+      context: ../web/ruslan-app
       dockerfile: ./Dockerfile
     expose:
       - 80

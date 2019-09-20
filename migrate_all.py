@@ -41,13 +41,13 @@ if __name__ == "__main__":
         os.system('sudo docker-compose down')
         database_name = f'{selected_group.lower()}-db'
         template_path = 'scaffolding/t-docker-compose-db.yml'
-        with open('docker-compose-db.yml', 'w+') as fp: 
+        with open('config/docker-compose-db.yml', 'w+') as fp: 
             fp.write(render_template(template_path=template_path, args={
                 'database_name' : database_name
             }))
 
         # Run the database on host 5432 and attach this process to it 
-        os.system('sudo docker-compose -f docker-compose-db.yml up -d')
+        os.system('sudo docker-compose -f config/docker-compose-db.yml up -d')
         os.system(f'sudo dotnet ef migrations add NewMigration --project ./services/{selected_group}Service/{selected_group}API')
         os.system(f'sudo dotnet ef database update --project ./services/{selected_group}Service/{selected_group}API')
         os.system(f'sudo rm -rf services/{selected_group}Service/{selected_group}API/Migrations')

@@ -24,7 +24,7 @@ services:
     image: ruslan-app:latest
     container_name: ruslan-app
     build:
-      context: ./web/ruslan-app
+      context: ../web/ruslan-app
       dockerfile: ./Dockerfile
     expose:
       - 80
@@ -51,7 +51,7 @@ services:
     image: ya-api:latest
     container_name: ya-api
     build:
-      context: services/YaService
+      context: ../services/YaService
       dockerfile: ./Dockerfile.local
     expose:
       - 80
@@ -84,7 +84,7 @@ services:
     image: yeet-api:latest
     container_name: yeet-api
     build:
-      context: services/YeetService
+      context: ../services/YeetService
       dockerfile: ./Dockerfile.local
     expose:
       - 80
@@ -117,7 +117,7 @@ services:
     image: skeet-api:latest
     container_name: skeet-api
     build:
-      context: services/SkeetService
+      context: ../services/SkeetService
       dockerfile: ./Dockerfile.local
     expose:
       - 80

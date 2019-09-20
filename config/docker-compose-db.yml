@@ -4,20 +4,20 @@ networks:
   ruslan-workshop-shared:
 
 services: 
-  skeet-db: 
+  {database_name}: 
     image: postgres:latest
     ports:
       - "5432:5432"
     restart: always
     volumes: 
-      - skeet-db-volume:/var/lib/postgresql/data
+      - {database_name}-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "ya"
       POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "skeet-db"
+      POSTGRES_DB: "{database_name}"
     networks:
       - ruslan-workshop-shared
         
 
 volumes:
-  skeet-db-volume:
+  {database_name}-volume:

@@ -21,7 +21,7 @@ def render_template(template_path=None, args=None):
 
 def load_group_names(file_path=''): 
     with open('group_names.txt' if file_path == '' else file_path) as fp: 
-        return fp.readlines()
+        return [group.strip() for group in fp.readlines()]
 
 
 def usr_bool(user_answer): 
@@ -34,9 +34,9 @@ def build_docker_compose_services(api_names, database_names, volume_names, servi
         service = f'''
         {render_template(
             template_path=
-                'scaffold/misc/t-docker-compose-service-db' if db_config 
-                else 'scaffold/misc/t-docker-compose-service-local' if local 
-                else 'scaffold/misc/t-docker-compose-service',
+                'scaffolding/misc/t-docker-compose-service-db' if db_config 
+                else 'scaffolding/misc/t-docker-compose-service-local' if local 
+                else 'scaffolding/misc/t-docker-compose-service',
             args={
                 'database_name' : db, 
                 'api_name' : api, 
@@ -54,7 +54,7 @@ def build_docker_compose_depends_on_list(api_names):
 
 
 def build_docker_compose_volume_list(volumes): 
-    return '\n'.join([f'  - {volume}:' for volume in volumes])
+    return '\n'.join([f'  {volume}:' for volume in volumes])
 
 
 def build_docker_compose(api_names, database_names, volume_names, service_names, local=False, db_config=False): 
@@ -62,7 +62,7 @@ def build_docker_compose(api_names, database_names, volume_names, service_names,
     depends_on_list = build_docker_compose_depends_on_list(database_names if db_config else api_names)
     volume_list = build_docker_compose_volume_list(volume_names)
 
-    build_path = 'docker-compose-db.yml' if db_config else 'docker-compose-db.yml' if local else 'docker-compose-db.yml'
+    build_path = 'docker-compose-db.yml' if db_config else 'docker-compose-local.yml' if local else 'docker-compose.yml'
     template_path = f'scaffolding/t-{build_path}'
 
     with open(build_path, 'w+') as fp: 
@@ -77,8 +77,13 @@ def build_docker_compose(api_names, database_names, volume_names, service_names,
     
 def build_dockerfiles(api_names, service_names, local=False): 
     for service_name, api_name in zip(service_names, api_names): 
-        build_path = f'{service_name}/Dockerfile.local' if local else f'{service_name}/Dockerfile'
-        template_path = 'scaffolding/services/Dockerfile.local' if local else 'scaffolding/services/Dockerfile'
+
+        service_path = f'services/{service_name}'
+        if not os.path.exists(service_path):
+            os.mkdir(service_path)
+
+        build_path = f'{service_path}/Dockerfile.local' if local else f'{service_path}/Dockerfile'
+        template_path = 'scaffolding/services/t-Dockerfile.local' if local else 'scaffolding/services/t-Dockerfile'
 
         with open(build_path, 'w+') as fp: 
             fp.write(render_template(template_path=template_path, args={
@@ -128,10 +133,18 @@ def build_web_api(service_name, api_name, database_name):
         'template' : 'scaffolding/services/api/Controllers/t-Controller.cs'
     }
 
+    csproj = {
+        'build' : f'{project_path}/{api_name}.csproj',
+        'template' : 'scaffolding/services/api/t-API.csproj'
+    }
+
     os.system(f"dotnet new webapi -o {project_path} --force --no-restore")
-    os.system(f"dotnet add {project_path} package Npgsql.EntityFrameworkCore.PostgreSQL --no-restore")
-    os.system(f"dotnet add {project_path} package Microsoft.EntityFrameworkCore.Tools.DotNet -v 2.2.6 --no-restore")
+    # os.system(f"dotnet add {project_path} package Npgsql.EntityFrameworkCore.PostgreSQL --no-restore")
+    # os.system(f"dotnet add {project_path} package Microsoft.EntityFrameworkCore.Tools.DotNet --version 2.0.3 --no-restore ")
     os.system(f"sudo rm {controllers_path}/ValuesController.cs")
+
+    if not os.path.exists(models_path):
+        os.mkdir(models_path)
     
 
     with open(startup['build'], 'w+') as fp: 
@@ -169,6 +182,11 @@ def build_web_api(service_name, api_name, database_name):
             'api_name' : api_name
         }))
 
+    with open(csproj['build'], 'w+') as fp: 
+        fp.write(render_template(template_path=csproj['template'], args={
+            'api_name' : api_name
+        }))
+
 
 def build_web_apis(services_names, api_names, database_names): 
     for service, api, db in zip(services_names, api_names, database_names): 
@@ -181,10 +199,10 @@ def build_nginx_locations(api_names, api_urls):
     locations = []
     template_path = 'scaffolding/misc/t-nginx-location'
     for api, url in zip(api_names, api_urls): 
-        locations.append(render_template(template_path=template_path), args={
+        locations.append(render_template(template_path=template_path, args={
             'api_name' : api, 
             'api_url' : url
-        })
+        }))
 
     return '\n \n'.join(locations)
 
@@ -192,7 +210,7 @@ def build_nginx_locations(api_names, api_urls):
 def build_nginx(api_names, api_urls, local=False): 
     locations = build_nginx_locations(api_names, api_urls)
     build_path = 'nginx.conf.local' if local else 'nginx.conf'
-    template_path = 'scaffolding/t-nginx.conf.local' if local else 't-nginx.conf'
+    template_path = 'scaffolding/t-nginx.conf.local' if local else 'scaffolding/t-nginx.conf'
 
     with open(build_path, 'w+') as fp: 
         fp.write(render_template(template_path=template_path, args={
@@ -224,6 +242,9 @@ if __name__ == "__main__":
     should_build_nginx = usr_bool(input(''' 
         Should I build the nginx.conf and nginx.conf.local files redirecting to all projects? [Y/n]'''))
 
+    if should_build_dotnet_projects: 
+        build_web_apis(service_names, api_names, database_names) 
+
     if should_build_docker: 
         build_docker_compose(docker_api_names, database_names, volume_names, service_names)
         build_docker_compose(docker_api_names, database_names, volume_names, service_names, local=True)
@@ -232,15 +253,17 @@ if __name__ == "__main__":
         build_dockerfiles(api_names, service_names)
         build_dockerfiles(api_names, service_names, local=True)
 
-
     if should_build_nginx: 
-        build_nginx(api_names, api_urls)
-        build_nginx(api_names, api_urls, local=True)
+        build_nginx(docker_api_names, api_urls)
+        build_nginx(docker_api_names, api_urls, local=True)
 
-    if should_build_dotnet_projects: 
-        build_web_apis(service_names, api_names, database_names) 
-        
     
     print('Completed scaffolding server for the following groups:')
     for i, group_name in enumerate(group_names): 
         print(f'    {i+1}. {group_name}')
+
+    should_compile_debug = usr_bool(input('Should I compile debug versions of all .NET projects now? [Y/n]'))
+    if should_compile_debug: 
+        for group in group_names: 
+            os.system(f'sudo dotnet restore services/{group}Service/{group}API')
+            os.system(f'sudo dotnet build services/{group}Service/{group}API --configuration Debug')

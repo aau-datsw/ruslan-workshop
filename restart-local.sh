@@ -1,6 +1,6 @@
 #!/bin/bash
 docker-compose down
-if [ ! -d "./web/ruslan-app/dist" ]
+if [ -d "./web/ruslan-app/dist" ]
 then 
     echo "Building the Angular 7 app..."
     cd ./web/ruslan-app 

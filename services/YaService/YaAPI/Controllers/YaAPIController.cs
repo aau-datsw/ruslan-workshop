@@ -9,12 +9,12 @@ namespace YaAPI.Controllers
 {
     [Route("")]
     [ApiController]
-    public class MarketController : ControllerBase
+    public class YaAPIController : ControllerBase
     {
         private YaAPIContext _dbContext;
         private IHostingEnvironment _hostingEnvironment;
 
-        public MarketController(YaAPIContext dbContext, IHostingEnvironment hostingEnvironment)
+        public YaAPIController(YaAPIContext dbContext, IHostingEnvironment hostingEnvironment)
         {
             _dbContext = dbContext;
             _hostingEnvironment = hostingEnvironment;

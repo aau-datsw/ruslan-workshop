@@ -54,6 +54,10 @@ http {
       return 200 'You are now using the API.';
     }
 
+    location /market/ {
+        proxy_pass http://market-api:80/;
+    }
+
 {api_locations}
 
   }

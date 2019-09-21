@@ -19,7 +19,6 @@ services:
       - ya-api
       - yeet-api
       - skeet-api
-      - market-api
 
   ruslan-app:
     image: ruslan-app:latest
@@ -29,6 +28,35 @@ services:
       dockerfile: ./Dockerfile
     expose:
       - 80
+    networks:
+      - ruslan-workshop-shared
+
+  market-db: 
+    image: postgres:latest
+    expose: 
+      - 5432
+    restart: always
+    volumes: 
+      - market-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "market-db"
+    networks:
+      - ruslan-workshop-shared
+    
+  market-api:
+    image: market-api:latest
+    container_name: market-api
+    build:
+      context: ../services/MarketService
+      dockerfile: ./Dockerfile.local
+    expose:
+      - 80
+    environment:
+      DB_CONNECTION_STRING: "host=market-db;port=5432;database=market-db;username=market;password=yeet"
+    depends_on:
+      - market-db
     networks:
       - ruslan-workshop-shared
 
@@ -130,42 +158,9 @@ services:
       - ruslan-workshop-shared
 
         
- 
-
-          
-  market-db: 
-    image: postgres:latest
-    expose: 
-      - 5432
-    restart: always
-    volumes: 
-      - market-db-volume:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "ya"
-      POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "market-db"
-    networks:
-      - ruslan-workshop-shared
-    
-  market-api:
-    image: market-api:latest
-    container_name: market-api
-    build:
-      context: ../services/MarketService
-      dockerfile: ./Dockerfile.local
-    expose:
-      - 80
-    environment:
-      DB_CONNECTION_STRING: "host=market-db;port=5432;database=market-db;username=ya;password=yeet"
-    depends_on:
-      - market-db
-    networks:
-      - ruslan-workshop-shared
-
-        
 
 volumes:
+  market-db-volume:
   ya-db-volume:
   yeet-db-volume:
   skeet-db-volume:
-  market-db-volume:

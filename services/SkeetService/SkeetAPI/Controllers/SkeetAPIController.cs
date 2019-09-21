@@ -9,12 +9,12 @@ namespace SkeetAPI.Controllers
 {
     [Route("")]
     [ApiController]
-    public class MarketController : ControllerBase
+    public class SkeetAPIController : ControllerBase
     {
         private SkeetAPIContext _dbContext;
         private IHostingEnvironment _hostingEnvironment;
 
-        public MarketController(SkeetAPIContext dbContext, IHostingEnvironment hostingEnvironment)
+        public SkeetAPIController(SkeetAPIContext dbContext, IHostingEnvironment hostingEnvironment)
         {
             _dbContext = dbContext;
             _hostingEnvironment = hostingEnvironment;

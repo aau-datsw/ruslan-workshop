@@ -13,9 +13,9 @@ namespace MarketAPI.Generation
 
         private double Z; 
 
-        public PerlinNoise()
+        public PerlinNoise(int seed)
         {
-            var r = new Random();
+            var r = new Random(seed);
             Z = Math.Floor(r.NextDouble() * M);
         }
 

@@ -10,18 +10,24 @@ namespace MarketAPI.Generation
         private const int NUM_OCTAVES = 10; 
         private const double AMPLITUDE = 128;
         private const double WAVELENGTH = 128;
-        public IEnumerable<(int x, int y)> GenerateMarketChanges(Company company, int from, int to)
+        public Company Company { get; set; }
+
+        public MarketGenerator(Company company)
+        {
+            Company = company;
+        }
+        public IEnumerable<(int x, int y)> GenerateMarketChanges(int from, int to)
         {
             // Determine hyperparameters from the company volatility. The more volatile the company,
             // the shorter the wavelength, the larger the amplitude.
 
             // Generate the price points, combine with the timestamps so they can be projected onto a 
             // 2-d graph.
-            var pricePoints = new PerlinNoise().GenerateNoise(AMPLITUDE, WAVELENGTH, NUM_OCTAVES, to - from).Select(o => (int)o);
+            var pricePoints = new PerlinNoise(Company.Id).GenerateNoise(AMPLITUDE, WAVELENGTH, NUM_OCTAVES, to - from).Select(o => (int)o);
             return from.Range(to - from).Zip(pricePoints);
         }
 
-        public (double, double) GetNoiseParams(Company company)
+        private (double, double) GetNoiseParams(Company company)
         {
             switch (company.Volatility)
             {

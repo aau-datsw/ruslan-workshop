@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
-namespace SkeetAPI.Models
+namespace {api_name}.Models
 {
   public partial class Company
   {

@@ -1,0 +1,14 @@
+  
+  {database_name}: 
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes: 
+      - {volume}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ya"
+      POSTGRES_PASSWORD: "yeet"
+      POSTGRES_DB: "{database_name}"
+    networks:
+      - ruslan-workshop-shared

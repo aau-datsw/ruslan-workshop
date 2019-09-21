@@ -1,1 +1,0 @@
-sudo dotnet publish services/{project_name}Service/{project_name}API/{project_name}API.csproj -c Debug

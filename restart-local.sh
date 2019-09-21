@@ -1,6 +1,6 @@
 #!/bin/bash
-docker-compose down
-if [ ! -d "./web/ruslan-app/dist" ]
+docker-compose -f config/docker-compose-local.yml down
+if [ -d "./web/ruslan-app/dist" ]
 then 
     echo "Building the Angular 7 app..."
     cd ./web/ruslan-app 
@@ -9,7 +9,5 @@ then
     cd ..
 fi
 
-sudo dotnet publish services/MarketService/MarketAPI/MarketAPI.csproj -c Debug
-
-docker-compose -f docker-compose-local.yml build
-docker-compose -f docker-compose-local.yml up 
+docker-compose -f config/docker-compose-local.yml build
+docker-compose -f config/docker-compose-local.yml up 

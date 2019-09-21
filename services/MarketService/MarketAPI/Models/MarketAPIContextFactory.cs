@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace SkeetAPI.Models
+namespace MarketAPI.Models
 {
-    public class SkeetAPIContextFactory : IDesignTimeDbContextFactory<SkeetAPIContext>
+    public class MarketAPIContextFactory : IDesignTimeDbContextFactory<MarketAPIContext>
     {
-        public SkeetAPIContext CreateDbContext(string[] args)
+        public MarketAPIContext CreateDbContext(string[] args)
         {
-            return new SkeetAPIContext(new DbContextOptionsBuilder<SkeetAPIContext>()
+            return new MarketAPIContext(new DbContextOptionsBuilder<MarketAPIContext>()
                 .UseNpgsql(Startup.Configuration.GetConnectionString("MigrationConnection"))
                 .Options);
         }

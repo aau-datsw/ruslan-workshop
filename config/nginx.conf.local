@@ -65,6 +65,10 @@ http {
     location /skeet/ {
         proxy_pass http://skeet-api:80/;
     }
+ 
+    location /market/ {
+        proxy_pass http://market-api:80/;
+    }
 
   }
 }

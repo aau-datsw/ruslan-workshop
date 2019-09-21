@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SkeetAPI.Models;
+using MarketAPI.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SkeetAPI.Controllers
+namespace MarketAPI.Controllers
 {
     [Route("")]
     [ApiController]
     public class MarketController : ControllerBase
     {
-        private SkeetAPIContext _dbContext;
+        private MarketAPIContext _dbContext;
         private IHostingEnvironment _hostingEnvironment;
 
-        public MarketController(SkeetAPIContext dbContext, IHostingEnvironment hostingEnvironment)
+        public MarketController(MarketAPIContext dbContext, IHostingEnvironment hostingEnvironment)
         {
             _dbContext = dbContext;
             _hostingEnvironment = hostingEnvironment;

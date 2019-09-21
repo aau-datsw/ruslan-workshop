@@ -58,7 +58,7 @@ namespace MarketAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("generate")]
         public ActionResult<IEnumerable<(int x, int y)>> GenerateMarketData(int companyId, int from, int to)
         {
@@ -69,7 +69,10 @@ namespace MarketAPI.Controllers
                     return BadRequest($"Could not find a company with id {companyId}.");
 
                 IMarketGenerator marketGenerator = new MarketGenerator(company);
-                return Ok(marketGenerator.GenerateMarketChanges(from, to));
+                return Ok(marketGenerator.GenerateMarketChanges(from, to).Select(o => new {
+                    x = o.x,
+                    y = o.y
+                }));
             }
             catch (Exception e)
             {

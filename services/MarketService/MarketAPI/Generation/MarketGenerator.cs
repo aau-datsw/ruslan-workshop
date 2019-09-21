@@ -23,7 +23,8 @@ namespace MarketAPI.Generation
 
             // Generate the price points, combine with the timestamps so they can be projected onto a 
             // 2-d graph.
-            var pricePoints = new PerlinNoise(Company.Id).GenerateNoise(AMPLITUDE, WAVELENGTH, NUM_OCTAVES, to - from).Select(o => (int)o);
+            var noiseParams = GetNoiseParams(Company);
+            var pricePoints = new PerlinNoise(Company.Id).GenerateNoise(AMPLITUDE * noiseParams.Item1, WAVELENGTH * noiseParams.Item2, NUM_OCTAVES, to - from).Select(o => (int)o);
             return from.Range(to - from).Zip(pricePoints);
         }
 
@@ -32,9 +33,9 @@ namespace MarketAPI.Generation
             switch (company.Volatility)
             {
                 case 0:  // Slow company
-                    return (78.0, 78.0);
+                    return (12.0, 12.0);
                 case 1:  // Normal company
-                    return (128.0, 128.0);
+                    return (24.0, 24.0);
                 case 2:  // Volatile company
                     return (256.0, 256.0);
                 default: 

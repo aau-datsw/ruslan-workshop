@@ -9,12 +9,12 @@ namespace YeetAPI.Controllers
 {
     [Route("")]
     [ApiController]
-    public class MarketController : ControllerBase
+    public class YeetAPIController : ControllerBase
     {
         private YeetAPIContext _dbContext;
         private IHostingEnvironment _hostingEnvironment;
 
-        public MarketController(YeetAPIContext dbContext, IHostingEnvironment hostingEnvironment)
+        public YeetAPIController(YeetAPIContext dbContext, IHostingEnvironment hostingEnvironment)
         {
             _dbContext = dbContext;
             _hostingEnvironment = hostingEnvironment;

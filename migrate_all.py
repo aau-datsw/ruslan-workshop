@@ -32,13 +32,13 @@ if __name__ == "__main__":
     # Determine the group name
     group_names = load_group_names(input('  Please enter the file from which to load group names (default "group_names.txt"): ')) 
     
-    should_continue = usr_bool(input('The following operations will kill all running Docker containers. Continue? [Y/n]'))
+    should_continue = usr_bool(input('  The following operations will kill all running Docker containers. Continue? [Y/n]'))
     if not should_continue: 
         quit()
 
     for selected_group in group_names:
         # Kill all Docker containers, prepare for running their database on host
-        os.system('sudo docker-compose down')
+        os.system('sudo docker-compose -f config/docker-compose-db.yml down')
         database_name = f'{selected_group.lower()}-db'
         template_path = 'scaffolding/t-docker-compose-db.yml'
         with open('config/docker-compose-db.yml', 'w+') as fp: 
@@ -51,6 +51,6 @@ if __name__ == "__main__":
         os.system(f'sudo dotnet ef migrations add NewMigration --project ./services/{selected_group}Service/{selected_group}API')
         os.system(f'sudo dotnet ef database update --project ./services/{selected_group}Service/{selected_group}API')
         os.system(f'sudo rm -rf services/{selected_group}Service/{selected_group}API/Migrations')
-        os.system(f'sudo docker-compose down')
+        os.system(f'sudo docker-compose -f config/docker-compose-db.yml down')
 
         

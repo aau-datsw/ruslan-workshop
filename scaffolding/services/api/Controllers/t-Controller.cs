@@ -9,12 +9,12 @@ namespace {api_name}.Controllers
 {
     [Route("")]
     [ApiController]
-    public class MarketController : ControllerBase
+    public class {api_name}Controller : ControllerBase
     {
         private {api_name}Context _dbContext;
         private IHostingEnvironment _hostingEnvironment;
 
-        public MarketController({api_name}Context dbContext, IHostingEnvironment hostingEnvironment)
+        public {api_name}Controller({api_name}Context dbContext, IHostingEnvironment hostingEnvironment)
         {
             _dbContext = dbContext;
             _hostingEnvironment = hostingEnvironment;

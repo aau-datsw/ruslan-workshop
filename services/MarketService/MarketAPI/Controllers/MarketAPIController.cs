@@ -1,20 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SkeetAPI.Models;
+using MarketAPI.Generation;
+using MarketAPI.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SkeetAPI.Controllers
+namespace MarketAPI.Controllers
 {
     [Route("")]
     [ApiController]
-    public class SkeetAPIController : ControllerBase
+    public class MarketController : ControllerBase
     {
-        private SkeetAPIContext _dbContext;
+        private MarketAPIContext _dbContext;
         private IHostingEnvironment _hostingEnvironment;
 
-        public SkeetAPIController(SkeetAPIContext dbContext, IHostingEnvironment hostingEnvironment)
+        public MarketController(MarketAPIContext dbContext, IHostingEnvironment hostingEnvironment)
         {
             _dbContext = dbContext;
             _hostingEnvironment = hostingEnvironment;
@@ -54,6 +55,30 @@ namespace SkeetAPI.Controllers
                 if (_hostingEnvironment.IsDevelopment())
                     return BadRequest(e.Message);
                 return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("generate")]
+        public ActionResult<IEnumerable<(int x, int y)>> GenerateMarketData(int companyId, int from, int to)
+        {
+            try
+            {
+                var company = _dbContext.Companies.FirstOrDefault(c => c.Id == companyId);
+                if (company == null)
+                    return BadRequest($"Could not find a company with id {companyId}.");
+
+                IMarketGenerator marketGenerator = new MarketGenerator(company);
+                return Ok(marketGenerator.GenerateMarketChanges(from, to).Select(o => new {
+                    x = o.x,
+                    y = o.y
+                }));
+            }
+            catch (Exception e)
+            {
+                if (_hostingEnvironment.IsDevelopment())
+                    return BadRequest(e.Message);
+                return BadRequest($"Something went wrong while generating market data for company {companyId}.");
             }
         }
     }

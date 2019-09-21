@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MarketAPI.Generation;
 using MarketAPI.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +55,27 @@ namespace MarketAPI.Controllers
                 if (_hostingEnvironment.IsDevelopment())
                     return BadRequest(e.Message);
                 return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("generate")]
+        public ActionResult<IEnumerable<(int x, int y)>> GenerateMarketData(int companyId, int from, int to)
+        {
+            try
+            {
+                var company = _dbContext.Companies.FirstOrDefault(c => c.Id == companyId);
+                if (company == null)
+                    return BadRequest($"Could not find a company with id {companyId}.");
+
+                IMarketGenerator marketGenerator = new MarketGenerator(company);
+                return Ok(marketGenerator.GenerateMarketChanges(from, to));
+            }
+            catch (Exception e)
+            {
+                if (_hostingEnvironment.IsDevelopment())
+                    return BadRequest(e.Message);
+                return BadRequest($"Something went wrong while generating market data for company {companyId}.");
             }
         }
     }

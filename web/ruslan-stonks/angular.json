@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ruslan-app": {
+    "ruslan-stonks": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ruslan-app",
+            "outputPath": "dist/ruslan-stonks",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ruslan-app:build"
+            "browserTarget": "ruslan-stonks:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ruslan-app:build:production"
+              "browserTarget": "ruslan-stonks:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ruslan-app:build"
+            "browserTarget": "ruslan-stonks:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ruslan-app:serve"
+            "devServerTarget": "ruslan-stonks:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ruslan-app:serve:production"
+              "devServerTarget": "ruslan-stonks:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "ruslan-app"
+  "defaultProject": "ruslan-stonks"
 }

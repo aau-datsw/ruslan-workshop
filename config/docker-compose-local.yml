@@ -15,16 +15,16 @@ services:
     networks:
       - ruslan-workshop-shared
     depends_on:
-      - ruslan-app
+      - ruslan-stonks
       - ya-api
       - yeet-api
       - skeet-api
 
-  ruslan-app:
-    image: ruslan-app:latest
-    container_name: ruslan-app
+  ruslan-stonks:
+    image: ruslan-stonks:latest
+    container_name: ruslan-stonks
     build:
-      context: ../web/ruslan-app
+      context: ../web/ruslan-stonks
       dockerfile: ./Dockerfile
     expose:
       - 80

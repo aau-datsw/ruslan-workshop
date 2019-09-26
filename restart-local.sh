@@ -1,6 +1,6 @@
 #!/bin/bash
 docker-compose -f config/docker-compose-local.yml down
-if [ ! -d "./web/ruslan-app/dist" ]
+if [ ! -d "./web/ruslan-stonks/dist" ]
 then 
     echo "Building the Angular 7 app..."
     cd ./web/ruslan-app 

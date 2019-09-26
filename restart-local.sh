@@ -3,7 +3,7 @@ docker-compose -f config/docker-compose-local.yml down
 if [ ! -d "./web/ruslan-stonks/dist" ]
 then 
     echo "Building the Angular 7 app..."
-    cd ./web/ruslan-app 
+    cd ./web/ruslan-stonks
     ng build --prod
     cd ..
     cd ..

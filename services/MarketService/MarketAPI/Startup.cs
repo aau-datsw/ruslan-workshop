@@ -17,6 +17,7 @@ namespace MarketAPI
         }
 
         public static IConfiguration Configuration { get; set; }
+        readonly string RUSLANCorsPolicy = "RUSLANCorsPolicy_AllowAll";
         
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,6 +31,14 @@ namespace MarketAPI
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options => options.SerializerSettings.Formatting = Formatting.Indented);
+            services.AddCors(options => 
+            {
+                options.AddPolicy(RUSLANCorsPolicy, builder => {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +52,7 @@ namespace MarketAPI
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseCors();
             }
 
             app.UseMvc();

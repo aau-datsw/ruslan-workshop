@@ -58,7 +58,7 @@ namespace MarketAPI.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("generate")]
         public ActionResult<IEnumerable<(int x, int y)>> GenerateMarketData(int companyId, int from, int to)
         {

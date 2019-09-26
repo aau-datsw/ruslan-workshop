@@ -4,20 +4,20 @@ networks:
   ruslan-workshop-shared:
 
 services: 
-  market-db: 
+  {database_name}: 
     image: postgres:latest
     ports:
       - "5432:5432"
     restart: always
     volumes: 
-      - market-db-volume:/var/lib/postgresql/data
+      - {database_name}-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "ya"
       POSTGRES_PASSWORD: "yeet"
-      POSTGRES_DB: "market-db"
+      POSTGRES_DB: "{database_name}"
     networks:
       - ruslan-workshop-shared
         
 
 volumes:
-  market-db-volume:
+  {database_name}-volume:

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -10,7 +11,20 @@ export class AppComponent implements OnInit {
   title = 'ruslan-stonks';
   lineChart = [];
 
+  constructor(private _httpClient: HttpClient)
+  {
+
+  }
+
+  private getMarketData(id: number, from: number, to: number)
+  {
+    this._httpClient.get(`https://api.ruslan.local/market/generate?companyId=${id}&from=${from}&to=${to}`)
+      .subscribe((result: any[]) => console.log(result));
+  }
+
   ngOnInit(): void {
+    var data = [];
+    this.getMarketData(1, 1, 5);
     this.lineChart = new Chart(
       'lineChart', {
         type : 'line', 

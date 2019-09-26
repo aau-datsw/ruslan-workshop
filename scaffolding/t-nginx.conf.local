@@ -31,7 +31,7 @@ http {
     ssl_certificate_key /etc/letsencrypt/live/ruslan.local/privkey.pem;
 
     location / {
-      proxy_pass http://ruslan-app:80/;
+      proxy_pass http://ruslan-stonks:80/;
     }
   }
 
@@ -51,11 +51,8 @@ http {
     ssl_certificate_key /etc/letsencrypt/live/api.ruslan.local/privkey.pem;
 
     location / {
+      add_header 'Access-Control-Allow-Origin' '*';
       return 200 'You are now using the API.';
-    }
-
-    location /market/ {
-        proxy_pass http://market-api:80/;
     }
 
 {api_locations}

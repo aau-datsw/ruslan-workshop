@@ -51,23 +51,28 @@ http {
     ssl_certificate_key /etc/letsencrypt/live/api.ruslan.local/privkey.pem;
 
     location / {
+      add_header 'Access-Control-Allow-Origin' '*';
       return 200 'You are now using the API.';
     }
 
-    location /market/ {
-        proxy_pass http://market-api:80/;
-    }
-
     location /ya/ {
+        add_header 'Access-Control-Allow-Origin' '*';
         proxy_pass http://ya-api:80/;
     }
  
     location /yeet/ {
+        add_header 'Access-Control-Allow-Origin' '*';
         proxy_pass http://yeet-api:80/;
     }
  
     location /skeet/ {
+        add_header 'Access-Control-Allow-Origin' '*';
         proxy_pass http://skeet-api:80/;
+    }
+ 
+    location /market/ {
+        add_header 'Access-Control-Allow-Origin' '*';
+        proxy_pass http://market-api:80/;
     }
 
   }

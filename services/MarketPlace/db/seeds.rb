@@ -20,15 +20,15 @@ Stonk.create(
   price: 0
 )
 
-resp = Net::HTTP.get_response(URI.parse("https://raw.githubusercontent.com/aau-datsw/ruslan-workshop/master/data/market.json"))
+resp = Net::HTTP.get_response(URI.parse("https://raw.githubusercontent.com/aau-datsw/ruslan-workshop/master/data/market_norm.json"))
 data = resp.body
 result = JSON.parse(data)
 stonk = Stonk.default_stonk
 result['data'].each do |data|
   p data
-  # StonkHistory.create(
-  #   price: data['y'],
-  #   stonk: stonk,
-  #   recorded: DateTime.new(2019,10,18,20).in_time_zone("Europe/Copenhagen") + data['x'].seconds
-  # )
+  StonkHistory.create(
+    price: data['y'],
+    stonk: stonk,
+    recorded: DateTime.new(2019,10,18,20).in_time_zone("Europe/Copenhagen") + data['x'].seconds
+  )
 end

@@ -5,4 +5,8 @@ class Stonk < ApplicationRecord
   def self.default_stonk
     Stonk.last
   end
+
+  def price
+    StonkHistory.current.price
+  end
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'sell', to: 'transactions#sell'
       post 'buy', to: 'transactions#buy'
+      get 'account', to: 'accounts#index'
     end
   end
 

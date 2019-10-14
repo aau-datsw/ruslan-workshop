@@ -26,9 +26,9 @@ result = JSON.parse(data)
 stonk = Stonk.default_stonk
 result['data'].each do |data|
   p data
-  StonkHistory.create(
-    price: data['y'],
-    stonk: stonk,
-    recorded: DateTime.new(2019,10,18,20).in_time_zone("Europe/Copenhagen") + data['x'].seconds
-  )
+  # StonkHistory.create(
+  #   price: data['y'],
+  #   stonk: stonk,
+  #   recorded: DateTime.new(2019,10,18,20).in_time_zone("Europe/Copenhagen") + data['x'].seconds
+  # )
 end

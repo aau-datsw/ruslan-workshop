@@ -9,27 +9,17 @@ services:
     volumes:
       - ./nginx.conf.local:/etc/nginx/nginx.conf
       - /etc/letsencrypt/:/etc/letsencrypt/
+      - ../web/:/web/
     ports:
       - "80:80"
       - "443:443"
     networks:
       - ruslan-workshop-shared
     depends_on:
-      - ruslan-app
       - ya-api
       - yeet-api
       - skeet-api
 
-  ruslan-app:
-    image: ruslan-app:latest
-    container_name: ruslan-app
-    build:
-      context: ../web/ruslan-app
-      dockerfile: ./Dockerfile
-    expose:
-      - 80
-    networks:
-      - ruslan-workshop-shared
 
   market-db: 
     image: postgres:latest

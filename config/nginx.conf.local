@@ -31,7 +31,7 @@ http {
     ssl_certificate_key /etc/letsencrypt/live/ruslan.local/privkey.pem;
 
     location / {
-      proxy_pass http://ruslan-app:80/;
+      root /web/ruslan_stonks_app/build/web;
     }
   }
 

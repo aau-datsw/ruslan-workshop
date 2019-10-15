@@ -3,13 +3,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 
 
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
+  final groupTokens = [
+    "bramsdockercomposecirclejerk"
+  ];
 
   // This widget is the root of your application.
   @override
@@ -35,13 +38,7 @@ class MyApp extends StatelessWidget {
             Expanded(
               child: GridView.count(
                 crossAxisCount: 3,
-                children: <Widget>[
-                  Card(),
-                  Card(),
-                  Card(),
-                  Card(), 
-                  Card(),
-                ],
+                children: groupTokens.map((token) => GroupCard(xToken: token)).toList(),
               ),
             )
           ],
@@ -50,6 +47,82 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+class GroupCard extends StatefulWidget {
+
+  final String xToken;
+
+  const GroupCard({Key key, this.xToken}) : super(key: key);
+
+  @override
+  _GroupCardState createState() => _GroupCardState();
+}
+
+class _GroupCardState extends State<GroupCard> {
+
+  String name;
+  int balance = 0;
+  int stockValue = 0;
+  int totalValue = 0;
+
+  int lastBalance = 0;
+
+  dynamic info;
+
+  @override
+  void initState() {
+    print("Updating info for: ${widget.xToken}");
+    startUpdateLoop(widget.xToken);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: info == null ? 0 : info["stonk_count"] > 0 ? 16 : 0,
+      child: Column(
+        children: <Widget>[
+          Text(info == null ? "?" : info["name"], style: TextStyle(fontSize: 24)),
+          Text("\$${info['total_value']}.00", style: TextStyle(fontSize: 38, color: 100000 > balance ? Colors.red : Colors.green)),
+          Text("Balance"),
+          Text("\$${info['balance']}.00"),
+          Text("In stocks"),
+          Text("\$${info['stonk_value']}.00")
+        ],
+      ),
+    );
+  }
+
+  void startUpdateLoop(String xToken) async {
+    do {
+      await Future.delayed(Duration(seconds: 1), () => updateInfo(xToken));
+    } while (true);
+  }
+
+  void updateInfo(String xToken) async {
+    var url = "http://srv.ruslan.dk:3001/api/v1/account";
+
+    try {
+      var response = await http.get(url, headers: {
+        "X-Token" : xToken
+      });
+      var i = jsonDecode(response.body);
+      setState(() {
+        info = i;
+      });
+    } on Exception catch (e) {
+      print(e);
+    }
+  }
+}
+
+
 
 
 class MarketOverview extends StatelessWidget {
@@ -76,7 +149,6 @@ class MarketOverview extends StatelessWidget {
     );
   }
 }
-
 
 class StonksMarketChart extends StatefulWidget {
   
@@ -136,9 +208,9 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
   }
 
   void startUpdateLoop() async {
-    while (true) {
+    do {
       await Future.delayed(widget.rate, () => updateRecords());
-    }
+    } while (true);
   }
 
   void updateRecords() async {
@@ -149,7 +221,6 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
     var marketData = List<StonksRecord>();
     try {
       var response = await http.get(url, headers: {"X-Token" : "bramsdockercomposecirclejerk"});
-      print("Got response");
       jsonDecode(response.body).forEach((o) => marketData.add(StonksRecord(
         time:  DateTime.parse(o["recorded"]),
         price: o["price"]

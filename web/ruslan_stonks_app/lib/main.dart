@@ -91,8 +91,9 @@ class StonksMarketChart extends StatefulWidget {
 }
 
 class _StonksMarketChartState extends State<StonksMarketChart> {
+  int lastPrice = 0, currentPrice = 0;
+
   charts.Series<StonksRecord, DateTime> records;
-  DateTime lastUpdated;
 
   @override 
   void initState() {
@@ -105,6 +106,7 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
     return Column(
       children: <Widget>[
         // Headline
+        headline(),
 
         // Updating chart
         Expanded(
@@ -114,6 +116,21 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
             dateTimeFactory: const charts.LocalDateTimeFactory()
             ),
         )
+      ],
+    );
+  }
+
+  Widget headline() {
+    var difference = currentPrice - lastPrice;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text("RUSLAN Stonks - Ligma Inc.", style: Theme.of(context).textTheme.headline),
+        Text("\$${difference}.00", style: TextStyle(
+          fontSize: 48, 
+          color: difference > 0 ? Colors.green : Colors.red
+        )),
+        difference > 0 ? Icon(Icons.arrow_drop_up, color: Colors.green) : Icon(Icons.arrow_drop_up, color: Colors.red)
       ],
     );
   }
@@ -139,6 +156,9 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
       )));
       
       setState(() {
+        if (records != null && records.data.length > 0)
+          lastPrice = records.data.last.price;
+
         records = charts.Series<StonksRecord, DateTime>(
           id: 'Records',
           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
@@ -147,6 +167,9 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
           measureLowerBoundFn: (StonksRecord records, _) => 0,
           data: marketData
         );
+
+        if (records != null && records.data.length > 0)
+          currentPrice = records.data.last.price;
       });
       
     } on Exception catch (e) {

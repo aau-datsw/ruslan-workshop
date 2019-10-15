@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post 'sell', to: 'transactions#sell'
       post 'buy', to: 'transactions#buy'
       get 'account', to: 'accounts#index'
+      get 'market', to: 'markets#index'
     end
   end
 

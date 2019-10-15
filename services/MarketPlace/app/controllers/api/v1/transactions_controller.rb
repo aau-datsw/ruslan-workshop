@@ -20,12 +20,17 @@ class Api::V1::TransactionsController < ApplicationController
     end
 
     render json: transaction, status: 201
+  rescue RuntimeError => e
+    render json: { error: e.message }
   end
 
   private
 
   def validate_params
-    return head(422) if params.dig(:quantity).blank?
+    if params.dig(:quantity).blank?
+      params[:quantity] = 1
+    end
+
     return head(422) if params.dig(:quantity).to_i < 1
   end
 

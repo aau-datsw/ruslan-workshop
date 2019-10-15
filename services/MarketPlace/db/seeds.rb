@@ -9,8 +9,8 @@ require 'net/http'
 
 Account.create([
   {
-    api_key: 'rand',
-    name: 'The Donald',
+    api_key: 'bramsdockercomposecirclejerk',
+    name: 'Brams',
     balance: 100000
   }#, {}, ...
 ])
@@ -24,11 +24,15 @@ resp = Net::HTTP.get_response(URI.parse("https://raw.githubusercontent.com/aau-d
 data = resp.body
 result = JSON.parse(data)
 stonk = Stonk.default_stonk
+arr = []
+
+
 result['data'].each do |data|
-  p data
-  StonkHistory.create(
+  arr << {
     price: data['y'],
-    stonk: stonk,
+    stonk_id: stonk.id,
     recorded: DateTime.new(2019,10,18,20).in_time_zone("Europe/Copenhagen") + data['x'].seconds
-  )
+  }
 end
+
+StonkHistory.import(arr)

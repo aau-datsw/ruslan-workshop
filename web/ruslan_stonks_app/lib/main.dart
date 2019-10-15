@@ -125,12 +125,12 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text("RUSLAN Stonks - Ligma Inc.", style: Theme.of(context).textTheme.headline),
-        Text("\$${difference}.00", style: TextStyle(
+        Text("RUSLAN Stonks - Ligma Inc.        ", style: Theme.of(context).textTheme.headline),
+        Text("\$${currentPrice}.00", style: TextStyle(
           fontSize: 48, 
           color: difference > 0 ? Colors.green : Colors.red
         )),
-        difference > 0 ? Icon(Icons.arrow_drop_up, color: Colors.green) : Icon(Icons.arrow_drop_up, color: Colors.red)
+        difference > 0 ? Icon(Icons.arrow_drop_up, color: Colors.green) : Icon(Icons.arrow_drop_down, color: Colors.red)
       ],
     );
   }

@@ -5,7 +5,12 @@ class Api::V1::TransactionsController < ApplicationController
   def buy
     transaction = nil
     ActiveRecord::Base.transaction do
-      transaction = current_account.transactions.create(stonk: @stonk, stonk_price: @stonk.price, stonk_count: quantity)
+      price = @stonk.price
+      transaction = current_account.transactions.create(
+        stonk: @stonk,
+        stonk_price: price,
+        stonk_count: (current_account.balance / price.to_f).floor
+      )
     end
 
     render json: transaction, status: 201
@@ -14,7 +19,7 @@ class Api::V1::TransactionsController < ApplicationController
   def sell
     transaction = nil
     ActiveRecord::Base.transaction do
-      transaction = current_account.transactions.create(stonk: @stonk, stonk_price: @stonk.price, stonk_count: -1 * quantity)
+      transaction = current_account.transactions.create(stonk: @stonk, stonk_price: @stonk.price, stonk_count: -1 * current_account.stonk_count)
       raise "Not enough money" if current_account.balance < 0
       raise "Not enough stonk" if current_account.stonk_count < 0
     end

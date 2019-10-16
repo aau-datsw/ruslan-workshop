@@ -5,33 +5,60 @@ namespace GroupOne
 {
     class Program
     {
+        static StonksUtils _stonks = new StonksUtils();
+
         static void Main(string[] args)
         {
             while (true) 
             {
                 // Wait for 10 seconds or so 
-                Thread.Sleep(500);
-                System.Console.WriteLine("Hello");
+                Thread.Sleep(2000);
 
-                bool shouldSell = false, shouldBuy = false;
-                int[] marketData = Stonks.GetMarketData(DateTime.Now - TimeSpan.FromMinutes(5), DateTime.Now);
-                for (int i = 0; i < marketData.Length; i++)
-                {
-                    // Do work
-                }
+                DateTime to = DateTime.Now;
+                DateTime from = to - TimeSpan.FromMinutes(5);
 
-                if (shouldBuy)
+                int[] marketData = _stonks.GetMarketData(from, to);
+                GroupInfo info = _stonks.GetInfo();
+
+                // Trump doesn't care about prices, his infinite genius is enough
+                int choice = new Random().Next(3);
+                switch (choice)
                 {
-                    Stonks.Buy(10);
-                } 
-                else if (shouldSell)
-                {
-                    Stonks.Sell(10);
+                    case 0: 
+                        Buy();
+                        break;
+                    case 1:
+                        Sell();
+                        break;
+                    case 2: 
+                        break;
                 }
-                else 
-                {
-                    // Do nothing, just wait
-                }
+            }
+        }
+
+        static void Buy() 
+        {
+            try 
+            {
+                _stonks.Buy();
+                Console.WriteLine("Bought Ligma Inc.!");
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        static void Sell()
+        {
+            try
+            {
+                _stonks.Sell();
+                Console.WriteLine("Sold Ligma Inc.!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);                
             }
         }
     }

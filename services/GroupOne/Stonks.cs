@@ -1,43 +1,73 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace GroupOne
 {
-    public static class Stonks
-    {
-        private static HttpClient _http = new HttpClient();
 
-        public static int[] GetMarketData(DateTime from, DateTime to)
+    public class StonksUtils
+    {
+        private HttpClient _http;
+        public StonksUtils()
+        {
+            _http = new HttpClient();
+            _http.DefaultRequestHeaders.Add("X-Token", "66cdfff29584225ac6d1fc8db6f6c01d");
+        }
+
+        public int[] GetMarketData(DateTime from, DateTime to)
         {
             // Call the ruslan API and get the data 
-            return new [] { 1 };
+            var response = _http.GetAsync($"http://srv.ruslan.dk:3001/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
+                .GetAwaiter()
+                .GetResult();
+
+            var data = JsonConvert.DeserializeObject<List<dynamic>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+            
+            return data.Select(o => (int) o.price).ToArray();
         }
 
-        public static GroupInfo GetInfo()
+        public GroupInfo GetInfo()
         {
             // Call the ruslan API and get the info 
-            return new GroupInfo();
+            var response = _http.GetAsync("http://srv.ruslan.dk:3001/api/v1/account").GetAwaiter().GetResult();
+            var rawJson = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            var info = JsonConvert.DeserializeObject<GroupInfo>(rawJson);
+            System.Console.WriteLine(info);
+            return info;
         }
 
-        public static void Buy(int quantity)
+        public void Buy()
         {
-            // Call the ruslan API and post 
-            return;
+            _http.PostAsync("http://srv.ruslan.dk:3001/api/v1/buy", new StringContent("")).GetAwaiter().GetResult();
         }
 
-        public static void Sell(int quantity)
+        public void Sell()
         {
-            // Call the ruslan API and post
-            return;
+            _http.PostAsync("http://srv.ruslan.dk:3001/api/v1/sell", new StringContent("")).GetAwaiter().GetResult();
+        }
+
+        private static string ISO8601(DateTime date)
+        {
+            return date.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 
     public class GroupInfo
     {
+        [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("balance")]
         public int Balance { get; set; }
+        [JsonProperty("stonk_count")]
         public int StockCount { get; set; }
+        [JsonProperty("stonk_value")]
         public int StockValue { get; set; }
+        [JsonProperty("total_value")]
         public int TotalValue { get; set; }
+
+        public override string ToString() => $"{Name} ({Balance} {StockCount} {StockValue} {TotalValue})";
     }
 }

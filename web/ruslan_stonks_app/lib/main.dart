@@ -11,7 +11,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
 
   final groupTokens = [
-    "bramsdockercomposecirclejerk"
+    "bramsdockercomposecirclejerk",
+    "66cdfff29584225ac6d1fc8db6f6c01d"
   ];
 
   // This widget is the root of your application.
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Column(
           children: <Widget>[
-            Expanded(child: MarketOverview(interval: Duration(minutes: 2), rate: Duration(seconds: 1))),
+            Expanded(child: MarketOverview(interval: Duration(minutes: 5), rate: Duration(seconds: 1))),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 3,
@@ -84,18 +85,75 @@ class _GroupCardState extends State<GroupCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: info == null ? 0 : info["stonk_count"] > 0 ? 16 : 0,
-      child: Column(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Stack(
+        alignment: AlignmentDirectional.center,
         children: <Widget>[
-          Text(info == null ? "?" : info["name"], style: TextStyle(fontSize: 24)),
-          Text("\$${info['total_value']}.00", style: TextStyle(fontSize: 38, color: 100000 > balance ? Colors.red : Colors.green)),
-          Text("Balance"),
-          Text("\$${info['balance']}.00"),
-          Text("In stocks"),
-          Text("\$${info['stonk_value']}.00")
+          Container(
+            width: 200.0,
+            height: 200.0,
+          ),
+          Container(
+            alignment: FractionalOffset(20.0, 20.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: info["stonk_count"] > 0 ? Colors.blue.withOpacity(0.5) : Colors.grey.withOpacity(0.5),
+                width: 50.0,
+              ),
+              shape: BoxShape.circle
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(info == null ? "?" : info["name"], style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
+                  buildEarnings(),
+                  buildInfo()
+                ],
+              )
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget buildEarnings() {
+    var earnings = info["total_value"] - 100000;
+    var percentageEarnings = (earnings / 100000.0) * 100;
+    var earningsString = "${earnings >= 0 ? '+' : ''} ${percentageEarnings.toStringAsFixed(2)}";
+
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text("$earningsString%", style: TextStyle(fontSize: 38, color: earnings < 0 ? Colors.red : Colors.green)),
+    );
+  }
+
+  Widget buildInfo() {
+    return Column(
+      children: <Widget>[
+        Text("Total Value", style: TextStyle(fontWeight: FontWeight.bold)),
+        Text("\$${info['total_value']}"),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Text("Stonks", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("\$${info['stonk_value']}")
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Text("Balance", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("\$${info['balance']}")
+              ],
+            )
+          ],
+        ),
+      ],
     );
   }
 
@@ -185,7 +243,7 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
           child: charts.TimeSeriesChart(
             records == null ? [] : [records],
             animate: widget.animate,
-            dateTimeFactory: const charts.LocalDateTimeFactory()
+            dateTimeFactory: const charts.LocalDateTimeFactory(),
             ),
         )
       ],
@@ -235,7 +293,9 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
           domainFn: (StonksRecord records, _) => records.time,
           measureFn: (StonksRecord records, _) => records.price,
-          measureLowerBoundFn: (StonksRecord records, _) => 0,
+          measureLowerBoundFn: (StonksRecord records, _) => records.price - 200,
+          measureUpperBoundFn: (StonksRecord records, _) => records.price - 200,
+          areaColorFn: (StonksRecord records, _) => charts.ColorUtil.fromDartColor(Colors.blue.withOpacity(0.5)),
           data: marketData
         );
 

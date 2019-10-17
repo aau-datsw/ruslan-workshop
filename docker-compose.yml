@@ -1,0 +1,12 @@
+version: "3"
+
+
+services: 
+
+  brams-trader:
+    image: brams-trader:latest
+    build:
+      context: ./services/BramsService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"

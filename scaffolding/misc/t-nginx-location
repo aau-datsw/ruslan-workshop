@@ -1,3 +1,0 @@
-    location /{api_url}/ {
-        proxy_pass http://{api_name}:80/;
-    }

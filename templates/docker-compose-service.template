@@ -1,0 +1,7 @@
+  {{name_lower}}-trader:
+    image: {{name_lower}}-trader:latest
+    build:
+      context: ./services/{{name}}Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"

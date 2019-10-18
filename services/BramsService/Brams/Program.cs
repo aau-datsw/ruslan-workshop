@@ -14,6 +14,7 @@ namespace Brams
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
+
                 // ------------------------------------------------------ // 
                 //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
                 //                      GOOD LUCK!                        //
@@ -31,6 +32,7 @@ namespace Brams
                 //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
                 //                                                        // 
                 // ------------------------------------------------------ //
+
 
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price

@@ -1,0 +1,11 @@
+FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /app
+COPY ./{{name}}/*.csproj ./
+RUN dotnet restore {{name}}.csproj
+COPY ./{{name}}/. ./
+RUN dotnet publish {{name}}.csproj -c Release -o pub
+
+FROM mcr.microsoft.com/dotnet/core/runtime:2.2 AS runtime
+WORKDIR /app
+COPY --from=0 /app/pub .
+ENTRYPOINT ["dotnet", "{{name}}.dll"]

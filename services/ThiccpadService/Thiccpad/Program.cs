@@ -7,8 +7,8 @@ namespace Thiccpad
     {
         static StonksUtils _stonks = new StonksUtils(false);
 
-        private const double changeModeDiff = 0.05;
-        private const double moveRefPointDiff = 0.10;
+        private const double changeModeDiff = 0.001;
+        private const double moveRefPointDiff = 0.008;
 
         private int changeModeLim {get; set;}
         private int moveRefPointLim {get; set;}
@@ -34,15 +34,17 @@ namespace Thiccpad
             if (stockValue < changeModeLim) {
               active = false;
               Sell();
+              updateLims(stockValue, false);
             }
             if (stockValue > moveRefPointLim) {
               updateLims(stockValue, _active);
             }
           }
           else {
-            if (stockValue > moveRefPointLim) {
+            if (stockValue > changeModeLim) {
               active = true;
               Buy();
+              updateLims(stockValue, true);
             }
             if (stockValue < moveRefPointLim) {
               updateLims(stockValue, _active);
@@ -52,13 +54,12 @@ namespace Thiccpad
 
         void updateLims(int refValue, bool _active)
         {
+          moveRefPointLim = refValue;
           if (_active) {
             changeModeLim = (int) (refValue - refValue * changeModeDiff);
-            moveRefPointLim = (int) (refValue + refValue * moveRefPointDiff);
           }
           else {
             changeModeLim = (int) (refValue + refValue * changeModeDiff);
-            moveRefPointLim = (int) (refValue - refValue * moveRefPointDiff);
           }
         }
 

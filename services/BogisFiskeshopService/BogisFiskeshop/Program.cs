@@ -41,11 +41,11 @@ namespace BogisFiskeshop
                 bool trending = Trending(newestData);
                 if (!trending)
                 {
-                    Sell();
+                    Buy();
                 }
                 else
                 {
-                    Buy();
+                    Sell();
                 }
             }
         }

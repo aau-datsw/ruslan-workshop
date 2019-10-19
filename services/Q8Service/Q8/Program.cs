@@ -11,42 +11,31 @@ namespace Q8
         {
             while (true) 
             {
-                int[] marketData = GetMarketData();
-                int numElements = marketData.Length;
-
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
-
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
+                /*Det er her vores kode skal skrives!!!*/
+        
+        
+                /*Denne kode er skrevet ud fra forudsætningen, at hvis den er stigende (tredjesidst<andensidst<allersidst) så skal vi ikke gøre noget.
+                Ligeledes med det omvendte tilfælde, hvor den er konstant faldende.
+                Det er kun lige efter toppunkterne (hvor vi ved det er et toppunkt) at vi enten køber eller sælger.
+                Altså, hvis tredjesidst er mindre end anden, men anden er større end første, så sælger vi.
+                Ligeledes hvis tredje er større end anden, men anden er mindre end første, så køber vi.
+                Det gør vores algoritme altid er 1 bagud, men til gengæld følger udviklingen.
+                Dog hvis der er mange toppunkter, så vil vores algoritme SUCKS...
+                */
+        
+                int third_last = marketData[numElements-3];  // Get the third last price
+                int second_last = marketData[numElements-2]; // Get the second last price
+                int very_last = marketData[numElements-1];  // Get the last price
+        
+                if (third_last < second_last && second_last > very_last)
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    Buy();
-                }
-                else if (firstPrice > lastPrice)
-                {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
                     Sell();
                 }
+                else if (third_last > second_last && second_last < very_last)
+                {
+                    Buy();
+                }
+                else;
             }
         }
 

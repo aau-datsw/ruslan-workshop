@@ -41,13 +41,13 @@ namespace KauKlanen
                 int lastPrice = marketData[numElements - 1];  // Get the last price
 
                 DataSet curData = new DataSet();
-                curData.minimumIndex = FindMinimumIndexBetween(marketData, numElements-30, numElements-1); 
-                curData.maximumIndex = FindMaximumIndexBetween(marketData, numElements-30, numElements-1);
+                curData.minimumIndex = FindMinimumIndexBetween(marketData, numElements-10, numElements-1); 
+                curData.maximumIndex = FindMaximumIndexBetween(marketData, numElements-10, numElements-1);
                 curData.average = AverageOf(marketData[curData.minimumIndex], marketData[curData.maximumIndex]);
 
                 DataSet prevData = new DataSet();
-                prevData.minimumIndex = FindMinimumIndexBetween(marketData, numElements-60, numElements-31); 
-                prevData.maximumIndex = FindMaximumIndexBetween(marketData, numElements-60, numElements-31);
+                prevData.minimumIndex = FindMinimumIndexBetween(marketData, numElements-20, numElements-11); 
+                prevData.maximumIndex = FindMaximumIndexBetween(marketData, numElements-20, numElements-11);
                 prevData.average = AverageOf(marketData[prevData.minimumIndex], marketData[prevData.maximumIndex]);
 
                 if(curData.average > prevData.average){

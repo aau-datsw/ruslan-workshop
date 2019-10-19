@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:http/http.dart' as http;
@@ -12,16 +13,15 @@ class MyApp extends StatelessWidget {
 
   final groupTokens = [
     "bramsdockercomposecirclejerk",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d",
-    "66cdfff29584225ac6d1fc8db6f6c01d"
+     "6d13ae8891a08cf4599f352720fb6e55",
+    "2368464b4aa94530a9bfa8ed05e561bc",
+     "987b3bdadd7d3ad28e7ddeb7d817fe55",
+     "cee1684434ffe6e5d2fb8f491b143ca4",
+     "1f28ca9c2ed88cf594e53a98bcc02955",
+     "e90159c7a49f5deff4506a586a4dcda9",
+     "084b86c1651470d24f65ff2d1c14b322",
+     "2876f61f82fbf4768247cef16f0c28c8",
+     "a05cfb802ce1819bfb63794cc53ba088"
   ];
 
   // This widget is the root of your application.
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             Expanded(child: MarketOverview(interval: Duration(minutes: 5), rate: Duration(seconds: 1))),
             Expanded(
               child: GridView.count(
-                crossAxisCount: 3,
+                crossAxisCount: 5,
                 children: groupTokens.map((token) => GroupCard(xToken: token)).toList(),
               ),
             )
@@ -104,11 +104,11 @@ class _GroupCardState extends State<GroupCard> {
             height: 200.0,
           ),
           Container(
-            alignment: FractionalOffset(20.0, 20.0),
+            alignment: FractionalOffset(2.0, 2.0),
             decoration: BoxDecoration(
               border: Border.all(
-                color: info["stonk_count"] > 0 ? Colors.blue.withOpacity(0.5) : Colors.grey.withOpacity(0.5),
-                width: 50.0,
+                color: (info["stonk_count"] ?? 0) > 0 ? Colors.blue.withOpacity(0.5) : Colors.grey.withOpacity(0.5),
+                width: 5.0,
               ),
               shape: BoxShape.circle
             ),
@@ -116,7 +116,7 @@ class _GroupCardState extends State<GroupCard> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(info == null ? "?" : info["name"], style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
+                  AutoSizeText(info == null ? "?" : info["name"] ?? "?", maxLines: 1, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                   buildEarnings(),
                   buildInfo()
                 ],
@@ -129,35 +129,35 @@ class _GroupCardState extends State<GroupCard> {
   }
 
   Widget buildEarnings() {
-    var earnings = info["total_value"] - 100000;
+    var earnings = (info["total_value"] ?? 0) - 100000;
     var percentageEarnings = (earnings / 100000.0) * 100;
     var earningsString = "${earnings >= 0 ? '+' : ''} ${percentageEarnings.toStringAsFixed(2)}";
 
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text("$earningsString%", style: TextStyle(fontSize: 38, color: earnings < 0 ? Colors.red : Colors.green)),
+      child: AutoSizeText("$earningsString%", maxLines: 1, style: TextStyle(fontSize: 38, color: earnings < 0 ? Colors.red : Colors.green)),
     );
   }
 
   Widget buildInfo() {
     return Column(
       children: <Widget>[
-        Text("Total Value", style: TextStyle(fontWeight: FontWeight.bold)),
-        Text("\$${info['total_value']}"),
+        AutoSizeText("Total Value", maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold)),
+        AutoSizeText("\$${info['total_value'] ?? 0}", maxLines: 1),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Column(
               children: <Widget>[
-                Text("Stonks", style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("\$${info['stonk_value']}")
+                AutoSizeText("Stonks", maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold)),
+                AutoSizeText("\$${info['stonk_value'] ?? 0}", maxLines: 1)
               ],
             ),
             Column(
               children: <Widget>[
-                Text("Balance", style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("\$${info['balance']}")
+                AutoSizeText("Balance", maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold)),
+                AutoSizeText("\$${info['balance'] ?? 0}", maxLines: 1)
               ],
             )
           ],
@@ -173,7 +173,7 @@ class _GroupCardState extends State<GroupCard> {
   }
 
   void updateInfo(String xToken) async {
-    var url = "http://srv.ruslan.dk:3001/api/v1/account";
+    var url = "http://172.17.68.206:3000/api/v1/account";
 
     try {
       var response = await http.get(url, headers: {
@@ -264,9 +264,9 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text("RUSLAN Stonks - Ligma Inc.        ", style: Theme.of(context).textTheme.headline),
-        Text("\$${currentPrice}.00", style: TextStyle(
-          fontSize: 48, 
+        AutoSizeText("RUSLAN Stonks - Ligma Inc.        ", maxLines: 1, style: Theme.of(context).textTheme.headline),
+        AutoSizeText("\$$currentPrice.00", maxLines: 1, style: TextStyle(
+          fontSize: 22, 
           color: difference > 0 ? Colors.green : Colors.red
         )),
         difference > 0 ? Icon(Icons.arrow_drop_up, color: Colors.green) : Icon(Icons.arrow_drop_down, color: Colors.red)
@@ -284,7 +284,7 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
     var to = DateTime.now();
     var from = to.subtract(widget.interval);
 
-    var url = "http://srv.ruslan.dk:3001/api/v1/market?from=${from.toIso8601String()}&to=${to.toIso8601String()}";
+    var url = "http://172.17.68.206:3000/api/v1/market?from=${from.toIso8601String()}&to=${to.toIso8601String()}";
     var marketData = List<StonksRecord>();
     try {
       var response = await http.get(url, headers: {"X-Token" : "bramsdockercomposecirclejerk"});
@@ -302,8 +302,8 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
           domainFn: (StonksRecord records, _) => records.time,
           measureFn: (StonksRecord records, _) => records.price,
-          measureLowerBoundFn: (StonksRecord records, _) => records.price - 200,
-          measureUpperBoundFn: (StonksRecord records, _) => records.price - 200,
+          measureLowerBoundFn: (StonksRecord records, _) => records.price - 5,
+          measureUpperBoundFn: (StonksRecord records, _) => records.price + 5,
           areaColorFn: (StonksRecord records, _) => charts.ColorUtil.fromDartColor(Colors.blue.withOpacity(0.5)),
           data: marketData
         );

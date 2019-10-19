@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace Brams
+namespace LoneWolf
 {
     class Program
     {

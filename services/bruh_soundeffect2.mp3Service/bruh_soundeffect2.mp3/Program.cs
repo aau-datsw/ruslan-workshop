@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace Brams
+namespace bruh_soundeffect2.mp3
 {
     class Program
     {

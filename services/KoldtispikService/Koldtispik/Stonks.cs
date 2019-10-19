@@ -5,14 +5,14 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace {{name}}
+namespace Koldtispik
 {
 
     public class StonksUtils
     {
         private HttpClient _http;
         private string _port; 
-        private string _grpName = "{{name}}";
+        private string _grpName = "Koldtispik";
 
         public StonksUtils()
         {

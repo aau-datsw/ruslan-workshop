@@ -25,7 +25,7 @@ namespace Brams
         public int[] GetMarketData(DateTime from, DateTime to)
         {
             // Call the ruslan API and get the data 
-            var response = _http.GetAsync($"http://srv.ruslan.dk:{_port}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
+            var response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
                 .GetAwaiter()
                 .GetResult();
 
@@ -37,7 +37,7 @@ namespace Brams
         public GroupInfo GetInfo()
         {
             // Call the ruslan API and get the info 
-            var response = _http.GetAsync($"http://srv.ruslan.dk:{_port}/api/v1/account").GetAwaiter().GetResult();
+            var response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/account").GetAwaiter().GetResult();
             var rawJson = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var info = JsonConvert.DeserializeObject<GroupInfo>(rawJson);
             System.Console.WriteLine(info);
@@ -46,12 +46,12 @@ namespace Brams
 
         public void Buy()
         {
-            _http.PostAsync($"http://srv.ruslan.dk:{_port}/api/v1/buy", new StringContent("")).GetAwaiter().GetResult();
+            _http.PostAsync($"http://172.17.68.206:{_port}/api/v1/buy", new StringContent("")).GetAwaiter().GetResult();
         }
 
         public void Sell()
         {
-            _http.PostAsync($"http://srv.ruslan.dk:{_port}/api/v1/sell", new StringContent("")).GetAwaiter().GetResult();
+            _http.PostAsync($"http://172.17.68.206:{_port}/api/v1/sell", new StringContent("")).GetAwaiter().GetResult();
         }
 
         private static string ISO8601(DateTime date)

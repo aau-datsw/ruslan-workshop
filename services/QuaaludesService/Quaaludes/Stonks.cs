@@ -5,14 +5,14 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace {{name}}
+namespace Quaaludes
 {
 
     public class StonksUtils
     {
         private HttpClient _http;
         private string _port; 
-        private string _grpName = "{{name}}";
+        private string _grpName = "Quaaludes";
 
         public StonksUtils()
         {

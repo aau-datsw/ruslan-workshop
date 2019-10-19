@@ -13,7 +13,7 @@ namespace BogisFiskeshop
             {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
-
+                // Test push
                 // ------------------------------------------------------ // 
                 //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
                 //                      GOOD LUCK!                        //

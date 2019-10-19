@@ -10,7 +10,7 @@ namespace Koldtispik
         static void Main(string[] args)
         {
             int threshold = 0;
-            bool hasBrought;
+            bool hasBrought = false;
             while (true) 
             {
                 int[] marketData = GetMarketData();
@@ -42,8 +42,9 @@ namespace Koldtispik
                 
                 //int sum = Sum(marketData);
                 int Trend = (lastPrice-secondLastPrice + secondLastPrice-thirdLastPrice + thirdLastPrice - fourthLastPrice)/3;
+                int smallTrend = (lastPrice-secondLastPrice)
                 
-                if (0>Trend && !hasBrought)
+                if (0>Trend && 0 < smallTrend && !hasBrought)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
@@ -51,7 +52,7 @@ namespace Koldtispik
                     threshold = lastPrice;
                     hasBrought = true;
                 }
-                else if (Trend>0 && lastPrice > threshold)
+                else if (Trend > 0 && smallTrend < 0 && lastPrice > threshold)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!

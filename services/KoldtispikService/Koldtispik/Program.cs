@@ -44,7 +44,7 @@ namespace Koldtispik
                 //int Trend = (lastPrice-secondLastPrice + secondLastPrice-thirdLastPrice + thirdLastPrice - fourthLastPrice)/3;
                 int Trend = 0;
                 
-                for (i = 0; i > pointsInTrend ;i++)
+                for (int i = 0; i > pointsInTrend ;i++)
                 {
                     Trend += marketData[numElements-i] - marketData[numElements - (i+1)];
                 }

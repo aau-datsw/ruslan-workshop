@@ -34,14 +34,14 @@ namespace BogisFiskeshop
 
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
+                int firstNew = marketData[numElements-11]; 
+                if (firstNew < lastPrice)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
                     Buy();
                 }
-                else if (firstPrice > lastPrice)
+                else if (firstNew > lastPrice)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!

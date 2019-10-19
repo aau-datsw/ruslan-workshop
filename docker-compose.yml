@@ -30,10 +30,10 @@ services:
       RUSLAN_API_PORT: "3001"
 
 
-  bruh_soundeffect2.mp3-trader:
-    image: bruh_soundeffect2.mp3-trader:latest
+  bruh_soundeffect2mp3-trader:
+    image: bruh_soundeffect2mp3-trader:latest
     build:
-      context: ./services/bruh_soundeffect2.mp3Service
+      context: ./services/bruh_soundeffect2mp3Service
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3001"

@@ -23,6 +23,7 @@ namespace bruh_soundeffect2mp3
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
                 
+                /*
                 int thirtyLast = marketData[numElements-30];
                 int seg3 = 0;
 
@@ -32,61 +33,54 @@ namespace bruh_soundeffect2mp3
                 float averageSeg3 = seg3 / 30f;
 
 
-                if (firstPrice < lastPrice){
+                if (firstPrice < lastPrice) {
                     if(seg3 <= 0) {
                         Sell();
-                    } 
-                    else if (seg3 > 0) {
+                    } else if (seg3 > 0) {
                         //Do nothing
                     }
-                } 
-                else if (firstPrice == lastPrice){
-                        if (averageSeg3 > lastPrice ){ //dvs. seg3 falder
+                } else if (firstPrice == lastPrice) {
+                        if (averageSeg3 > lastPrice) { //dvs. seg3 falder
                         Sell();
-                    }
-                    else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
+                    } else if (averageSeg3 <= lastPrice) { //dvs. seg3 stiger
                         //Do nothing
                     }
-                }
-                else if (firstPrice > lastPrice){
+                } else if (firstPrice > lastPrice) {
                     Sell();
                 } 
-                if (firstPrice < lastPrice){
+
+                if (firstPrice < lastPrice) {
                     Buy();
-                }
-                else if (firstPrice == lastPrice){
-                    if (averageSeg3 > lastPrice){ //dvs. seg3 falder
+                } else if (firstPrice == lastPrice) {
+                    if (averageSeg3 > lastPrice) { //dvs. seg3 falder
                         //Do nothing
-                    }
-                    else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
+                    } else if (averageSeg3 <= lastPrice) { //dvs. seg3 stiger
                         Buy();
 
                     }
-                }
-                else if (firstPrice > lastPrice){
-                    if (averageSeg3 > lastPrice ){ //dvs. seg3 falder
+                } else if (firstPrice > lastPrice) {
+                    if (averageSeg3 > lastPrice) { //dvs. seg3 falder
                         //Do nothing
-                    }
-                    else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
+                    } else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
                         Buy();
 
                     }
-                }
+                } */
 
-                /*
-                if (firstPrice > lastPrice)
+                
+                if (firstPrice < lastPrice)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
                     Buy();
                 }
-                else if (firstPrice < lastPrice)
+                else if (firstPrice > lastPrice)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!
                     Sell();
                 }
-                */
+                
 
 
                 // ------------------------------------------------------ //

@@ -34,15 +34,17 @@ namespace Thiccpad
             if (stockValue < changeModeLim) {
               active = false;
               Sell();
+              updateLims(stockValue, false);
             }
             if (stockValue > moveRefPointLim) {
               updateLims(stockValue, _active);
             }
           }
           else {
-            if (stockValue > moveRefPointLim) {
+            if (stockValue > changeModeLim) {
               active = true;
               Buy();
+              updateLims(stockValue, true);
             }
             if (stockValue < moveRefPointLim) {
               updateLims(stockValue, _active);
@@ -52,13 +54,12 @@ namespace Thiccpad
 
         void updateLims(int refValue, bool _active)
         {
+          moveRefPointLim = refValue;
           if (_active) {
             changeModeLim = (int) (refValue - refValue * changeModeDiff);
-            moveRefPointLim = (int) (refValue + refValue * moveRefPointDiff);
           }
           else {
             changeModeLim = (int) (refValue + refValue * changeModeDiff);
-            moveRefPointLim = (int) (refValue - refValue * moveRefPointDiff);
           }
         }
 

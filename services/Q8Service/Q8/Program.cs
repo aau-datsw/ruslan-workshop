@@ -10,8 +10,9 @@ namespace Q8
         static void Main(string[] args)
         {
             int[] marketData = GetMarketData();
-            int lastBuy = marketData[-1];
-            int flag = 1;
+            int numElements = marketData.Length;
+            int lastBuy = marketData[numElements-1];
+            int flag = 0;
             while (true) 
             {
                 /*Det er her vores kode skal skrives!!!*/

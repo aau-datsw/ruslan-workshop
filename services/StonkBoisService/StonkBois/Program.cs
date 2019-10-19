@@ -11,29 +11,13 @@ namespace StonkBois
 
         //public static int AdvanceBuyPrice = 0, AdvanceSellPrice = 0, AdvancedProfit = 0;
 
-        public static int peak = 0, dip = 1000000;
-
         static void Main(string[] args)
         {
-            int[] marketData = GetMarketData();
-            int numElements = marketData.Length;
-
-            for (int i = 1; i < numElements; i++)
-            {
-                if (peak < marketData[i - 1])
-                {
-                    peak = marketData[i - 1];
-                }
-                if (dip > marketData[i - 1])
-                {
-                    dip = marketData[i - 1];
-                }
-            }
 
             while (true) 
             {
-                marketData = GetMarketData();
-                numElements = marketData.Length; /* Lenth = 300 */
+                int[] marketData = GetMarketData();
+                int numElements = marketData.Length; /* Lenth = 300 */
 
                 // ------------------------------------------------------ // 
                 //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
@@ -66,21 +50,10 @@ namespace StonkBois
 
         static void BasicAlgoritme(int firstPrice, int lastPrice, int numElements, int[] marketData)
         {
-            for (int i = 1; i < numElements; i++)
-            {
-                if (peak < lastPrice)
-                {
-                    peak = lastPrice;
-                }
-                if (dip > lastPrice)
-                {
-                    dip = lastPrice;
-                }
-            }
 
             if (!Bought)
             {
-                if (firstPrice < lastPrice && firstPrice < dip)
+                if (firstPrice < lastPrice)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
@@ -93,7 +66,7 @@ namespace StonkBois
             }
             else
             {
-                if (firstPrice > lastPrice && firstPrice > peak)
+                if (firstPrice > lastPrice)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!

@@ -40,7 +40,7 @@ namespace BogisFiskeshop
                 {
                     Sell();
                 }
-                if (!Trending(newestData))
+                if (Trending(newestData))
                 {
                     Buy();
                 }

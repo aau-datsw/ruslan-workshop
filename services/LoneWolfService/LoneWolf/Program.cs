@@ -89,8 +89,8 @@ namespace LoneWolf
             GroupInfo info = _stonks.GetInfo();
 
             // Determine the timespan you want info within (this is the last 5 minutes)
-            DateTime to = DateTime.Now;
-            DateTime from = DateTime.Now - TimeSpan.FromMinutes(5);
+            DateTime to = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? DateTime.Now - TimeSpan.FromDays(2) : DateTime.Now;
+            DateTime from = to - TimeSpan.FromMinutes(5);
 
 
             // Get the market data

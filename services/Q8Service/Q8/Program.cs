@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace Koldtispik
+namespace Q8
 {
     class Program
     {

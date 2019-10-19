@@ -84,7 +84,7 @@ namespace Brams
 
         static int[] GetMarketData()
         {
-            // Wait for 5 seconds (don't kill the server)
+            // Wait for some time (don't kill the server)
             Thread.Sleep(Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? 5000 : 10000);
             GroupInfo info = _stonks.GetInfo();
 

@@ -9,7 +9,34 @@ services:
       context: ./services/BramsService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_PORT: "3001"
+
+
+  stonkbois-trader:
+    image: stonkbois-trader:latest
+    build:
+      context: ./services/StonkBoisService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"
+
+
+  quaaludes-trader:
+    image: quaaludes-trader:latest
+    build:
+      context: ./services/QuaaludesService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"
+
+
+  bruh_soundeffect2.mp3-trader:
+    image: bruh_soundeffect2.mp3-trader:latest
+    build:
+      context: ./services/bruh_soundeffect2.mp3Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"
 
 
   koldtispik-trader:
@@ -18,4 +45,49 @@ services:
       context: ./services/KoldtispikService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_PORT: "3001"
+
+
+  q8-trader:
+    image: q8-trader:latest
+    build:
+      context: ./services/Q8Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"
+
+
+  lonewolf-trader:
+    image: lonewolf-trader:latest
+    build:
+      context: ./services/LoneWolfService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"
+
+
+  thiccpad-trader:
+    image: thiccpad-trader:latest
+    build:
+      context: ./services/ThiccpadService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"
+
+
+  kauklanen-trader:
+    image: kauklanen-trader:latest
+    build:
+      context: ./services/KauKlanenService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"
+
+
+  esketit-trader:
+    image: esketit-trader:latest
+    build:
+      context: ./services/ESKETITService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3001"

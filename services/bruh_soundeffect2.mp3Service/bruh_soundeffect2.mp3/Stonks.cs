@@ -5,14 +5,14 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace Koldtispik
+namespace bruh_soundeffect2.mp3
 {
 
     public class StonksUtils
     {
         private HttpClient _http;
         private string _port; 
-        private string _grpName = "Koldtispik";
+        private string _grpName = "bruh_soundeffect2.mp3";
 
         public StonksUtils()
         {

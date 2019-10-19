@@ -5,82 +5,62 @@ namespace Thiccpad
 {
     class Program
     {
-        static StonksUtils _stonks = new StonksUtils();
+        static StonksUtils _stonks = new StonksUtils(false);
+
+        private const double changeModeDiff = 0.05;
+        private const double moveRefPointDiff = 0.10;
+
+        private int changeModeLim {get; set;}
+        private int moveRefPointLim {get; set;}
+        private bool active {get; set;}
 
         static void Main(string[] args)
         {
-            while (true) 
-            {
-                int[] marketData = GetMarketData();
-                int numElements = marketData.Length;
-
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
-
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
-                {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    Buy();
-                }
-                else if (firstPrice > lastPrice)
-                {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    Sell();
-                }
-            }
+          Program prog = new Program();
+          GroupInfo info = _stonks.GetInfo();
+          int[] marketData = GetMarketData();
+          int stockValue = marketData[marketData.Length -1];
+          while (true) {
+            marketData = GetMarketData();
+            stockValue = marketData[marketData.Length -1];
+            prog.active = !(info.Balance == 0);
+            prog.MakeDecision(stockValue, prog.active);
+          }
         }
 
+        void MakeDecision(int stockValue, bool _active) 
+        {
+          if(_active) {
+            if (stockValue < changeModeLim) {
+              active = false;
+              Sell();
+            }
+            if (stockValue > moveRefPointLim) {
+              updateLims(stockValue, _active);
+            }
+          }
+          else {
+            if (stockValue > moveRefPointLim) {
+              active = true;
+              Buy();
+            }
+            if (stockValue < moveRefPointLim) {
+              updateLims(stockValue, _active);
+            }
+          }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        void updateLims(int refValue, bool _active)
+        {
+          if (_active) {
+            changeModeLim = (int) -(refValue * changeModeDiff);
+            moveRefPointLim = (int) (refValue * moveRefPointDiff);
+          }
+          else {
+            changeModeLim = (int) (refValue * changeModeDiff);
+            moveRefPointLim = (int) -(refValue * moveRefPointDiff);
+          }
+        }
 
         static int[] GetMarketData()
         {

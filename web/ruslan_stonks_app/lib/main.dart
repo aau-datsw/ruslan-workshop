@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
      "084b86c1651470d24f65ff2d1c14b322",
      "2876f61f82fbf4768247cef16f0c28c8",
      "a05cfb802ce1819bfb63794cc53ba088",
+     "815c1284aa04df30dcf4b1ab7b4c9a7a",
+     "ebc03899163a9d8c86c0a5159353d424"
   ];
 
   // This widget is the root of your application.
@@ -202,16 +204,9 @@ class MarketOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Expanded(child: StonksMarketChart(animate: true, interval: interval, rate: rate))
-            ],
-          ),
-        ),
-        elevation: 16,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: StonksMarketChart(animate: true, interval: interval, rate: rate),
       ),
     );
   }
@@ -248,14 +243,14 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
         headline(),
 
         // Updating chart
-        Expanded(
-          child: charts.TimeSeriesChart(
+        // Expanded(
+        //   child: charts.TimeSeriesChart(
             
-            records == null ? [] : [records],
-            animate: widget.animate,
-            dateTimeFactory: const charts.LocalDateTimeFactory(),
-            ),
-        )
+        //     records == null ? [] : [records],
+        //     animate: widget.animate,
+        //     dateTimeFactory: const charts.LocalDateTimeFactory(),
+        //     ),
+        // )
       ],
     );
   }

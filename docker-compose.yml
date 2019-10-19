@@ -48,13 +48,13 @@ services:
       RUSLAN_API_PORT: "3000"
 
 
-  q8-trader:
-    image: q8-trader:latest
-    build:
-      context: ./services/Q8Service
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
+  # q8-trader:
+  #   image: q8-trader:latest
+  #   build:
+  #     context: ./services/Q8Service
+  #     dockerfile: ./Dockerfile
+  #   environment: 
+  #     RUSLAN_API_PORT: "3000"
 
 
   lonewolf-trader:

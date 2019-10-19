@@ -36,18 +36,13 @@ namespace BogisFiskeshop
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
                 var newestData = marketData.Skip(numElements-11).Take(10).ToArray(); 
-
-                if(Trending(marketData))
+                if (!Trending(newestData))
                 {
-                    if (!Trending(newestData))
-                    {
-                        Sell();
-                    }
-                } else {
-                    if (!Trending(newestData))
-                    {
-                        Buy();
-                    }
+                    Sell();
+                }
+                if (!Trending(newestData))
+                {
+                    Buy();
                 }
             }
         }
@@ -62,16 +57,20 @@ namespace BogisFiskeshop
             int avgY = ((numElements*numElements+1)/2);
             int sum1 = 0;
             int sum2 = 0;
-            for(int i = 0; i < numElements; i++){
+            for(int i = 0; i < numElements; i++)
+            {
                 sum1 = sum1 + ((marketData[i]-avgX)*(i-avgY));
             }
-            for(int i = 0; i < numElements; i++){
+            for(int i = 0; i < numElements; i++)
+            {
                 sum2 = sum2 + (marketData[i]-avgX)^2;
             }
             if(sum1/sum2 > 0)
             {
                 return true;
-            } else {
+            } 
+            else 
+            {
                 return false;
             }
         }

@@ -34,14 +34,17 @@ namespace LoneWolf
 
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
+		int medianPrice = marketData[150]; //Get middle price
 
-                if (firstPrice < lastPrice)
+		//Console.WriteLine($"{firstPrice} {medianPrice} {lastPrice}");
+		
+                if (firstPrice < lastPrice && medianPrice<lastPrice)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
                     Buy();
                 }
-                else if (firstPrice > lastPrice)
+                else if (firstPrice > lastPrice && medianPrice > lastPrice )
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!

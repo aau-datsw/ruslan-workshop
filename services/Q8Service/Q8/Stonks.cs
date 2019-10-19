@@ -17,7 +17,7 @@ namespace Q8
         public StonksUtils()
         {
             _http = new HttpClient();
-            _http.DefaultRequestHeaders.Add("X-Token", "66cdfff29584225ac6d1fc8db6f6c01d");
+            _http.DefaultRequestHeaders.Add("X-Token", "1f28ca9c2ed88cf594e53a98bcc02955");
             _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3001";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }

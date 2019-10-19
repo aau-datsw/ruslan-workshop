@@ -9,17 +9,19 @@ namespace Q8
 
         static void Main(string[] args)
         {
+            int[] marketData = getMarketData();
+            int lastBuy = marketData[-1];
             while (true) 
             {
                 /*Det er her vores kode skal skrives!!!*/
-                int marketData = getMarketData();
+                int marketData = GetMarketData();
                 int numElements = marketData.Length;
                 
                 //TODO : sorter så kun de nye data kommer over i tekstfilen!!!!  
                 //skriv indholdet af marketData til en tekstfil på serveren
                 /*
                 TextWriter tw = new StreamWriter("STONKS.txt",true);
-                if tw.file > 0
+                if (tw.file < 10)
                 {
                     foreach (int i in marketData) 
                     {
@@ -47,14 +49,27 @@ namespace Q8
                 int third_last = marketData[numElements-3];  // Get the third last price
                 int second_last = marketData[numElements-2]; // Get the second last price
                 int very_last = marketData[numElements-1];  // Get the last price
-        
-                if (third_last < second_last && second_last > very_last)
+                
+                if (lastBuy+50 > very_last && lastBuy-50 < very_last)
+                {
+                    if (lastBuy < very_last)
+                    {
+                        Sell();
+                    }
+                    else if(lastBuy > very_last)
+                    {
+                        Buy();
+                    }
+                }
+                else if (third_last < second_last && second_last > very_last)
                 {
                     Sell();
+                    lastBuy = very_last;
                 }
                 else if (third_last > second_last && second_last < very_last)
                 {
                     Buy();
+                    lastBuy = very_last;
                 }
             }
         }

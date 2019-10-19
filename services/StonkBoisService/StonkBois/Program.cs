@@ -11,12 +11,29 @@ namespace StonkBois
 
         //public static int AdvanceBuyPrice = 0, AdvanceSellPrice = 0, AdvancedProfit = 0;
 
+        public static int peak = 0, dip = 1000000;
+
         static void Main(string[] args)
         {
+            int[] marketData = GetMarketData();
+            int numElements = marketData.Length;
+
+            for (int i = 1; i < numElements; i++)
+            {
+                if (peak < marketData[i - 1])
+                {
+                    peak = marketData[i - 1];
+                }
+                if (dip > marketData[i - 1])
+                {
+                    dip = marketData[i - 1];
+                }
+            }
+
             while (true) 
             {
-                int[] marketData = GetMarketData();
-                int numElements = marketData.Length; /* Lenth = 300 */
+                marketData = GetMarketData();
+                numElements = marketData.Length; /* Lenth = 300 */
 
                 // ------------------------------------------------------ // 
                 //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
@@ -49,17 +66,15 @@ namespace StonkBois
 
         static void BasicAlgoritme(int firstPrice, int lastPrice, int numElements, int[] marketData)
         {
-            int peak = 0, dip = 100000;
-
             for (int i = 1; i < numElements; i++)
             {
-                if (peak < marketData[i - 1])
+                if (peak < lastPrice)
                 {
-                    peak = marketData[i - 1];
+                    peak = lastPrice;
                 }
-                if (dip > marketData[i - 1])
+                if (dip > lastPrice)
                 {
-                    dip = marketData[i - 1];
+                    dip = lastPrice;
                 }
             }
 

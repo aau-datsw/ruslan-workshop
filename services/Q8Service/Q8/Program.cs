@@ -12,6 +12,27 @@ namespace Q8
             while (true) 
             {
                 /*Det er her vores kode skal skrives!!!*/
+                int marketData = getMarketData();
+                int numElements = marketData.Length;
+                
+                //TODO : sorter så kun de nye data kommer over i tekstfilen!!!!  
+                //skriv indholdet af marketData til en tekstfil på serveren
+                /*
+                TextWriter tw = new StreamWriter("STONKS.txt",true);
+                if tw.file > 0
+                {
+                    foreach (int i in marketData) 
+                    {
+                        tw.Write(i);
+                        tw.Write(',');  
+                    }
+                }
+                else
+                {
+                    tw.Write(numElements-1);
+                    tw.Write(',');
+                }
+                */
         
         
                 /*Denne kode er skrevet ud fra forudsætningen, at hvis den er stigende (tredjesidst<andensidst<allersidst) så skal vi ikke gøre noget.
@@ -35,7 +56,6 @@ namespace Q8
                 {
                     Buy();
                 }
-                else;
             }
         }
 

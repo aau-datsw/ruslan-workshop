@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace Brams
+namespace Koldtispik
 {
     class Program
     {
@@ -85,7 +85,7 @@ namespace Brams
         static int[] GetMarketData()
         {
             // Wait for 5 seconds (don't kill the server)
-            Thread.Sleep(Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? 5000 : 10000);
+            Thread.Sleep(5000);
             GroupInfo info = _stonks.GetInfo();
 
             // Determine the timespan you want info within (this is the last 5 minutes)

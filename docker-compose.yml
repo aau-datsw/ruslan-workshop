@@ -10,3 +10,12 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
+
+
+  koldtispik-trader:
+    image: koldtispik-trader:latest
+    build:
+      context: ./services/KoldtispikService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"

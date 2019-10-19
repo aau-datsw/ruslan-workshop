@@ -9,7 +9,7 @@ services:
       context: ./services/BramsService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   stonkbois-trader:
@@ -18,7 +18,7 @@ services:
       context: ./services/StonkBoisService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   quaaludes-trader:
@@ -27,7 +27,7 @@ services:
       context: ./services/QuaaludesService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   bruh_soundeffect2mp3-trader:
@@ -36,7 +36,7 @@ services:
       context: ./services/bruh_soundeffect2mp3Service
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   koldtispik-trader:
@@ -45,7 +45,7 @@ services:
       context: ./services/KoldtispikService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   q8-trader:
@@ -54,7 +54,7 @@ services:
       context: ./services/Q8Service
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   lonewolf-trader:
@@ -63,7 +63,7 @@ services:
       context: ./services/LoneWolfService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   thiccpad-trader:
@@ -72,7 +72,7 @@ services:
       context: ./services/ThiccpadService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   kauklanen-trader:
@@ -81,7 +81,7 @@ services:
       context: ./services/KauKlanenService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"
 
 
   esketit-trader:
@@ -90,4 +90,4 @@ services:
       context: ./services/ESKETITService
       dockerfile: ./Dockerfile
     environment: 
-      RUSLAN_API_PORT: "3001"
+      RUSLAN_API_PORT: "3000"

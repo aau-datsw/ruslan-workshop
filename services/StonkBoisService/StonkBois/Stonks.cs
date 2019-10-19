@@ -17,7 +17,7 @@ namespace StonkBois
         public StonksUtils()
         {
             _http = new HttpClient();
-            _http.DefaultRequestHeaders.Add("X-Token", "66cdfff29584225ac6d1fc8db6f6c01d");
+            _http.DefaultRequestHeaders.Add("X-Token", "6d13ae8891a08cf4599f352720fb6e55");
             _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3001";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }

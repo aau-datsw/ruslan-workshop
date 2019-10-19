@@ -32,19 +32,41 @@ namespace Quaaludes
                 //                                                        // 
                 // ------------------------------------------------------ //
 
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
+                int firstPrice = marketData[1]; 
+                int lastPrice = marketData[numElements-1]; 
+                int midPrice = marketData[(int)Math.Floor(((numElements - 1) / 2.0))];
+                int lastQuaterPrice = marketData[(int)Math.Floor(((numElements - 1) / 100.0) * 75.0)];
+                int firstQuaterPrice = marketData[(int)Math.Floor((numElements - 1) / 4.0)];
 
-                if (firstPrice < lastPrice)
-                {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
+
+                // if (firstPrice < lastPrice)
+                // {
+                //     // The price has risen from the first to the last data point, 
+                //     // so the trend is rising - buy!
+                //     Buy();
+                // }
+                // else if (firstPrice > lastPrice)
+                // {
+                //     // The price has fallen from the first to the last data point, 
+                //     // so the trend is falling - sell!
+                //     Sell();
+                // }
+
+                //if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice > lastPrice){
+                //    Buy();
+                //}
+
+                Console.WriteLine("Loop");
+                
+                if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice < lastPrice){
                     Buy();
                 }
-                else if (firstPrice > lastPrice)
-                {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
+
+                else if(firstPrice < firstQuaterPrice && firstQuaterPrice < midPrice && midPrice > lastQuaterPrice && lastQuaterPrice > lastPrice){
+                    Sell();
+                }
+
+                else if(firstPrice < firstQuaterPrice && firstQuaterPrice < midPrice && midPrice < lastQuaterPrice && lastQuaterPrice > lastPrice){
                     Sell();
                 }
             }
@@ -86,11 +108,11 @@ namespace Quaaludes
         {
             // Wait for some time (don't kill the server)
             Thread.Sleep(Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? 5000 : 10000);
-            GroupInfo info = _stonks.GetInfo();
+            //GroupInfo info = _stonks.GetInfo();
 
             // Determine the timespan you want info within (this is the last 5 minutes)
-            DateTime to = DateTime.Now;
-            DateTime from = DateTime.Now - TimeSpan.FromMinutes(5);
+            DateTime to = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? DateTime.Now - TimeSpan.FromDays(2) : DateTime.Now;
+            DateTime from = to - TimeSpan.FromMinutes(5);
 
 
             // Get the market data

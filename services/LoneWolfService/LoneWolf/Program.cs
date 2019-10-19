@@ -32,16 +32,22 @@ namespace LoneWolf
                 //                                                        // 
                 // ------------------------------------------------------ //
 
-                int firstPrice = marketData[0];  // Get the first price 
+                int firstPrice = marketData[250];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
+		int medianPrice = marketData[275]; //Get middle price
+		//int buyValue = 0;
+		//int sellValue = 0;
+		int sellNow = marketData[numElements-10];
 
-                if (firstPrice < lastPrice)
+		Console.WriteLine($"{firstPrice} {medianPrice} {lastPrice}");
+		
+                if ((firstPrice < lastPrice && medianPrice<lastPrice)||lastPrice<800)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
                     Buy();
                 }
-                else if (firstPrice > lastPrice)
+                else if ((firstPrice > lastPrice && medianPrice > lastPrice) ||lastPrice*0.9<sellNow)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!
@@ -89,8 +95,8 @@ namespace LoneWolf
             GroupInfo info = _stonks.GetInfo();
 
             // Determine the timespan you want info within (this is the last 5 minutes)
-            DateTime to = DateTime.Now;
-            DateTime from = DateTime.Now - TimeSpan.FromMinutes(5);
+            DateTime to = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? DateTime.Now - TimeSpan.FromDays(2) : DateTime.Now;
+            DateTime from = to - TimeSpan.FromMinutes(5);
 
 
             // Get the market data

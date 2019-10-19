@@ -9,43 +9,67 @@ namespace Q8
 
         static void Main(string[] args)
         {
+            int[] marketData = getMarketData();
+            int lastBuy = marketData[-1];
             while (true) 
             {
-                int[] marketData = GetMarketData();
+                /*Det er her vores kode skal skrives!!!*/
+                int marketData = GetMarketData();
                 int numElements = marketData.Length;
-
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
-
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
+                
+                //TODO : sorter så kun de nye data kommer over i tekstfilen!!!!  
+                //skriv indholdet af marketData til en tekstfil på serveren
+                /*
+                TextWriter tw = new StreamWriter("STONKS.txt",true);
+                if (tw.file < 10)
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    Buy();
+                    foreach (int i in marketData) 
+                    {
+                        tw.Write(i);
+                        tw.Write(',');  
+                    }
                 }
-                else if (firstPrice > lastPrice)
+                else
                 {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
+                    tw.Write(numElements-1);
+                    tw.Write(',');
+                }
+                */
+        
+        
+                /*Denne kode er skrevet ud fra forudsætningen, at hvis den er stigende (tredjesidst<andensidst<allersidst) så skal vi ikke gøre noget.
+                Ligeledes med det omvendte tilfælde, hvor den er konstant faldende.
+                Det er kun lige efter toppunkterne (hvor vi ved det er et toppunkt) at vi enten køber eller sælger.
+                Altså, hvis tredjesidst er mindre end anden, men anden er større end første, så sælger vi.
+                Ligeledes hvis tredje er større end anden, men anden er mindre end første, så køber vi.
+                Det gør vores algoritme altid er 1 bagud, men til gengæld følger udviklingen.
+                Dog hvis der er mange toppunkter, så vil vores algoritme SUCKS...
+                */
+        
+                int third_last = marketData[numElements-3];  // Get the third last price
+                int second_last = marketData[numElements-2]; // Get the second last price
+                int very_last = marketData[numElements-1];  // Get the last price
+                
+                if (lastBuy+50 > very_last && lastBuy-50 < very_last)
+                {
+                    if (lastBuy < very_last)
+                    {
+                        Sell();
+                    }
+                    else if(lastBuy > very_last)
+                    {
+                        Buy();
+                    }
+                }
+                else if (third_last < second_last && second_last > very_last)
+                {
                     Sell();
+                    lastBuy = very_last;
+                }
+                else if (third_last > second_last && second_last < very_last)
+                {
+                    Buy();
+                    lastBuy = very_last;
                 }
             }
         }
@@ -89,8 +113,8 @@ namespace Q8
             GroupInfo info = _stonks.GetInfo();
 
             // Determine the timespan you want info within (this is the last 5 minutes)
-            DateTime to = DateTime.Now;
-            DateTime from = DateTime.Now - TimeSpan.FromMinutes(5);
+            DateTime to = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? DateTime.Now - TimeSpan.FromDays(2) : DateTime.Now;
+            DateTime from = to - TimeSpan.FromMinutes(5);
 
 
             // Get the market data

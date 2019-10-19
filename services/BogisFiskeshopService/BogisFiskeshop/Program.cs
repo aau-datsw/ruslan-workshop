@@ -35,12 +35,15 @@ namespace BogisFiskeshop
 
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
-                var newestData = marketData.Skip(numElements-11).Take(10).ToArray(); 
-                if (!Trending(newestData))
+
+
+                var newestData = marketData.Skip(numElements-6).Take(5).ToArray(); 
+                bool trending = Trending(newestData);
+                if (!trending)
                 {
                     Sell();
                 }
-                if (Trending(newestData))
+                else
                 {
                     Buy();
                 }

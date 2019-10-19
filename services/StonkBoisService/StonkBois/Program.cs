@@ -7,8 +7,9 @@ namespace StonkBois
     {
         static StonksUtils _stonks = new StonksUtils();
         public static bool Bought = false; /* Find some kind of solution to write this in while */
-        //public static int BasicbuyPrice = 0, BasicsellPrice = 0, BasicProfit = 0;
-        public static int AdvanceBuyPrice = 0, AdvanceSellPrice = 0, AdvancedProfit = 0;
+        public static int BasicbuyPrice = 0, BasicsellPrice = 0, BasicProfit = 0;
+
+        //public static int AdvanceBuyPrice = 0, AdvanceSellPrice = 0, AdvancedProfit = 0;
 
         static void Main(string[] args)
         {
@@ -40,17 +41,31 @@ namespace StonkBois
 
                 //Console.WriteLine("FirstPrice: " + firstPrice + " SecoundPrice: " + lastPrice);
 
-                //BasicAlgoritme(firstPrice, lastPrice);
+                BasicAlgoritme(firstPrice, lastPrice, numElements, marketData);
 
-                MaxMinAlgoritme(numElements, marketData);
+                //MaxMinAlgoritme(numElements, marketData);
             }
         }
 
-        /*static void BasicAlgoritme(int firstPrice, int lastPrice)
+        static void BasicAlgoritme(int firstPrice, int lastPrice, int numElements, int[] marketData)
         {
+            int peak = 0, dip = 100000;
+
+            for (int i = 1; i < numElements; i++)
+            {
+                if (peak < marketData[i - 1])
+                {
+                    peak = marketData[i - 1];
+                }
+                if (dip > marketData[i - 1])
+                {
+                    dip = marketData[i - 1];
+                }
+            }
+
             if (!Bought)
             {
-                if (firstPrice < lastPrice)
+                if (firstPrice < lastPrice && firstPrice < dip)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
@@ -63,7 +78,7 @@ namespace StonkBois
             }
             else
             {
-                if (firstPrice > lastPrice)
+                if (firstPrice > lastPrice && firstPrice > peak)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!
@@ -75,10 +90,10 @@ namespace StonkBois
                 }
             }
            
-            Console.WriteLine("Basic Algoritme:       " + "Buy: " + BasicbuyPrice + " Sell: " + BasicsellPrice + " Profit: " + BasicProfit);
-        }*/
+            //Console.WriteLine("Basic Algoritme:       " + "Buy: " + BasicbuyPrice + " Sell: " + BasicsellPrice + " Profit: " + BasicProfit);
+        }
 
-        static void MaxMinAlgoritme(int numElements, int[] marketData)
+        /*static void MaxMinAlgoritme(int numElements, int[] marketData)
         {
             int lastPrice = 0;
             int peak = 0, dip = 100000;
@@ -122,7 +137,7 @@ namespace StonkBois
             }
 
             //Console.WriteLine("Advanced Algoritme:    " + "Buy: " + AdvanceBuyPrice + " Sell: " + AdvanceSellPrice + " Profit: " + AdvancedProfit);
-        }
+        }*/
 
 
 

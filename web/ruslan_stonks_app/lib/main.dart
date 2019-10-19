@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
      "084b86c1651470d24f65ff2d1c14b322",
      "2876f61f82fbf4768247cef16f0c28c8",
      "a05cfb802ce1819bfb63794cc53ba088",
-     "ebc03899163a9d8c86c0a5159353d424"
   ];
 
   // This widget is the root of your application.
@@ -137,7 +136,7 @@ class _GroupCardState extends State<GroupCard> {
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: AutoSizeText("$earningsString%", maxLines: 1, style: TextStyle(fontSize: 38, color: earnings < 0 ? Colors.red : Colors.green)),
+      child: AutoSizeText("$earningsString%", maxLines: 1, style: TextStyle(fontSize: 28, color: earnings < 0 ? Colors.red : Colors.green)),
     );
   }
 
@@ -251,6 +250,7 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
         // Updating chart
         Expanded(
           child: charts.TimeSeriesChart(
+            
             records == null ? [] : [records],
             animate: widget.animate,
             dateTimeFactory: const charts.LocalDateTimeFactory(),

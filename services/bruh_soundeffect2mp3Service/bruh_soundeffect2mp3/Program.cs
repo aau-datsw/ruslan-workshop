@@ -21,6 +21,7 @@ namespace bruh_soundeffect2mp3
 
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
+                bool hasStocks;
                 
                 int thirtyLast = marketData[numElements-30];
                 int seg3 = 0;
@@ -31,7 +32,6 @@ namespace bruh_soundeffect2mp3
                 float averageSeg3 = seg3 / 30f;
 
 
-                bool hasStocks = false;
                 if (hasStocks){
                     if (firstPrice < lastPrice){
                        if(seg3 <= 0) {

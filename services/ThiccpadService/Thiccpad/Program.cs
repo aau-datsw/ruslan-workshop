@@ -53,12 +53,12 @@ namespace Thiccpad
         void updateLims(int refValue, bool _active)
         {
           if (_active) {
-            changeModeLim = (int) -(refValue * changeModeDiff);
-            moveRefPointLim = (int) (refValue * moveRefPointDiff);
+            changeModeLim = (int) (refValue - refValue * changeModeDiff);
+            moveRefPointLim = (int) (refValue + refValue * moveRefPointDiff);
           }
           else {
-            changeModeLim = (int) (refValue * changeModeDiff);
-            moveRefPointLim = (int) -(refValue * moveRefPointDiff);
+            changeModeLim = (int) (refValue + refValue * changeModeDiff);
+            moveRefPointLim = (int) (refValue - refValue * moveRefPointDiff);
           }
         }
 

@@ -9,7 +9,7 @@ namespace bruh_soundeffect2mp3
 
         static void Main(string[] args)
         {
-            bool hasStocks = true;
+            
             while (true) 
             {
                 int[] marketData = GetMarketData();
@@ -32,52 +32,44 @@ namespace bruh_soundeffect2mp3
                 float averageSeg3 = seg3 / 30f;
 
 
-                if (hasStocks){
-                    if (firstPrice < lastPrice){
-                       if(seg3 <= 0) {
-                           Sell();
-                           hasStocks = false;
-                       } 
-                       else if (seg3 > 0) {
-                           //Do nothing
-                       }
-                    } 
-                    else if (firstPrice == lastPrice){
-                         if (averageSeg3 > lastPrice ){ //dvs. seg3 falder
-                            Sell();
-                            hasStocks = false;
-                        }
-                        else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
-                            //Do nothing
-                        }
-                    }
-                    else if (firstPrice > lastPrice){
+                if (firstPrice < lastPrice){
+                    if(seg3 <= 0) {
                         Sell();
-                        hasStocks = false;
+                    } 
+                    else if (seg3 > 0) {
+                        //Do nothing
                     }
                 } 
-                else {
-                    if (firstPrice < lastPrice){
-                        Buy();
-                        hasStocks = true;
-                    }
-                    else if (firstPrice == lastPrice){
-                        if (averageSeg3 > lastPrice){ //dvs. seg3 falder
-                            //Do nothing
-                        }
-                        else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
-                            Buy();
-                            hasStocks = true;
-                        }
-                    }
-                    else if (firstPrice > lastPrice){
+                else if (firstPrice == lastPrice){
                         if (averageSeg3 > lastPrice ){ //dvs. seg3 falder
-                            //Do nothing
-                        }
-                        else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
-                            Buy();
-                            hasStocks = true;
-                        }
+                        Sell();
+                    }
+                    else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
+                        //Do nothing
+                    }
+                }
+                else if (firstPrice > lastPrice){
+                    Sell();
+                } 
+                if (firstPrice < lastPrice){
+                    Buy();
+                }
+                else if (firstPrice == lastPrice){
+                    if (averageSeg3 > lastPrice){ //dvs. seg3 falder
+                        //Do nothing
+                    }
+                    else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
+                        Buy();
+
+                    }
+                }
+                else if (firstPrice > lastPrice){
+                    if (averageSeg3 > lastPrice ){ //dvs. seg3 falder
+                        //Do nothing
+                    }
+                    else if (averageSeg3 <= lastPrice){ //dvs. seg3 stiger
+                        Buy();
+
                     }
                 }
 

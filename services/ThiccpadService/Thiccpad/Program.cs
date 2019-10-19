@@ -7,8 +7,8 @@ namespace Thiccpad
     {
         static StonksUtils _stonks = new StonksUtils(false);
 
-        private const double changeModeDiff = 0.05;
-        private const double moveRefPointDiff = 0.10;
+        private const double changeModeDiff = 0.001;
+        private const double moveRefPointDiff = 0.008;
 
         private int changeModeLim {get; set;}
         private int moveRefPointLim {get; set;}

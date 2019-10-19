@@ -5,19 +5,19 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace bruh_soundeffect2.mp3
+namespace DankAS
 {
 
     public class StonksUtils
     {
         private HttpClient _http;
         private string _port; 
-        private string _grpName = "bruh_soundeffect2.mp3";
+        private string _grpName = "DankAS";
 
         public StonksUtils()
         {
             _http = new HttpClient();
-            _http.DefaultRequestHeaders.Add("X-Token", "987b3bdadd7d3ad28e7ddeb7d817fe55");
+            _http.DefaultRequestHeaders.Add("X-Token", "ebc03899163a9d8c86c0a5159353d424");
             _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3001";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }

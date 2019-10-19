@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
      "e90159c7a49f5deff4506a586a4dcda9",
      "084b86c1651470d24f65ff2d1c14b322",
      "2876f61f82fbf4768247cef16f0c28c8",
-     "a05cfb802ce1819bfb63794cc53ba088"
+     "a05cfb802ce1819bfb63794cc53ba088",
+     "ebc03899163a9d8c86c0a5159353d424"
   ];
 
   // This widget is the root of your application.
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Column(
           children: <Widget>[
-            Expanded(child: MarketOverview(interval: Duration(minutes: 5), rate: Duration(seconds: 1))),
+            // Expanded(child: MarketOverview(interval: Duration(minutes: 5), rate: Duration(seconds: 1))),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 5,

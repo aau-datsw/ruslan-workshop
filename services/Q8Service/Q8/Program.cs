@@ -9,9 +9,9 @@ namespace Q8
 
         static void Main(string[] args)
         {
-            int[] marketData = GetMarketData();
-            int numElements = marketData.Length;
-            int lastBuy = marketData[numElements-1];
+            int[] marketDataInit = GetMarketData();
+            int numElementsInit = marketDataInit.Length;
+            int lastBuy = marketDataInit[numElementsInit-1];
             int flag = 0;
             while (true) 
             {
@@ -51,7 +51,7 @@ namespace Q8
                 int third_last = marketData[numElements-3];  // Get the third last price
                 int second_last = marketData[numElements-2]; // Get the second last price
                 int very_last = marketData[numElements-1];  // Get the last price
-                int middle = (lastBuy+50 > very_last && lastBuy-50 < very_last)
+                bool middle = (lastBuy+50 > very_last && lastBuy-50 < very_last);
                 
                 if (flag == 1 && (third_last < second_last && second_last > very_last))
                 {
@@ -82,12 +82,12 @@ namespace Q8
                 {
                     if (lastBuy < very_last)
                     {
-                        Sell();
+                        Buy();
                         flag = 1;
                     }
                     else if(lastBuy > very_last)
                     {
-                        Buy();
+                        Sell();
                         flag = 1;
                     }
                 }

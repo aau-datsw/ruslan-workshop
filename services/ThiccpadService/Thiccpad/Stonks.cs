@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace Thiccpad
 {
@@ -13,19 +14,31 @@ namespace Thiccpad
         private HttpClient _http;
         private string _port; 
         private string _grpName = "Thiccpad";
+        private bool staging;
 
-        public StonksUtils()
+        public StonksUtils(bool _staging = false)
         {
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "66cdfff29584225ac6d1fc8db6f6c01d");
             _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3001";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
+            staging = _staging;
         }
 
         public int[] GetMarketData(DateTime from, DateTime to)
         {
+            if (staging) {
+              int[] sampleData;
+              using (StreamReader r = new StreamReader("sampledata.json")) {
+                string json = r.ReadToEnd();
+                sampleData = JsonConvert.DeserializeObject<List<int>>(json).ToArray();
+              }
+
+              return sampleData;
+            }
             // Call the ruslan API and get the data 
-            var response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
+            var response = new HttpResponseMessage();
+                response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
                 .GetAwaiter()
                 .GetResult();
 
@@ -36,8 +49,21 @@ namespace Thiccpad
 
         public GroupInfo GetInfo()
         {
+            if (staging) {
+              GroupInfo sampleInfo = new GroupInfo {
+                Name = "Test",
+                Balance = 1337,
+                StockCount = 1998,
+                StockValue = 1234,
+                TotalValue = 2571,
+              };
+
+              return sampleInfo;
+            }
             // Call the ruslan API and get the info 
-            var response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/account").GetAwaiter().GetResult();
+            var response = new HttpResponseMessage();
+            response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/account").GetAwaiter().GetResult();
+
             var rawJson = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var info = JsonConvert.DeserializeObject<GroupInfo>(rawJson);
             System.Console.WriteLine(info);

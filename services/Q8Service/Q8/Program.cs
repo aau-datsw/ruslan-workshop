@@ -9,12 +9,14 @@ namespace Q8
 
         static void Main(string[] args)
         {
-            int[] marketData = getMarketData();
-            int lastBuy = marketData[-1];
+            int[] marketData = GetMarketData();
+            int numElements = marketData.Length;
+            int lastBuy = marketData[numElements-1];
+            int flag = 0;
             while (true) 
             {
                 /*Det er her vores kode skal skrives!!!*/
-                int marketData = GetMarketData();
+                int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
                 
                 //TODO : sorter så kun de nye data kommer over i tekstfilen!!!!  
@@ -31,7 +33,7 @@ namespace Q8
                 }
                 else
                 {
-                    tw.Write(numElements-1);
+                    tw.Write(marketData[numElements-1]);
                     tw.Write(',');
                 }
                 */
@@ -49,27 +51,45 @@ namespace Q8
                 int third_last = marketData[numElements-3];  // Get the third last price
                 int second_last = marketData[numElements-2]; // Get the second last price
                 int very_last = marketData[numElements-1];  // Get the last price
+                int middle = (lastBuy+50 > very_last && lastBuy-50 < very_last)
                 
-                if (lastBuy+50 > very_last && lastBuy-50 < very_last)
+                if (flag == 1 && (third_last < second_last && second_last > very_last))
+                {
+                    Sell();
+                    lastBuy = very_last;
+                    flag = 0;
+                }
+                else if (flag == 1 && (third_last > second_last && second_last < very_last))
+                {
+                    Buy();
+                    lastBuy = very_last;
+                    flag = 0;
+                }
+                else if (flag == 0 && middle)
                 {
                     if (lastBuy < very_last)
                     {
                         Sell();
+                        flag = 0;
                     }
                     else if(lastBuy > very_last)
                     {
                         Buy();
+                        flag = 0;
                     }
                 }
-                else if (third_last < second_last && second_last > very_last)
+                else if (flag == 0 && !middle)
                 {
-                    Sell();
-                    lastBuy = very_last;
-                }
-                else if (third_last > second_last && second_last < very_last)
-                {
-                    Buy();
-                    lastBuy = very_last;
+                    if (lastBuy < very_last)
+                    {
+                        Sell();
+                        flag = 1;
+                    }
+                    else if(lastBuy > very_last)
+                    {
+                        Buy();
+                        flag = 1;
+                    }
                 }
             }
         }

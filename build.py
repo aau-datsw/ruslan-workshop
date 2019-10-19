@@ -85,9 +85,9 @@ if __name__ == "__main__":
             make_project(name, key)
             print(f'Built project for {name}...') 
 
-        if (usr_bool(input('Restore .NET projects? [Y/n]'))): 
-            for name in group_keys: 
-                os.system(f'dotnet restore services/{name}Service/{name}/{name}.csproj')
+    if (usr_bool(input('Restore .NET projects? [Y/n]'))): 
+        for name in group_keys: 
+            os.system(f'dotnet restore services/{name}Service/{name}/{name}.csproj')
 
     if should_make_docker_compose: 
         make_docker_compose(group_keys)

@@ -46,7 +46,7 @@ namespace StonkBois
             }
         }
 
-        static void BasicAlgoritme(int firstPrice, int lastPrice)
+        /*static void BasicAlgoritme(int firstPrice, int lastPrice)
         {
             if (!Bought)
             {
@@ -76,7 +76,8 @@ namespace StonkBois
             }
            
             Console.WriteLine("Basic Algoritme:       " + "Buy: " + BasicbuyPrice + " Sell: " + BasicsellPrice + " Profit: " + BasicProfit);
-        }
+        }*/
+
         static void MaxMinAlgoritme(int numElements, int[] marketData)
         {
             int lastPrice = 0;

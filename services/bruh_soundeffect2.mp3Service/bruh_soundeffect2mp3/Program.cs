@@ -9,6 +9,7 @@ namespace bruh_soundeffect2mp3
 
         static void Main(string[] args)
         {
+            bool hasStocks = false;
             while (true) 
             {
                 int[] marketData = GetMarketData();
@@ -31,7 +32,6 @@ namespace bruh_soundeffect2mp3
                 float averageSeg3 = seg3 / 30f;
 
 
-                bool hasStocks = false;
                 if (hasStocks){
                     if (firstPrice < lastPrice){
                        if(seg3 <= 0) {

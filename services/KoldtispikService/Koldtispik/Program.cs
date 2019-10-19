@@ -42,7 +42,7 @@ namespace Koldtispik
                 
                 //int sum = Sum(marketData);
                 //int Trend = (lastPrice-secondLastPrice + secondLastPrice-thirdLastPrice + thirdLastPrice - fourthLastPrice)/3;
-                int Trend = 0;
+                float Trend = 0;
                 
                 for (int i = numElements-1; i > numElements - pointsInTrend ;i--)
                 {

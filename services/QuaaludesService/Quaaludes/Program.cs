@@ -32,19 +32,38 @@ namespace Quaaludes
                 //                                                        // 
                 // ------------------------------------------------------ //
 
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
+                int firstPrice = marketData[1]; 
+                int lastPrice = marketData[numElements-1]; 
+                int midPrice = marketData[(int)Math.Floor(((numElements - 1) / 2.0))];
+                int lastQuaterPrice = marketData[(int)Math.Floor(((numElements - 1) / 100.0) * 75.0)];
+                int firstQuaterPrice = marketData[(int)Math.Floor((numElements - 1) / 4.0)];
 
-                if (firstPrice < lastPrice)
-                {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
+                // if (firstPrice < lastPrice)
+                // {
+                //     // The price has risen from the first to the last data point, 
+                //     // so the trend is rising - buy!
+                //     Buy();
+                // }
+                // else if (firstPrice > lastPrice)
+                // {
+                //     // The price has fallen from the first to the last data point, 
+                //     // so the trend is falling - sell!
+                //     Sell();
+                // }
+
+                if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice > lastPrice){
                     Buy();
                 }
-                else if (firstPrice > lastPrice)
-                {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
+                
+                else if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice < lastPrice){
+                    Buy();
+                }
+
+                else if(firstPrice < firstQuaterPrice && firstQuaterPrice < midPrice && midPrice > lastQuaterPrice && lastQuaterPrice > lastPrice){
+                    Sell();
+                }
+
+                else if(firstPrice < firstQuaterPrice && firstQuaterPrice < midPrice && midPrice < lastQuaterPrice && lastQuaterPrice < lastPrice){
                     Sell();
                 }
             }

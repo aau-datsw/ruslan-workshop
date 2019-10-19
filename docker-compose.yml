@@ -39,13 +39,13 @@ services:
       RUSLAN_API_PORT: "3000"
 
 
-  koldtispik-trader:
-    image: koldtispik-trader:latest
-    build:
-      context: ./services/KoldtispikService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
+  # koldtispik-trader:
+  #   image: koldtispik-trader:latest
+  #   build:
+  #     context: ./services/KoldtispikService
+  #     dockerfile: ./Dockerfile
+  #   environment: 
+  #     RUSLAN_API_PORT: "3000"
 
 
   q8-trader:
@@ -88,6 +88,15 @@ services:
     image: esketit-trader:latest
     build:
       context: ./services/ESKETITService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+
+
+  dankas-trader:
+    image: dankas-trader:latest
+    build:
+      context: ./services/DankASService
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"

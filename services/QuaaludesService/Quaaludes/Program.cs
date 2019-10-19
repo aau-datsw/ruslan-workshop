@@ -38,6 +38,7 @@ namespace Quaaludes
                 int lastQuaterPrice = marketData[(int)Math.Floor(((numElements - 1) / 100.0) * 75.0)];
                 int firstQuaterPrice = marketData[(int)Math.Floor((numElements - 1) / 4.0)];
 
+
                 // if (firstPrice < lastPrice)
                 // {
                 //     // The price has risen from the first to the last data point, 
@@ -51,11 +52,13 @@ namespace Quaaludes
                 //     Sell();
                 // }
 
-                if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice > lastPrice){
-                    Buy();
-                }
+                //if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice > lastPrice){
+                //    Buy();
+                //}
+
+                Console.WriteLine("Loop");
                 
-                else if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice < lastPrice){
+                if (firstPrice > firstQuaterPrice && firstQuaterPrice > midPrice && midPrice > lastQuaterPrice && lastQuaterPrice < lastPrice){
                     Buy();
                 }
 
@@ -63,7 +66,7 @@ namespace Quaaludes
                     Sell();
                 }
 
-                else if(firstPrice < firstQuaterPrice && firstQuaterPrice < midPrice && midPrice < lastQuaterPrice && lastQuaterPrice < lastPrice){
+                else if(firstPrice < firstQuaterPrice && firstQuaterPrice < midPrice && midPrice < lastQuaterPrice && lastQuaterPrice > lastPrice){
                     Sell();
                 }
             }
@@ -105,7 +108,7 @@ namespace Quaaludes
         {
             // Wait for some time (don't kill the server)
             Thread.Sleep(Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? 5000 : 10000);
-            GroupInfo info = _stonks.GetInfo();
+            //GroupInfo info = _stonks.GetInfo();
 
             // Determine the timespan you want info within (this is the last 5 minutes)
             DateTime to = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") == null ? DateTime.Now - TimeSpan.FromDays(2) : DateTime.Now;

@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using System.Linq;
 
 namespace BogisFiskeshop
 {
@@ -13,7 +14,7 @@ namespace BogisFiskeshop
             {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
-
+                
                 // ------------------------------------------------------ // 
                 //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
                 //                      GOOD LUCK!                        //
@@ -34,18 +35,19 @@ namespace BogisFiskeshop
 
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
+                var newestData = marketData.Skip(numElements-11).Take(10).ToArray(); 
 
-                if (firstPrice < lastPrice)
+                if(Trending(marketData))
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    Buy();
-                }
-                else if (firstPrice > lastPrice)
-                {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    Sell();
+                    if (!Trending(newestData))
+                    {
+                        Sell();
+                    }
+                } else {
+                    if (!Trending(newestData))
+                    {
+                        Buy();
+                    }
                 }
             }
         }
@@ -53,7 +55,29 @@ namespace BogisFiskeshop
 
 
 
+        static bool Trending(int[] marketData)
+        {
+            int numElements = marketData.Length;
+            int avgX = (marketData.Sum()/numElements);
+            int avgY = ((numElements*numElements+1)/2);
+            int sum1 = 0;
+            int sum2 = 0;
+            for(int i = 0; i < numElements; i++){
+                sum1 = sum1 + ((marketData[i]-avgX)*(i-avgY));
+            }
+            for(int i = 0; i < numElements; i++){
+                sum2 = sum2 + (marketData[i]-avgX)^2;
+            }
+            if(sum1/sum2 > 0)
+            {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
+
+        
 
 
 

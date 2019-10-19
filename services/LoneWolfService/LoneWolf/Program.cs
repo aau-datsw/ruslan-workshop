@@ -33,10 +33,10 @@ namespace LoneWolf
                 // ------------------------------------------------------ //
 
                 int firstPrice = marketData[260];  // Get the first price 
+		int firstPriceSell = marketData[280];
                 int lastPrice = marketData[numElements-1];  // Get the last price
 		int medianPrice = marketData[280]; //Get middle price
-		//int buyValue = 0;
-		//int sellValue = 0;
+		int medianPriceSell = marketData[290]; 
 		int sellNow = marketData[numElements-10];
 
 		//Console.WriteLine($"{firstPrice} {medianPrice} {lastPrice}");
@@ -47,7 +47,7 @@ namespace LoneWolf
                     // so the trend is rising - buy!
                     Buy();
                 }
-                else if ((firstPrice > lastPrice && medianPrice > lastPrice) ||lastPrice*0.9<sellNow)
+                else if ((firstPriceSell > lastPrice && medianPriceSell > lastPrice) ||lastPrice*0.9<sellNow)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!

@@ -17,7 +17,7 @@ namespace Quaaludes
         public StonksUtils()
         {
             _http = new HttpClient();
-            _http.DefaultRequestHeaders.Add("X-Token", "66cdfff29584225ac6d1fc8db6f6c01d");
+            _http.DefaultRequestHeaders.Add("X-Token", "2368464b4aa94530a9bfa8ed05e561bc");
             _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3001";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }

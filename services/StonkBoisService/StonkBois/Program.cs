@@ -6,6 +6,9 @@ namespace StonkBois
     class Program
     {
         static StonksUtils _stonks = new StonksUtils();
+        public static bool Bought = false; /* Find some kind of solution to write this in while */
+        //public static int BasicbuyPrice = 0, BasicsellPrice = 0, BasicProfit = 0;
+        public static int AdvanceBuyPrice = 0, AdvanceSellPrice = 0, AdvancedProfit = 0;
 
         static void Main(string[] args)
         {
@@ -13,11 +16,6 @@ namespace StonkBois
             {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length; /* Lenth = 300 */
-                
-                int currentMoney = 100000;
-                int stockCount = 0;
-                int buyPrice = 0, sellPrice = 0, profit = 0;
-                bool Bought = false;
 
                 // ------------------------------------------------------ // 
                 //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
@@ -40,58 +38,89 @@ namespace StonkBois
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
 
-                /*for (int i = 0; i < numElements; i++)
-                {
-                    Console.WriteLine(marketData[i]);
-                }*/
+                //Console.WriteLine("FirstPrice: " + firstPrice + " SecoundPrice: " + lastPrice);
 
-                //BasicAlgorithem(firstPrice, lastPrice, currentMoney, stockCount, buyPrice, sellPrice, profit, Bought);
+                //BasicAlgoritme(firstPrice, lastPrice);
 
+                MaxMinAlgoritme(numElements, marketData);
+            }
+        }
+
+        static void BasicAlgoritme(int firstPrice, int lastPrice)
+        {
+            if (!Bought)
+            {
                 if (firstPrice < lastPrice)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
                     
+                    Bought = true;
+                    BasicbuyPrice = lastPrice;
                     Buy();
-                } 
-                
+                    BasicProfit += BasicsellPrice - BasicbuyPrice;
+                }
+            }
+            else
+            {
                 if (firstPrice > lastPrice)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!
 
+                    Bought = false;
+                    BasicsellPrice = lastPrice;
                     Sell();
+                    BasicProfit += BasicsellPrice - BasicbuyPrice;
                 }
             }
+           
+            Console.WriteLine("Basic Algoritme:       " + "Buy: " + BasicbuyPrice + " Sell: " + BasicsellPrice + " Profit: " + BasicProfit);
         }
-
-        static void BasicAlgorithem(int firstPrice, int lastPrice, int currentMoney, int stockCount, int buyPrice, int sellPrice, int profit, bool Bought)
+        static void MaxMinAlgoritme(int numElements, int[] marketData)
         {
-            Console.WriteLine("FirstPrice: " + firstPrice + " SecoundPrice: " + lastPrice);
-            if (firstPrice < lastPrice && !Bought)
+            int lastPrice = 0;
+            int peak = 0, dip = 100000;
+
+            for (int i = 1; i < numElements; i++)
             {
-                // The price has risen from the first to the last data point, 
-                // so the trend is rising - buy!
-                
-                Console.WriteLine("Buy");
-                Bought = true;
-                
-                Buy();
-            } 
+                if (peak < marketData[i - 1])
+                {
+                    peak = marketData[i - 1];
+                }
+                if (dip > marketData[i - 1])
+                {
+                    dip = marketData[i - 1];
+                }
+            }
+            // System.Console.WriteLine(peak);
+            // System.Console.WriteLine(dip);
             
-            if (firstPrice > lastPrice && Bought)
+            if (!Bought)
             {
-                // The price has fallen from the first to the last data point, 
-                // so the trend is falling - sell!
+                if (lastPrice < dip)
+                {
+                    // The price has risen from the first to the last data point, 
+                    // so the trend is rising - buy!
+                    
+                    Bought = true;
+                    AdvanceBuyPrice = lastPrice;
+                    Buy();
+                    AdvancedProfit += AdvanceSellPrice - AdvanceBuyPrice;
+                }
+            }
+            else
+            {
+                if (lastPrice > peak)
+                {
+                    Bought = false;
+                    AdvanceSellPrice = lastPrice;
+                    Sell();
+                    AdvancedProfit += AdvanceSellPrice - AdvanceBuyPrice;
+                }
+            }
 
-                Console.WriteLine("Sell");
-                Bought = false;
-
-                Sell();
-            }/*
-            Console.WriteLine("FirstPrice: " + firstPrice + " SecoundPrice: " + lastPrice);
-            Console.WriteLine("Money: " + currentMoney + " StockCount: " + stockCount);
-            Console.WriteLine("Buy: " + buyPrice + " Sell: " + sellPrice + " Profit: " + profit);*/
+            //Console.WriteLine("Advanced Algoritme:    " + "Buy: " + AdvanceBuyPrice + " Sell: " + AdvanceSellPrice + " Profit: " + AdvancedProfit);
         }
 
 

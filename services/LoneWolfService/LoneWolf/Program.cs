@@ -41,7 +41,7 @@ namespace LoneWolf
 
 		Console.WriteLine($"{firstPrice} {medianPrice} {lastPrice}");
 		
-                if ((firstPrice < lastPrice && medianPrice<lastPrice)||lastPrice<800)
+                if ((firstPrice < lastPrice && medianPrice<lastPrice)||lastPrice<500)
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!

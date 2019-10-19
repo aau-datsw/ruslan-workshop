@@ -20,10 +20,11 @@ namespace Thiccpad
           GroupInfo info = _stonks.GetInfo();
           int[] marketData = GetMarketData();
           int stockValue = marketData[marketData.Length -1];
+          prog.active = false;
+          prog.updateLims(stockValue, prog.active);
           while (true) {
             marketData = GetMarketData();
             stockValue = marketData[marketData.Length -1];
-            prog.active = !(info.Balance == 0);
             prog.MakeDecision(stockValue, prog.active);
           }
         }

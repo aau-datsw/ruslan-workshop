@@ -12,18 +12,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
 
   final groupTokens = [
-    "bramsdockercomposecirclejerk",
-     "6d13ae8891a08cf4599f352720fb6e55",
-    "2368464b4aa94530a9bfa8ed05e561bc",
-     "987b3bdadd7d3ad28e7ddeb7d817fe55",
-     "cee1684434ffe6e5d2fb8f491b143ca4",
-     "1f28ca9c2ed88cf594e53a98bcc02955",
-     "e90159c7a49f5deff4506a586a4dcda9",
-     "084b86c1651470d24f65ff2d1c14b322",
-     "2876f61f82fbf4768247cef16f0c28c8",
-     "a05cfb802ce1819bfb63794cc53ba088",
-     "815c1284aa04df30dcf4b1ab7b4c9a7a",
-     "ebc03899163a9d8c86c0a5159353d424"
+    "bramsdockercomposecirclejerk"
   ];
 
   // This widget is the root of your application.

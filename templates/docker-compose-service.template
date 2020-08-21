@@ -5,3 +5,4 @@
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"

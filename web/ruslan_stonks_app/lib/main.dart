@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,11 @@ import 'package:http/http.dart' as http;
 
 
 void main() => runApp(MyApp());
+
+class Configuration {
+  static const PORT = String.fromEnvironment('RUSLAN_API_PORT');
+  static const HOST = String.fromEnvironment('RUSLAN_API_HOST');
+}
 
 class MyApp extends StatelessWidget {
 
@@ -61,7 +67,6 @@ class GroupCard extends StatefulWidget {
 }
 
 class _GroupCardState extends State<GroupCard> {
-
   String name;
   int balance = 0;
   int stockValue = 0;
@@ -98,7 +103,7 @@ class _GroupCardState extends State<GroupCard> {
             alignment: FractionalOffset(2.0, 2.0),
             decoration: BoxDecoration(
               border: Border.all(
-                color: (info["stonk_count"] ?? 0) > 0 ? Colors.blue.withOpacity(0.5) : Colors.grey.withOpacity(0.5),
+                color: (info == null ? 0 : info["stonk_count"] ?? 0) > 0 ? Colors.blue.withOpacity(0.5) : Colors.grey.withOpacity(0.5),
                 width: 5.0,
               ),
               shape: BoxShape.circle
@@ -120,7 +125,7 @@ class _GroupCardState extends State<GroupCard> {
   }
 
   Widget buildEarnings() {
-    var earnings = (info["total_value"] ?? 0) - 100000;
+    var earnings = (info == null ? 0 : info["total_value"] ?? 0) - 100000;
     var percentageEarnings = (earnings / 100000.0) * 100;
     var earningsString = "${earnings >= 0 ? '+' : ''} ${percentageEarnings.toStringAsFixed(2)}";
 
@@ -135,20 +140,20 @@ class _GroupCardState extends State<GroupCard> {
     return Column(
       children: <Widget>[
         AutoSizeText("Total Value", maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold)),
-        AutoSizeText("\$${info['total_value'] ?? 0}", maxLines: 1),
+        AutoSizeText("\$${info == null ? 0 : info['total_value'] ?? 0}", maxLines: 1),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Column(
               children: <Widget>[
                 AutoSizeText("Stonks", maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold)),
-                AutoSizeText("\$${info['stonk_value'] ?? 0}", maxLines: 1)
+                AutoSizeText("\$${info == null ? 0 : info['stonk_value'] ?? 0}", maxLines: 1)
               ],
             ),
             Column(
               children: <Widget>[
                 AutoSizeText("Balance", maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold)),
-                AutoSizeText("\$${info['balance'] ?? 0}", maxLines: 1)
+                AutoSizeText("\$${info == null ? 0 : info['balance'] ?? 0}", maxLines: 1)
               ],
             )
           ],
@@ -163,8 +168,10 @@ class _GroupCardState extends State<GroupCard> {
     } while (true);
   }
 
+  // Platform.environment['RUSLAN_API_PORT']
+
   void updateInfo(String xToken) async {
-    var url = "http://172.17.68.206:3000/api/v1/account";
+    var url = "http://${Configuration.HOST}:${Configuration.PORT}/api/v1/account";
 
     try {
       var response = await http.get(url, headers: {
@@ -269,7 +276,7 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
     var to = DateTime.now();
     var from = to.subtract(widget.interval);
 
-    var url = "http://172.17.68.206:3000/api/v1/market?from=${from.toIso8601String()}&to=${to.toIso8601String()}";
+    var url = "http://${Configuration.HOST}:${Configuration.PORT}/api/v1/market?from=${from.toIso8601String()}&to=${to.toIso8601String()}";
     var marketData = List<StonksRecord>();
     try {
       var response = await http.get(url, headers: {"X-Token" : "bramsdockercomposecirclejerk"});

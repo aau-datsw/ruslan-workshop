@@ -12,20 +12,22 @@ namespace Brams
     {
         private HttpClient _http;
         private string _port; 
+        private string _host;
         private string _grpName = "Brams";
 
         public StonksUtils()
         {
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "bramsdockercomposecirclejerk");
-            _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3001";
+            _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3000";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 
         public int[] GetMarketData(DateTime from, DateTime to)
         {
             // Call the ruslan API and get the data 
-            var response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
+            var response = _http.GetAsync($"http://{_host}:{_port}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
                 .GetAwaiter()
                 .GetResult();
 

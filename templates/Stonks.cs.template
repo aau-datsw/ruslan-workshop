@@ -39,7 +39,7 @@ namespace {{name}}
         public GroupInfo GetInfo()
         {
             // Call the ruslan API and get the info 
-            var response = _http.GetAsync($"http://172.17.68.206:{_port}/api/v1/account").GetAwaiter().GetResult();
+            var response = _http.GetAsync($"http://{_host}:{_port}/api/v1/account").GetAwaiter().GetResult();
             var rawJson = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var info = JsonConvert.DeserializeObject<GroupInfo>(rawJson);
             System.Console.WriteLine(info);
@@ -48,12 +48,12 @@ namespace {{name}}
 
         public void Buy()
         {
-            _http.PostAsync($"http://172.17.68.206:{_port}/api/v1/buy", new StringContent("")).GetAwaiter().GetResult();
+            _http.PostAsync($"http://{_host}:{_port}/api/v1/buy", new StringContent("")).GetAwaiter().GetResult();
         }
 
         public void Sell()
         {
-            _http.PostAsync($"http://172.17.68.206:{_port}/api/v1/sell", new StringContent("")).GetAwaiter().GetResult();
+            _http.PostAsync($"http://{_host}:{_port}/api/v1/sell", new StringContent("")).GetAwaiter().GetResult();
         }
 
         private static string ISO8601(DateTime date)

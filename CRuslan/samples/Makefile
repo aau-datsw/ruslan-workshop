@@ -7,9 +7,9 @@ WINFLAGS=-lws2_32
 
 program: program.c
 ifeq ($(PLATFORMFLAG), -DWINDOWS)
-	$(CC) -o program program.c $(CFLAGS) $(WINFLAGS)
+	$(CC) -o program $(SRC) $(CFLAGS) $(WINFLAGS)
 else
-	$(CC) -o program program.c $(CFLAGS)
+	$(CC) -o program $(SRC) $(CFLAGS)
 endif
 
 clean:

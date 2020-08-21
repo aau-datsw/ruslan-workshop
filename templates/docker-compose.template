@@ -2,5 +2,21 @@ version: "3"
 
 
 services: 
-
+  market-place:
+    image: market-place:latest
+    build:
+      context: ./services/MarketPlace
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+  stonks-app:
+    image: stonks-app:latest
+    build:
+      context: ./web/ruslan_stonks_app
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"
+    ports:
+      - 5001:5001
 {{services}}

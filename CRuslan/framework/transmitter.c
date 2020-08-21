@@ -19,7 +19,7 @@ typedef SOCKET sock_t;
 typedef int sock_t;
 #endif
 
-#define HOST "172.17.68.206"
+#define HOST "market-place"
 #define PORT 3000
 
 #define SELL 1

@@ -1,4 +1,4 @@
-import json, os
+import json, os, sys
 
 '''
 A script for scaffolding the RUSLAN Workshop server provided a list of names 
@@ -73,9 +73,16 @@ def make_project(name, key):
 
 
 if __name__ == "__main__": 
-    group_keys = load_group_keys(input('Enter the group name-key file path (default is "group_keys.json"): '))
-    should_build_projects = usr_bool(input('(Re)build .NET projects? This will overwrite existing projects. [Y/n]'))
-    should_make_docker_compose = usr_bool(input('(Re)build docker-compose.yml? This will overwrite the existing file. [Y/n]'))
+    if sys.argv[1] == "-f":
+        group_keys = load_group_keys('')
+        should_build_projects = True
+        should_restore_projects = True
+        should_make_docker_compose = True
+    else:
+        group_keys = load_group_keys(input('Enter the group name-key file path (default is "group_keys.json"): '))
+        should_build_projects = usr_bool(input('(Re)build .NET projects? This will overwrite existing projects. [Y/n]'))
+        should_restore_projects = usr_bool(input('Restore .NET projects? [Y/n]'))
+        should_make_docker_compose = usr_bool(input('(Re)build docker-compose.yml? This will overwrite the existing file. [Y/n]'))
 
     if should_build_projects:
         for name, key in group_keys.items(): 
@@ -85,7 +92,7 @@ if __name__ == "__main__":
             make_project(name, key)
             print(f'Built project for {name}...') 
 
-    if (usr_bool(input('Restore .NET projects? [Y/n]'))): 
+    if should_restore_projects: 
         for name in group_keys: 
             os.system(f'dotnet restore services/{name}Service/{name}/{name}.csproj')
 

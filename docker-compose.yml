@@ -1,8 +1,7 @@
 version: "3"
 
 
-services: 
-
+services:
   brams-trader:
     image: brams-trader:latest
     build:
@@ -10,102 +9,4 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-
-
-  stonkbois-trader:
-    image: stonkbois-trader:latest
-    build:
-      context: ./services/StonkBoisService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  quaaludes-trader:
-    image: quaaludes-trader:latest
-    build:
-      context: ./services/QuaaludesService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  bruh_soundeffect2mp3-trader:
-    image: bruh_soundeffect2mp3-trader:latest
-    build:
-      context: ./services/bruh_soundeffect2mp3Service
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  koldtispik-trader:
-    image: koldtispik-trader:latest
-    build:
-      context: ./services/KoldtispikService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  # q8-trader:
-  #   image: q8-trader:latest
-  #   build:
-  #     context: ./services/Q8Service
-  #     dockerfile: ./Dockerfile
-  #   environment: 
-  #     RUSLAN_API_PORT: "3000"
-
-
-  lonewolf-trader:
-    image: lonewolf-trader:latest
-    build:
-      context: ./services/LoneWolfService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  thiccpad-trader:
-    image: thiccpad-trader:latest
-    build:
-      context: ./services/ThiccpadService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  kauklanen-trader:
-    image: kauklanen-trader:latest
-    build:
-      context: ./services/KauKlanenService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  esketit-trader:
-    image: esketit-trader:latest
-    build:
-      context: ./services/ESKETITService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  dankas-trader:
-    image: dankas-trader:latest
-    build:
-      context: ./services/DankASService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-
-
-  bogisfiskeshop-trader:
-    image: bogisfiskeshop-trader:latest
-    build:
-      context: ./services/BogisFiskeshopService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"

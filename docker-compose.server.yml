@@ -1,0 +1,28 @@
+version: "3"
+
+
+services: 
+  market-place:
+    image: market-place:latest
+    build:
+      context: ./services/MarketPlace
+      dockerfile: ./Dockerfile
+    environment:
+      - RAILS_ENV=development
+      - YEAR=2020
+      - MONTH=10
+      - DAY=16
+    volumes:
+      - ./services/MarketPlace/db:/marketplace/db
+    ports:
+      - 3000:3000
+  stonks-app:
+    image: stonks-app:latest
+    build:
+      context: ./web/ruslan_stonks_app
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "localhost"
+    ports:
+      - 5001:5001

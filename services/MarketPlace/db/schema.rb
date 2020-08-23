@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_09_15_112506) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "accounts", force: :cascade do |t|
     t.string "api_key"
     t.string "name"
@@ -25,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_09_15_112506) do
   end
 
   create_table "stonk_histories", force: :cascade do |t|
-    t.bigint "stonk_id", null: false
+    t.integer "stonk_id", null: false
     t.integer "price"
     t.datetime "recorded"
     t.datetime "created_at", precision: 6, null: false
@@ -44,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_09_15_112506) do
     t.integer "stonk_price"
     t.integer "stonk_count"
     t.datetime "recorded"
-    t.bigint "account_id", null: false
-    t.bigint "stonk_id", null: false
+    t.integer "account_id", null: false
+    t.integer "stonk_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_transactions_on_account_id"

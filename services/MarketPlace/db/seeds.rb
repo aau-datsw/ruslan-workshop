@@ -7,14 +7,7 @@ require 'net/http'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Account.create([
-  {
-    api_key: 'bramsdockercomposecirclejerk',
-    name: 'Brams',
-    balance: 100000
-  }#, {}, ...
-])
-
+# Load stonks
 Stonk.create(
   name: "TheDonald A/S",
   price: 0
@@ -26,13 +19,33 @@ result = JSON.parse(data)
 stonk = Stonk.default_stonk
 arr = []
 
+year = (ENV["YEAR"] || "2019").to_i
+month = (ENV["MONTH"] || "10").to_i
+day = (ENV["DAY"] || "18").to_i
+hour = 20
 
 result['data'].each do |data|
   arr << {
     price: data['y'],
     stonk_id: stonk.id,
-    recorded: DateTime.new(2019,10,18,20).in_time_zone("Europe/Copenhagen") + data['x'].seconds
+    recorded: DateTime.new(year, month, day, hour).in_time_zone("Europe/Copenhagen") + data['x'].seconds
   }
 end
 
 StonkHistory.import(arr)
+
+# Load accounts
+resp = Net::HTTP.get_response(URI.parse("https://raw.githubusercontent.com/aau-datsw/ruslan-workshop/master/group_keys.json"))
+data = resp.body
+result = JSON.parse(data)
+arr = []
+
+result.each do |name, key|
+  arr << Account.new(
+    api_key: key,
+    name: name,
+    balance: 100000
+  )
+end
+
+Account.import(arr)

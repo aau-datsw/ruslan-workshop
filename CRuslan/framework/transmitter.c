@@ -64,6 +64,8 @@ group get_info()
 
 }
 
+// TODO: Add error handling if error is returned as JSON field.
+// TODO: Let buy() and sell() return short, create function get_latest_error() to return error message.
 // Buys stock.
 void buy()
 {

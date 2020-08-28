@@ -73,7 +73,7 @@ def make_project(name, key):
 
 
 if __name__ == "__main__": 
-    if sys.argv[1] == "-f":
+    if len(sys.argv) >= 2 and sys.argv[1] == "-f":
         group_keys = load_group_keys('')
         should_build_projects = True
         should_restore_projects = True

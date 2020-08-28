@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <json.h>
+
+#ifdef char
+#define char char
+#endif
 
 #ifdef WINDOWS
 #include <winsock2.h>
@@ -40,6 +45,7 @@ typedef int sock_t;
 static char *x_token = NULL;
 
 // Prototypes.
+int *json_iarray(const char *json);
 static sock_t sockfd_setup(const char *url, unsigned port);
 static inline char *host_ip(struct hostent host);
 static void *execute_post(void *arg);
@@ -55,7 +61,44 @@ void set_token(const char *token)
 // Returns market data.
 int *get_market_data(struct tm from, struct tm to)
 {
-    // TODO: Use ISO8601 macro to convert args into string representations.
+    char *host = malloc(100);
+    struct http request = http_init("/ruslan", GET);
+    sprintf(host, "%s:%d/api/v1/market?from=%s&to=%s\0", HOST, PORT, ISO8601(from), ISO8601(to));
+    http_add_header_property(&request, "X-Token", x_token);
+
+    char *http_get = http_str(request, NULL);
+    sock_t sockfd = sockfd_setup(host, 80);
+    send(sockfd, http_get, strlen(http_get), 0);
+    free(http_get);
+
+    char *buffer = malloc(500);
+    short received;
+
+#ifdef WINDOWS
+    if ((received = recv(sockfd, buffer, 500, 0)) == SOCKET_ERROR)
+        return NULL;
+#else
+    if ((received = read(sockfd, buffer, 500)) <= 0)
+        return NULL
+#endif
+
+    buffer[received] = '\0';
+    close(sockfd);
+    free(host);
+    return json_iarray(buffer);
+}
+
+// Converts JSON string into int array.
+int *json_iarray(const char *json)
+{
+    json_value *value = json_parse((json_char *) json, strlen(json));
+
+    if (value == NULL)
+        return NULL;
+
+    // TODO: Parse JSON array.
+    json_value_free(value);
+    return NULL;
 }
 
 // Returns record of group.
@@ -64,8 +107,6 @@ group get_info()
 
 }
 
-// TODO: Add error handling if error is returned as JSON field.
-// TODO: Let buy() and sell() return short, create function get_latest_error() to return error message.
 // Buys stock.
 void buy()
 {
@@ -73,6 +114,8 @@ void buy()
     future(execute_post, &opt);
 }
 
+// TODO: Add error handling if error is returned as JSON field.
+// TODO: Let buy() and sell() return short, create function get_latest_error() to return error message.
 // Sells stock.
 void sell()
 {
@@ -83,9 +126,10 @@ void sell()
 // Sets up socket connection and return socker file descriptor.
 static sock_t sockfd_setup(const char *url, unsigned port)
 {
+    sock_t sockfd;
+
 #ifdef WINDOWS
     WSADATA wsa;
-    sock_t sockfd;
 
     if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
         return -1;
@@ -93,8 +137,6 @@ static sock_t sockfd_setup(const char *url, unsigned port)
     if ((sockfd = socket(AF_INET, SOCK_STREM, 0)) == INVALID_SOCKET)
         return -1;
 #else
-    sock_t sockfd;
-
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
         return -1;
 #endif
@@ -142,10 +184,10 @@ static void *execute_post(void *arg)
     char *host = malloc(50);
 
     if (*((short *) arg) == SELL)
-        sprintf(host, "%s:%d/api/v1/sell", HOST, PORT);
+        sprintf(host, "%s:%d/api/v1/sell\0", HOST, PORT);
 
     else if (*((short *) arg) == BUY)
-        sprintf(host, "%s:%d/api/v1/buy", HOST, PORT);
+        sprintf(host, "%s:%d/api/v1/buy\0", HOST, PORT);
 
     sock_t sockfd = sockfd_setup(host, 80);
     send(sockfd, http_post, strlen(http_post), 0);

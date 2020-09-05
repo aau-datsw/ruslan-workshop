@@ -36,7 +36,7 @@ struct http
 
 // Prototypes.
 struct http http_init(const char *page, req_t request_type);
-const char *http_str(struct http request, const char *post_args);
+char *http_str(struct http request, const char *post_args);
 void http_add_header_property(struct http *RESTRICT request, const char *name, const char *value);
 
 #endif

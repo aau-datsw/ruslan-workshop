@@ -17,7 +17,7 @@ struct http http_init(const char *page, req_t request_type)
 }
 
 // Converts http struct into string. This is also used for GET requests.
-const char *http_str(struct http request, const char *post_args)
+char *http_str(struct http request, const char *post_args)
 {
     char *str_request = malloc(property_length(request.header_properties, request.property_count) + (post_args != NULL ? strlen(post_args) : 0) + strlen(request.page) + 100);
     char *header_properties = properties_str(request.header_properties, request.property_count);

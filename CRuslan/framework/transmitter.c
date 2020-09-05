@@ -38,7 +38,7 @@ typedef int sock_t;
 
 #define ISO8601(tm) ({ \
     char str[20]; \
-    sprintf(str, "%d-%s-%sT%s:%s:%s\0", (tm).tm_year, TWOCIPHER_STR((tm).tm_mon + 1), TWOCIPHER_STR((tm).tm_mday), TWOCIPHER_STR((tm).tm_hour), TWOCIPHER_STR((tm).tm_min), TWOCIPHER_STR((tm).tm_sec)) \
+    sprintf(str, "%d-%s-%sT%s:%s:%s\0", (tm).tm_year, TWOCIPHER_STR((tm).tm_mon + 1), TWOCIPHER_STR((tm).tm_mday), TWOCIPHER_STR((tm).tm_hour), TWOCIPHER_STR((tm).tm_min), TWOCIPHER_STR((tm).tm_sec)); \
     str; \
 })
 
@@ -79,7 +79,7 @@ int *get_market_data(struct tm from, struct tm to)
         return NULL;
 #else
     if ((received = read(sockfd, buffer, 500)) <= 0)
-        return NULL
+        return NULL;
 #endif
 
     buffer[received] = '\0';

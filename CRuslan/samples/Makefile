@@ -2,7 +2,7 @@ CC=gcc
 INC:=../lib/json-parser ../framework
 LINK:=../framework/transmitter.c ../framework/http.c ../lib/json-parser/json.c
 MACRODEFS=-DLINUX
-CFLAGS=$(foreach l,$(LINK),$(l)) -lm -pthread -pedantic $(foreach lib,$(INC),-I $(lib)) $(MACRODEFS)
+CFLAGS=$(foreach l,$(LINK),$(l)) -lm -pthread $(foreach lib,$(INC),-I $(lib)) $(MACRODEFS)
 WINFLAGS=-lws2_32
 
 program: program.c

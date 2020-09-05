@@ -102,7 +102,7 @@ int *json_iarray(const char *json)
 }
 
 // Returns record of group.
-group get_info()
+struct group get_info()
 {
 
 }

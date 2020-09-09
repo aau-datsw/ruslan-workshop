@@ -34,6 +34,9 @@ struct http
 }
 #endif
 
+// Size of market data array.
+volatile unsigned MARKET_DATA_SZ = 0
+
 // Prototypes.
 struct http http_init(const char *page, req_t request_type);
 char *http_str(struct http request, const char *post_args);

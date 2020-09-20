@@ -10,8 +10,10 @@ struct group
     unsigned balance, stock_count, stock_value, total_value;
 };
 
+#ifndef MAIN
 // Size of market data array.
-volatile unsigned MARKET_DATA_SZ = 0
+volatile unsigned MARKET_DATA_SZ = 0;
+#endif
 
 // Prototypes.
 int *get_market_data(struct tm from, struct tm to);

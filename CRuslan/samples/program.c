@@ -1,4 +1,7 @@
+#define MAIN
 #include "transmitter.h"
+
+extern volatile unsigned MARKET_DATA_SZ;
 
 int main()
 {

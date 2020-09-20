@@ -58,7 +58,6 @@ void set_token(const char *token)
     strcpy(x_token, token);
 }
 
-// TODO: Set MARKET_DATA_SZ to size of received array.
 // Returns market data.
 int *get_market_data(struct tm from, struct tm to)
 {
@@ -89,6 +88,7 @@ int *get_market_data(struct tm from, struct tm to)
     return json_iarray(buffer);
 }
 
+// TODO: Set MARKET_DATA_SZ to size of received array.
 // Converts JSON string into int array.
 int *json_iarray(const char *json)
 {

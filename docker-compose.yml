@@ -10,3 +10,13 @@ services:
     environment: 
       RUSLAN_API_PORT: "3000"
       RUSLAN_API_HOST: "market-place"
+
+
+  ctest-trader:
+    image: ctest-trader:latest
+    build:
+      context: ./services/CTestService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"

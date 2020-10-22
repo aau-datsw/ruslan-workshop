@@ -18,7 +18,11 @@ class Configuration {
 class MyApp extends StatelessWidget {
 
   final groupTokens = [
-    "bramsdockercomposecirclejerk"
+    "bramsdockercomposecirclejerk",
+    "e0857eb1-2b3f-46f0-809a-2cff7012e99b",
+    "d8208455-245f-48c4-9892-ceab32897b9a",
+    "fac64614-1b12-4ceb-85ee-814cf56ee160",
+    "f72824ef-d114-4336-bdc6-028f4a65d1a7"
   ];
 
   // This widget is the root of your application.

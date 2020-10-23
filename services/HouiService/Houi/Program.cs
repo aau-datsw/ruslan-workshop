@@ -14,6 +14,8 @@ namespace Houi
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
+                int avrage_of_all = 0, first_half_avrage = 0, second_half_avrage = 0, third_half_avrage = 0, fourth_half_avrage = 0;
+
                 // ------------------------------------------------------ // 
                 //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
                 //                      GOOD LUCK!                        //
@@ -32,6 +34,36 @@ namespace Houi
                 //                                                        // 
                 // ------------------------------------------------------ //
 
+                //calculates avrage of first half
+                for (int a = 0; a < (numElements - 1) * 1/4; a++){
+                    first_half_avrage += marketData[a];
+                }
+
+                //calculates avrage of second half
+                for (int a = (numElements - 1) /  * 1/4; a < (numElements - 1) * 2/4; a++){
+                    second_half_avrage += marketData[a];
+                }
+
+                //calculates avrage of second half
+                for (int a = (numElements - 1) * 2/4; a < (numElements - 1) * 3/4; a++){
+                    third_half_avrage += marketData[a];
+                }
+
+                //calculates avrage of second half
+                for (int a = (numElements - 1) / 4; a < (numElements - 1) - 1; a++){
+                    fourth_half_avrage += marketData[a];
+                }
+
+                if (first_half_avrage < second_half_avrage && second_half_avrage < third_half_avrage && third_half_avrage > fourth_half_avrage){
+                    Sell();
+                }
+
+                if (first_half_avrage > second_half_avrage && second_half_avrage > third_half_avrage && third_half_avrage < fourth_half_avrage)
+                {
+                    Buy();
+                }
+
+                /*
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
 
@@ -47,6 +79,7 @@ namespace Houi
                     // so the trend is falling - sell!
                     Sell();
                 }
+                */
             }
         }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 
 namespace NillerGang
@@ -9,78 +10,20 @@ namespace NillerGang
 
         static void Main(string[] args)
         {
-            while (true) 
+            while (true)
             {
-                int[] marketData = GetMarketData();
-                int numElements = marketData.Length;
+                var marketData = GetMarketData();
+                var avg = marketData.Average();
 
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
+                var nextLastPrice = marketData[marketData.Length - 2]; // Get the first price 
+                var lastPrice = marketData[marketData.Length - 1]; // Get the last price
 
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
-                {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
+                if (nextLastPrice < lastPrice && lastPrice - nextLastPrice < avg / 10)
                     Buy();
-                }
-                else if (firstPrice > lastPrice)
-                {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
+                else
                     Sell();
-                }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         static int[] GetMarketData()
         {

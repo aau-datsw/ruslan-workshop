@@ -16,16 +16,11 @@ namespace NillerGang
                 var marketLength = marketData.Length;
                 var delta = 0;
 
-                for (int i = 1; i < 6; i++)
+                for (var i = 1; i < 6; i++)
                 {
                     delta += marketData[marketLength - i] - marketData[marketLength- i - 1];
                 }
 
-                //var nextLastPrice = marketData[marketData.Length - 5]; // Get the first price 
-                //var lastPrice = marketData[marketData.Length - 1]; // Get the last price
-
-                
-                
                 if (delta > 0)
                     Buy();
                 else

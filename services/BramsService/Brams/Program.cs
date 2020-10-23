@@ -47,6 +47,10 @@ namespace Brams
                     // so the trend is falling - sell!
                     Sell();
                 }
+                else
+                {
+                    Console.WriteLine("Same price first and last");
+                }
             }
         }
 

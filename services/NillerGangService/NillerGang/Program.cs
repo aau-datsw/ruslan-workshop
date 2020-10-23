@@ -13,12 +13,20 @@ namespace NillerGang
             while (true)
             {
                 var marketData = GetMarketData();
-                var avg = marketData.Average();
+                var marketLength = marketData.Length;
+                var delta = 0;
 
-                var nextLastPrice = marketData[marketData.Length - 2]; // Get the first price 
-                var lastPrice = marketData[marketData.Length - 1]; // Get the last price
+                for (int i = 1; i < 6; i++)
+                {
+                    delta += marketData[marketLength - i] - marketData[marketLength- i - 1];
+                }
 
-                if (nextLastPrice < lastPrice && lastPrice - nextLastPrice < avg / 10)
+                //var nextLastPrice = marketData[marketData.Length - 5]; // Get the first price 
+                //var lastPrice = marketData[marketData.Length - 1]; // Get the last price
+
+                
+                
+                if (delta > 0)
                     Buy();
                 else
                     Sell();

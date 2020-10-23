@@ -34,12 +34,12 @@ namespace Houi
 
                 // stig == køb
                 // fald == salg
-                Større_end_eller_mindre_end(marketData, numElements);
+                Bigger_or_smaller(marketData, numElements);
             }
         }
 
 
-        static void Større_end_eller_mindre_end(int[] marketData, int numElements){
+        static void Bigger_or_smaller(int[] marketData, int numElements){
             if (marketData[numElements - 11] < marketData[numElements - 1]){
                 Buy();
             }
@@ -59,7 +59,7 @@ namespace Houi
 
 
 
-        static void Avrage_over_4_dele(int[] marketData, int numElements)
+        static void Avrage_over_4_parts(int[] marketData, int numElements)
         {
             int avrage_of_all = 0, first_half_avrage = 0, second_half_avrage = 0, third_half_avrage = 0, fourth_half_avrage = 0;
 

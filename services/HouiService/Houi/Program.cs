@@ -38,28 +38,43 @@ namespace Houi
                 for (int a = 0; a < (numElements - 1) * 1/4; a++){
                     first_half_avrage += marketData[a];
                 }
+                first_half_avrage = first_half_avrage / (numElements - 1) * 1 / 4;
+
 
                 //calculates avrage of second half
-                for (int a = (numElements - 1) /  * 1/4; a < (numElements - 1) * 2/4; a++){
+                for (int a = (numElements - 1) * 1/4; a < (numElements - 1) * 2/4; a++){
                     second_half_avrage += marketData[a];
                 }
+                second_half_avrage = second_half_avrage / (numElements - 1) * 2 / 4;
+
 
                 //calculates avrage of second half
                 for (int a = (numElements - 1) * 2/4; a < (numElements - 1) * 3/4; a++){
                     third_half_avrage += marketData[a];
                 }
+                third_half_avrage = third_half_avrage / (numElements - 1) * 3 / 4;
+
 
                 //calculates avrage of second half
-                for (int a = (numElements - 1) / 4; a < (numElements - 1) - 1; a++){
+                for (int a = (numElements - 1) * 3/4; a < (numElements - 1); a++){
                     fourth_half_avrage += marketData[a];
                 }
+                fourth_half_avrage = fourth_half_avrage / (numElements - 1);
 
-                if (first_half_avrage < second_half_avrage && second_half_avrage < third_half_avrage && third_half_avrage > fourth_half_avrage){
+
+                //calculates avrage of all the data
+                for(int a = 0; a < numElements - 1; a++)
+                {
+                    avrage_of_all += marketData[a];
+                }
+                avrage_of_all = avrage_of_all / numElements;
+
+
+                if (first_half_avrage < second_half_avrage && second_half_avrage < third_half_avrage && third_half_avrage > fourth_half_avrage && marketData[numElements - 1] > avrage_of_all){
                     Sell();
                 }
 
-                if (first_half_avrage > second_half_avrage && second_half_avrage > third_half_avrage && third_half_avrage < fourth_half_avrage)
-                {
+                if (first_half_avrage > second_half_avrage && second_half_avrage > third_half_avrage && third_half_avrage < fourth_half_avrage && marketData[numElements - 1] > avrage_of_all){
                     Buy();
                 }
 

@@ -34,10 +34,18 @@ namespace Houi
 
                 // stig == køb
                 // fald == salg
-                Bigger_or_smaller(marketData, numElements);
+                Prediction_from_last_5(marketData, numElements);
             }
         }
 
+
+        static void Prediction_from_last_5(int[] marketData, int numElements)
+        {
+            if (marketData[numElements - 1] - marketData[numElements - 5] > 0)
+                Buy();
+            else
+                Sell();
+        }
 
         static void Bigger_or_smaller(int[] marketData, int numElements){
             if (marketData[numElements - 11] < marketData[numElements - 1]){

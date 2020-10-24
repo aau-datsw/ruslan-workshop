@@ -34,11 +34,22 @@ namespace Houi
 
                 // stig == køb
                 // fald == salg
-                Prediction_from_last_5(marketData, numElements);
+                Bigger_or_smaller(marketData, numElements);
             }
         }
 
 
+
+
+
+
+
+
+
+
+
+
+        // meh syntes bigger or smaller er bedre
         static void Prediction_from_last_5(int[] marketData, int numElements)
         {
             if (marketData[numElements - 1] - marketData[numElements - 5] > 0)
@@ -47,6 +58,8 @@ namespace Houi
                 Sell();
         }
 
+
+        //rimelig god
         static void Bigger_or_smaller(int[] marketData, int numElements){
             if (marketData[numElements - 11] < marketData[numElements - 1]){
                 Buy();
@@ -66,7 +79,7 @@ namespace Houi
 
 
 
-
+        //Dårligste version indtil nu
         static void Avrage_over_4_parts(int[] marketData, int numElements)
         {
             int avrage_of_all = 0, first_half_avrage = 0, second_half_avrage = 0, third_half_avrage = 0, fourth_half_avrage = 0;
@@ -123,7 +136,7 @@ namespace Houi
         }
 
 
-
+        //tutorenes
         static void tutorens(int[] marketData, int numElements)
         {
             int firstPrice = marketData[0];  // Get the first price 

@@ -19,7 +19,10 @@ def render_template(template_path=None, args=None):
         return fill_template(t.read(), args)
 
 
-def usr_bool(user_answer): 
+def usr_bool(user_answer, default=True):
+    if not user_answer:
+        return default
+        
     return 'y' in user_answer.lower()
 
 

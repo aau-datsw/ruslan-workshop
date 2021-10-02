@@ -14,39 +14,51 @@ namespace CowStonk
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
+                int local_size = numElements * 0.1;
+                int dip_size = numElements * 0.01;
+                int critical_point = marketData[dip_size];
+                int dip_check = 0;
+                int total = 0;
+                int local_total = 0;
+                int current_price = marketData[0];
 
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
+                foreach (int i in marketData)
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    //Buy();
+                    total += i;
                 }
-                else if (firstPrice > lastPrice)
+
+                for (int i = 0; i < local_size; i++)
                 {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    //Sell();
+                    int value = marketData[i]
+                    local_total += value;
                 }
+
+                for (int i = 0; i < dip_size; i++)
+                {
+                    int value = marketData[i]
+                    dip_check += value;
+                }
+
+                float total_avg = total / numElements;
+                float local_avg = local_total / local_size;
+                float dip_check_avg = dip_check / dip_size;
+
+                if (local_avg > total_avg)
+                {
+                    if ( critical_point > dip_check_avg)
+                    {
+                        Sell();
+                    }
+                }
+                
+                else if (local_avg < total_avg)
+                {
+                    if ( critical_point < dip_check_avg)
+                    {
+                        Buy();
+                    }
+                }
+
             }
         }
 

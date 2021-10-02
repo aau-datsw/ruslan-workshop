@@ -90,3 +90,13 @@ services:
     environment: 
       RUSLAN_API_PORT: "3000"
       RUSLAN_API_HOST: "172.25.19.158"
+
+
+  janskreditfond-trader:
+    image: janskreditfond-trader:latest
+    build:
+      context: ./services/JansKreditfondService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"

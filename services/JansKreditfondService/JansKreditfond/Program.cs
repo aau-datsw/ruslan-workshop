@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace Magnus
+namespace JansKreditfond
 {
     class Program
     {

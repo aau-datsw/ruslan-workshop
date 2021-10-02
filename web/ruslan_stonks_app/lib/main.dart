@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
     "a9167c5d-6532-4ffd-b833-533ace4a02e3",
     "7189bf5e-4655-43a6-ae18-6714cb44a343",
     "311d82d1-9186-486b-8781-5e1f0902a87e",
-    "5e3dcf74-a0fb-49eb-a984-0bb40be6ff3e"
+    "5e3dcf74-a0fb-49eb-a984-0bb40be6ff3e",
+    "1f374e33-c5ec-454e-8ffa-efd7bb368dd5"
   ];
 
   // This widget is the root of your application.

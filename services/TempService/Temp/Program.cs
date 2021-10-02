@@ -39,13 +39,13 @@ namespace Temp
                 {
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
-                    Buy();
+                    //Buy();
                 }
                 else if (firstPrice > lastPrice)
                 {
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!
-                    Sell();
+                    //Sell();
                 }
             }
         }

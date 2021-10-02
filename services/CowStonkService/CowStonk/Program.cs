@@ -15,34 +15,41 @@ namespace CowStonk
                 int numElements = marketData.Length;
 
                 int local_size = (int) numElements / 100 * 10;
-                int dip_size = (int) numElements / 100 * 10;
+                int dip_size = (int) numElements / 100;
                 int critical_point = marketData[dip_size];
                 int dip_check = 0;
                 int total = 0;
                 int local_total = 0;
                 int current_price = marketData[0];
 
+                Console.WriteLine(current_price);
+
+                //finding total of sales over time
                 foreach (int i in marketData)
                 {
                     total += i;
                 }
 
+                // finding total of local sales over time
                 for (int i = 0; i < local_size; i++)
                 {
                     int value = marketData[i];
                     local_total += value;
                 }
 
+                // finding total value of the dip
                 for (int i = 0; i < dip_size; i++)
                 {
                     int value = marketData[i];
                     dip_check += value;
                 }
 
+                // calculation averages
                 float total_avg = total / numElements;
                 float local_avg = local_total / local_size;
                 float dip_check_avg = dip_check / dip_size;
 
+                // I want to sell when price is at its highest
                 if (local_avg > total_avg)
                 {
                     if ( critical_point > dip_check_avg)
@@ -51,6 +58,7 @@ namespace CowStonk
                     }
                 }
                 
+                // I want to buy when the price is at its lowest
                 else if (local_avg < total_avg)
                 {
                     if ( critical_point < dip_check_avg)

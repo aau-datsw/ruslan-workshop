@@ -34,7 +34,7 @@ namespace Temp
 
                 double average = sum / TempMarketData.Length;
                 
-                if (prevPrice > average && price < average)
+                if (prevPrice < average && price > average)
                 {
                     Buy();
                 }
@@ -44,7 +44,7 @@ namespace Temp
                     Buy();  
                 }
 
-                if (prevPrice < average && price > average)
+                if (prevPrice > average && price < average)
                 {
                     Sell();
                 }
@@ -53,7 +53,7 @@ namespace Temp
                 {
                     Sell();
                 }
-
+                Console.WriteLine(DateTime.Now);
                 Console.WriteLine("Price: {0}, Average: {1}, Prev price: {2}.", price, average, prevPrice);
 
 

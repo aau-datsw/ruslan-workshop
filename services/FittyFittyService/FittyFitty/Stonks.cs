@@ -20,7 +20,7 @@ namespace FittyFitty
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "70c28e7e-5842-4f3f-a782-c19aa90323e4");
             _port = "";
-            _host = "7717-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

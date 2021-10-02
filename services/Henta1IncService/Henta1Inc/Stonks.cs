@@ -20,7 +20,7 @@ namespace Henta1Inc
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "3973de15-2846-4a8a-9a1e-106df057a9bb");
             _port = "";
-            _host = "7717-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

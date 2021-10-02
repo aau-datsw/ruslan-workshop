@@ -180,7 +180,7 @@ class _GroupCardState extends State<GroupCard> {
 
   void startUpdateLoop(String xToken) async {
     do {
-      await Future.delayed(Duration(seconds: 1), () => updateInfo(xToken));
+      await Future.delayed(Duration(seconds: 30), () => updateInfo(xToken));
     } while (true);
   }
 

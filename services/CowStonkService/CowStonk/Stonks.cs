@@ -20,7 +20,7 @@ namespace CowStonk
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "b713918a-6933-4d66-9e19-f44e587a959a");
             _port = "";
-            _host = "7717-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

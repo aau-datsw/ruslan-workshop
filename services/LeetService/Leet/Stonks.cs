@@ -20,7 +20,7 @@ namespace Leet
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "b947810b-bf9f-4060-88ba-de0735783fa9");
             _port = "";
-            _host = "7717-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

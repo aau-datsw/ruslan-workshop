@@ -20,7 +20,7 @@ namespace Backup2
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "6ad942b8-49c0-4e96-8d88-2471680d5a04");
             _port = "";
-            _host = "7717-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

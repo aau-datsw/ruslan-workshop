@@ -19,7 +19,8 @@ namespace Magnus
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "9db642f2-6cbd-4f87-9f5c-fb60b5c12e25");
             _port = "";
-            _host = "4c6e-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
+            
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

@@ -20,7 +20,7 @@ namespace Balle
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "4e2a9d55-1d06-477b-b972-199d8ac71d4f");
             _port = "";
-            _host = "7717-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

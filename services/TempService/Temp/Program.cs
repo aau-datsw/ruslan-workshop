@@ -37,6 +37,7 @@ namespace Temp
 
                 if (firstPrice < lastPrice)
                 {
+                    int test = 0;
                     // The price has risen from the first to the last data point, 
                     // so the trend is rising - buy!
                     //Buy();

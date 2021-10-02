@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace gyldenkaal_inc
+namespace duen
 {
     class Program
     {

@@ -2,70 +2,10 @@ version: "3"
 
 
 services:
-  brams-trader:
-    image: brams-trader:latest
+  duen-trader:
+    image: duen-trader:latest
     build:
-      context: ./services/BramsService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "market-place"
-
-
-  a305-trader:
-    image: a305-trader:latest
-    build:
-      context: ./services/A305Service
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "market-place"
-
-
-  cy-trader:
-    image: cy-trader:latest
-    build:
-      context: ./services/CYService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "market-place"
-
-
-  nillergang-trader:
-    image: nillergang-trader:latest
-    build:
-      context: ./services/NillerGangService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "market-place"
-
-
-  gyldenkaal_inc-trader:
-    image: gyldenkaal_inc-trader:latest
-    build:
-      context: ./services/gyldenkaal_incService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "market-place"
-
-
-  bigmoneyinc-trader:
-    image: bigmoneyinc-trader:latest
-    build:
-      context: ./services/BigMoneyIncService
-      dockerfile: ./Dockerfile
-    environment: 
-      RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "market-place"
-
-
-  houi-trader:
-    image: houi-trader:latest
-    build:
-      context: ./services/HouiService
+      context: ./services/duenService
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"

@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace NillerGang
+namespace duen
 {
 
     public class StonksUtils
@@ -13,12 +13,12 @@ namespace NillerGang
         private HttpClient _http;
         private string _port; 
         private string _host;
-        private string _grpName = "NillerGang";
+        private string _grpName = "duen";
 
         public StonksUtils()
         {
             _http = new HttpClient();
-            _http.DefaultRequestHeaders.Add("X-Token", "fac64614-1b12-4ceb-85ee-814cf56ee160");
+            _http.DefaultRequestHeaders.Add("X-Token", "duendockercomposecirclejerk");
             _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3000";
             _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");

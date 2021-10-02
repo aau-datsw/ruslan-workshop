@@ -18,13 +18,7 @@ class Configuration {
 class MyApp extends StatelessWidget {
 
   final groupTokens = [
-    "bramsdockercomposecirclejerk",
-    "e0857eb1-2b3f-46f0-809a-2cff7012e99b",
-    "d8208455-245f-48c4-9892-ceab32897b9a",
-    "fac64614-1b12-4ceb-85ee-814cf56ee160",
-    "f72824ef-d114-4336-bdc6-028f4a65d1a7",
-    "d3f27073-408f-4a96-8a2b-e445859b4647",
-    "3be819f3-b848-42d0-b8b6-780e119c97b5"
+    "duendockercomposecirclejerk"
   ];
 
   // This widget is the root of your application.
@@ -263,7 +257,7 @@ class _StonksMarketChartState extends State<StonksMarketChart> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        AutoSizeText("RUSLAN Stonks - Ligma Inc.        ", maxLines: 1, style: Theme.of(context).textTheme.headline),
+        AutoSizeText("RUSLAN Stonks - Ligma Inc.        ", maxLines: 1),
         AutoSizeText("\$$currentPrice.00", maxLines: 1, style: TextStyle(
           fontSize: 22,
           color: difference > 0 ? Colors.green : Colors.red

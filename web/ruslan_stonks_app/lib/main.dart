@@ -18,7 +18,15 @@ class Configuration {
 class MyApp extends StatelessWidget {
 
   final groupTokens = [
-    "duendockercomposecirclejerk"
+    "duendockercomposecirclejerk",
+    "70c28e7e-5842-4f3f-a782-c19aa90323e4",
+    "3973de15-2846-4a8a-9a1e-106df057a9bb",
+    "635a89e1-2341-4578-993e-daecd54107f8",
+    "9db642f2-6cbd-4f87-9f5c-fb60b5c12e25",
+    "a9167c5d-6532-4ffd-b833-533ace4a02e3",
+    "7189bf5e-4655-43a6-ae18-6714cb44a343",
+    "311d82d1-9186-486b-8781-5e1f0902a87e",
+    "5e3dcf74-a0fb-49eb-a984-0bb40be6ff3e"
   ];
 
   // This widget is the root of your application.

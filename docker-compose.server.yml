@@ -8,9 +8,10 @@ services:
       dockerfile: ./Dockerfile
     environment:
       - RAILS_ENV=development
-      - YEAR=2020
+      - YEAR=2021
       - MONTH=10
-      - DAY=23
+      - DAY=2
+      - HOUR=14
     volumes:
       - ./services/MarketPlace/db:/marketplace/db
     ports:

@@ -2,11 +2,91 @@ version: "3"
 
 
 services:
-  duen-trader:
-    image: duen-trader:latest
+  dueninc-trader:
+    image: dueninc-trader:latest
     build:
-      context: ./services/duenService
+      context: ./services/duenIncService
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "market-place"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  fittyfitty-trader:
+    image: fittyfitty-trader:latest
+    build:
+      context: ./services/FittyFittyService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  henta1inc-trader:
+    image: henta1inc-trader:latest
+    build:
+      context: ./services/Henta1IncService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  temp-trader:
+    image: temp-trader:latest
+    build:
+      context: ./services/TempService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  magnus-trader:
+    image: magnus-trader:latest
+    build:
+      context: ./services/MagnusService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  bearcoin-trader:
+    image: bearcoin-trader:latest
+    build:
+      context: ./services/BearCoinService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  pyramid-trader:
+    image: pyramid-trader:latest
+    build:
+      context: ./services/PyramidService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  jeffbezos-trader:
+    image: jeffbezos-trader:latest
+    build:
+      context: ./services/JeffBezosService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"
+
+
+  buttcoin-trader:
+    image: buttcoin-trader:latest
+    build:
+      context: ./services/ButtCoinService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "172.25.19.158"

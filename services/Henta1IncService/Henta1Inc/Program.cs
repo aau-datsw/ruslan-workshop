@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace duen
+namespace Henta1Inc
 {
     class Program
     {

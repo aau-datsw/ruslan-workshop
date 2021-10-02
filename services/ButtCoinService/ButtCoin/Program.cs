@@ -20,10 +20,9 @@ namespace ButtCoin
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
-                i++;
                 if (i == 0)
                 {
-
+                    //Adds the new data to the average list
                     averagelist.AddFirst(marketData.Average());
 
                 }
@@ -31,8 +30,9 @@ namespace ButtCoin
                 {
                     i = 0;
                 }
+                i++;
                 average = averagelist.Average();
-                double diffence = average * 0.1;
+                double diffence = average * 0.05;
 
                 Console.WriteLine("Lol");
 

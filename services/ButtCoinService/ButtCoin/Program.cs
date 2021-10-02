@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace ButtCoin
@@ -9,43 +11,42 @@ namespace ButtCoin
 
         static void Main(string[] args)
         {
-            while (true) 
+            double average = 0;
+            int i = 0;
+            LinkedList<double> averagelist = new LinkedList<double>();
+            while (true)
             {
+                // Gettin the market data
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
-
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
+                i++;
+                if (i == 0)
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    //Buy();
+
+                    averagelist.AddFirst(marketData.Average());
+
                 }
-                else if (firstPrice > lastPrice)
+                else if(i == Convert.ToInt32(numElements/2))
                 {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    //Sell();
+                    i = 0;
+                }
+                average = averagelist.Average();
+                double diffence = average * 0.1;
+
+                Console.WriteLine("Lol");
+
+                if (average - diffence >= marketData[0])
+                {
+                    // If the price is a percent smaller than the average price
+                    // But ??
+                    Console.WriteLine("Buy");
+                    Buy();
+                }
+                else if (average + diffence <= marketData[0])
+                {
+                    Console.WriteLine("Sell");
+                    Sell();
                 }
             }
         }
@@ -97,13 +98,13 @@ namespace ButtCoin
             return _stonks.GetMarketData(from, to);
         }
 
-        static void Buy() 
+        static void Buy()
         {
-            try 
+            try
             {
                 _stonks.Buy();
                 Console.WriteLine("Bought Ligma Inc.!");
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
@@ -119,7 +120,7 @@ namespace ButtCoin
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);                
+                Console.WriteLine(e.Message);
             }
         }
     }

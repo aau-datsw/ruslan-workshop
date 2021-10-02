@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  172.25.19.158:
+  market-place:
     image: market-place:latest
     build:
       context: ./services/MarketPlace

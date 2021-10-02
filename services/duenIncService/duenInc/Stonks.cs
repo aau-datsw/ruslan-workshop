@@ -19,15 +19,15 @@ namespace duenInc
         {
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "duendockercomposecirclejerk");
-            _port = Environment.GetEnvironmentVariable("RUSLAN_API_PORT") ?? "3000";
-            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
+            _port = "";
+            _host = "717-130-225-198-158.ngrok.io";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 
         public int[] GetMarketData(DateTime from, DateTime to)
         {
             // Call the ruslan API and get the data 
-            var response = _http.GetAsync($"http://{_host}:{_port}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
+            var response = _http.GetAsync($"http://{_host}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
                 .GetAwaiter()
                 .GetResult();
 
@@ -39,7 +39,7 @@ namespace duenInc
         public GroupInfo GetInfo()
         {
             // Call the ruslan API and get the info 
-            var response = _http.GetAsync($"http://{_host}:{_port}/api/v1/account").GetAwaiter().GetResult();
+            var response = _http.GetAsync($"http://{_host}/api/v1/account").GetAwaiter().GetResult();
             var rawJson = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var info = JsonConvert.DeserializeObject<GroupInfo>(rawJson);
             System.Console.WriteLine(info);
@@ -48,12 +48,12 @@ namespace duenInc
 
         public void Buy()
         {
-            _http.PostAsync($"http://{_host}:{_port}/api/v1/buy", new StringContent("")).GetAwaiter().GetResult();
+            _http.PostAsync($"http://{_host}/api/v1/buy", new StringContent("")).GetAwaiter().GetResult();
         }
 
         public void Sell()
         {
-            _http.PostAsync($"http://{_host}:{_port}/api/v1/sell", new StringContent("")).GetAwaiter().GetResult();
+            _http.PostAsync($"http://{_host}/api/v1/sell", new StringContent("")).GetAwaiter().GetResult();
         }
 
         private static string ISO8601(DateTime date)

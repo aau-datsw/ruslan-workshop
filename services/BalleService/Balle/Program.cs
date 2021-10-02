@@ -13,39 +13,41 @@ namespace Balle
             {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
-
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
-
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
+                int local_percentage = 50;
+                int local_size = numElements * (local_percentage / 100);
+                int new_percentage = 5;
+                int new_size = numElements * (new_percentage / 100);
+                int global_total = 0;
+                foreach (int i in marketData)
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    //Buy();
+                    global_total += i;
                 }
-                else if (firstPrice > lastPrice)
+                float global_avg = global_total / numElements;
+                int local_total = 0;
+                for (int i = 0; i < local_size; i++)
                 {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    //Sell();
+                    local_total += marketData[i];
+                }
+                float local_avg = local_total / local_size;
+                
+                int new_total = 0;
+                for (int i = 0; i < new_size; i++)
+                {
+                    new_total += marketData[i];
+                }
+                float new_avg = new_total / new_size;
+                
+
+                // buy when price is cheap, but rising
+                if (local_avg < global_avg && new_avg > local_avg)
+                {
+                    Buy();
+                }
+
+                // sell when price is high, but falling
+                if (local_avg > global_avg && new_avg < local_avg)
+                {
+                    Sell();
                 }
             }
         }

@@ -14,9 +14,9 @@ namespace Balle
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
                 int local_percentage = 50;
-                int local_size = numElements * (local_percentage / 100);
+                int local_size = numElements / 100 * local_percentage;
                 int new_percentage = 5;
-                int new_size = numElements * (new_percentage / 100);
+                int new_size = numElements / 100 * new_percentage;
                 int global_total = 0;
                 foreach (int i in marketData)
                 {

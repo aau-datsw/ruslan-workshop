@@ -110,3 +110,53 @@ services:
     environment: 
       RUSLAN_API_PORT: "3000"
       RUSLAN_API_HOST: "market-place"
+
+
+  balle-trader:
+    image: balle-trader:latest
+    build:
+      context: ./services/BalleService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"
+
+
+  cowstonk-trader:
+    image: cowstonk-trader:latest
+    build:
+      context: ./services/CowStonkService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"
+
+
+  backup1-trader:
+    image: backup1-trader:latest
+    build:
+      context: ./services/Backup1Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"
+
+
+  backup2-trader:
+    image: backup2-trader:latest
+    build:
+      context: ./services/Backup2Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"
+
+
+  backup3-trader:
+    image: backup3-trader:latest
+    build:
+      context: ./services/Backup3Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"

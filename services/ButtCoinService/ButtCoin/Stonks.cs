@@ -11,7 +11,7 @@ namespace ButtCoin
     public class StonksUtils
     {
         private HttpClient _http;
-        private string _port; 
+        private string _port;
         private string _host;
         private string _grpName = "ButtCoin";
 
@@ -26,19 +26,19 @@ namespace ButtCoin
 
         public int[] GetMarketData(DateTime from, DateTime to)
         {
-            // Call the ruslan API and get the data 
+            // Call the ruslan API and get the data
             var response = _http.GetAsync($"http://{_host}/api/v1/market?from={ISO8601(from)}&to={ISO8601(to)}")
                 .GetAwaiter()
                 .GetResult();
 
             var data = JsonConvert.DeserializeObject<List<dynamic>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
-            
+
             return data.Select(o => (int) o.price).ToArray();
         }
 
         public GroupInfo GetInfo()
         {
-            // Call the ruslan API and get the info 
+            // Call the ruslan API and get the info
             var response = _http.GetAsync($"http://{_host}/api/v1/account").GetAwaiter().GetResult();
             var rawJson = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var info = JsonConvert.DeserializeObject<GroupInfo>(rawJson);

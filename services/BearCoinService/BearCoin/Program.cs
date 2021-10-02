@@ -14,38 +14,75 @@ namespace BearCoin
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
-
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
-
                 int firstPrice = marketData[0];  // Get the first price 
                 int lastPrice = marketData[numElements-1];  // Get the last price
 
-                if (firstPrice < lastPrice)
+                /* Klassificering af data */
+                int[] rising = new int[numElements];
+                int[] descending = new int[numElements];
+                for(int i = 0; i < numElements-1; i++)
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    //Buy();
+                    if(marketData[i+1] >= marketData[i])//1 er en placeholder
+                    {
+                        rising[i] = marketData[i];
+                    
+                    }
+                    else if(marketData[i+1] <= marketData[i])
+                    {
+                        descending[i] = marketData[i];
+                    }
                 }
-                else if (firstPrice > lastPrice)
+                int dlength = 0;
+                int rlength = 0;
+                dlength = descending.Length;
+                rlength = rising.Length;
+                /* Klassificering af "drastisk spring" */
+                double constant = 0;
+                int max = 0;
+                int min = 0;
+                for(int j = 0; j <= numElements-1; j++)
                 {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    //Sell();
+                    max = marketData[0];
+                    min = marketData[0];
+                    if(max < marketData[j])
+                    {
+                        max = marketData[j];
+                    }
+                    if(min > marketData[j])
+                    {
+                        min = marketData[j];
+                    }
+                    constant = (max - min) * 0.3;
+                }
+
+                int avgfull = 0;
+                int avg10  = 0;
+                int len10 = 0;
+
+                for(int g = 0; g <= numElements-1; g++)
+                {
+                    avgfull += marketData[g];
+                }
+                avgfull = avgfull/numElements;
+                for(int h = numElements-1; h>numElements-(numElements/10); h--)
+                {
+                    avg10 += marketData[h];
+                }
+                len10 = numElements/10;
+                avg10 = avg10/len10;
+                if((marketData[numElements-2] == descending[dlength-1] && marketData[numElements-1] == rising[rlength-1]) || marketData[numElements-2] >= marketData[numElements-1]-constant)
+                {
+                    if(avgfull<avg10)
+                    {
+                        Buy();
+                    }
+                }
+                if((marketData[numElements-2] == rising[rlength-1] && marketData[numElements-1] == descending[dlength-1]) || marketData[numElements-2] >= marketData[numElements-1]+constant)
+                {
+                    if(avgfull>avg10)
+                    {
+                        Sell();
+                    }
                 }
             }
         }

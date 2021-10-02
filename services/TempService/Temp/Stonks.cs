@@ -20,7 +20,7 @@ namespace Temp
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "635a89e1-2341-4578-993e-daecd54107f8");
             _port = "";
-            _host = "4c6e-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

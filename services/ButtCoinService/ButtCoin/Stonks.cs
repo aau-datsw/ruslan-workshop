@@ -20,7 +20,7 @@ namespace ButtCoin
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "5e3dcf74-a0fb-49eb-a984-0bb40be6ff3e");
             _port = "";
-            _host = "4c6e-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

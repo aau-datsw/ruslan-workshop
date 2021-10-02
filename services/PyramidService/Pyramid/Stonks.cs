@@ -20,7 +20,7 @@ namespace Pyramid
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "7189bf5e-4655-43a6-ae18-6714cb44a343");
             _port = "";
-            _host = "717-130-225-198-158.ngrok.io";
+            _host = "7717-130-225-198-158.ngrok.io";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

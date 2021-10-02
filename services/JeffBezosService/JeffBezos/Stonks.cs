@@ -20,7 +20,7 @@ namespace JeffBezos
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "311d82d1-9186-486b-8781-5e1f0902a87e");
             _port = "";
-            _host = "717-130-225-198-158.ngrok.io";
+            _host = "7717-130-225-198-158.ngrok.io";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

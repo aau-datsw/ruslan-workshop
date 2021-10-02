@@ -1,7 +1,6 @@
 version: "3"
 
-
-services: 
+services:
   market-place:
     image: market-place:latest
     build:
@@ -21,7 +20,7 @@ services:
     build:
       context: ./web/ruslan_stonks_app
       dockerfile: ./Dockerfile
-    environment: 
+    environment:
       RUSLAN_API_PORT: "3000"
       RUSLAN_API_HOST: "localhost"
     ports:

@@ -22,7 +22,7 @@ arr = []
 year = (ENV["YEAR"] || "2019").to_i
 month = (ENV["MONTH"] || "10").to_i
 day = (ENV["DAY"] || "18").to_i
-hour = 19
+hour = (ENV["HOUR"] || "19").to_i
 
 result['data'].each do |data|
   arr << {

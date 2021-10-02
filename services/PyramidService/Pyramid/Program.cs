@@ -19,6 +19,52 @@ namespace Pyramid
                 //                      GOOD LUCK!                        //
                 // ------------------------------------------------------ //
 
+                int slope,
+                    newValue = marketData[0],
+                    sumRandomSlope = 0,
+                    sumRandomChange = 0;
+                int[] slopeArray = new int[numElements],
+                      changeArray = new int[numElements],
+                      slopeArrayRandom = new int[numElements],
+                      changeArrayRandom = new int[numElements];
+                
+                Random rnd = new Random();
+                int num = 9; /*rnd.Next(1, (numElements - 1));*/
+
+                for(int i = 0; i < numElements - 1; i++) {
+                    slope = marketData[i] - marketData[i + 1];
+                    slopeArray[i] = slope;
+                }
+
+                for(int i = 0; i < num; i++) {
+                    slope = slopeArray[i] - slopeArray[i + 1];
+                    slopeArrayRandom[i] = slope;
+                    sumRandomSlope += slope;
+                }
+
+                for(int i = 0; i < (numElements - 1); i++) {
+                    slope = slopeArray[i] - slopeArray[i + 1];
+                    changeArray[i] = slope;
+                }
+
+                for(int i = 0; i < num; i++) {
+                    slope = changeArray[i] - changeArray[i + 1];
+                    changeArrayRandom[i] = slope;
+                    sumRandomChange += slope;
+                }
+
+                if (sumRandomChange > 0) {
+                    if (sumRandomSlope > 0) {
+                        Buy();
+                    }
+                }
+
+                else if (sumRandomChange < 0) {
+                    if (sumRandomSlope < 0) {
+                        Sell();
+                    }
+                }
+
                 // ------------------------------------------------------ //
                 //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
                 //          CHECKS THE FIRST AND LAST PRICES IN           // 
@@ -31,22 +77,6 @@ namespace Pyramid
                 //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
                 //                                                        // 
                 // ------------------------------------------------------ //
-
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
-
-                if (firstPrice < lastPrice)
-                {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    //Buy();
-                }
-                else if (firstPrice > lastPrice)
-                {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    //Sell();
-                }
             }
         }
 

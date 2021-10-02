@@ -27,7 +27,7 @@ namespace Temp
 
                 double sum = 0;
 
-                for (int i = 0; i < TempMarketData.Length - 1; i++)
+                for (int i = 0; i < (TempMarketData.Length - 1)/4; i++)
                 {
                     sum += TempMarketData[i];
                 }

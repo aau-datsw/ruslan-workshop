@@ -14,22 +14,49 @@ namespace CowStonk
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
+                int local_size = numElements * 0.1;
+                int dip_size = numElements * 0.01;
+                int critical_point = marketData[dip_size]
+                int dip_check = 0;
                 int total = 0;
+                int local_total = 0;
+                int current_price = marketData[0];
 
                 foreach (int i in marketData)
                 {
                     total += i;
                 }
 
-                float avg = total / numElements;
-
-                if (avg < marketData[0])
+                for (int i = 0; i < local_size; i++)
                 {
-                    Buy();
+                    int value = marketData[i]
+                    local_total += value;
                 }
-                else if (avg < marketData[0])
+
+                for (int i = 0; i < dip_size; i++)
                 {
-                    Sell();
+                    int value = marketData[i]
+                    dip_check += value;
+                }
+
+                float total_avg = total / numElements;
+                float local_avg = local_total / local_size;
+                float dip_check_avg = dip_check / dip_size;
+
+                if (local_avg > total_avg)
+                {
+                    if ( critical_point > dip_check_avg)
+                    {
+                        Sell();
+                    }
+                }
+                
+                else if (local_avg < total_avg)
+                {
+                    if ( critical_point < dip_check_avg)
+                    {
+                        Buy();
+                    }
                 }
 
             }

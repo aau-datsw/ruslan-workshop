@@ -9,20 +9,21 @@ namespace FittyFitty
 
         static void Main(string[] args)
         {
-            while (true) 
+            while (true)
             {
-               
-            Random rd = new Random();
+                var marketData = GetMarketData();
+                var marketLength = marketData.Length;
+                var delta = 0;
 
-            int rand_num = rd.Next(0, 2);
+                for (var i = 1; i < 6; i++)
+                {
+                    delta += marketData[marketLength - i] - marketData[marketLength- i - 1];
+                }
 
-            if (rand_num == 1)
-            {
-                Sell();
-            } else
-            {
-                Buy();
-            }
+                if (delta > 0)
+                    Buy();
+                else
+                    Sell();
             }
         }
 

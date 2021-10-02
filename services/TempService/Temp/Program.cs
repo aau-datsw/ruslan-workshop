@@ -9,72 +9,61 @@ namespace Temp
 
         static void Main(string[] args)
         {
+            int prevPrice = 0;
+            int price = 0;
+            int[] TempMarketData = new int[] {};
+            int[] prevMarketData = TempMarketData ?? null;
             while (true) 
             {
-                int[] marketData = GetMarketData();
-                int numElements = marketData.Length;
+                TempMarketData = GetMarketData();
+                price = TempMarketData[TempMarketData.Length - 1];
 
-                // ------------------------------------------------------ // 
-                //          THIS IS WHERE YOU WRITE YOUR CODE!            // 
-                //                      GOOD LUCK!                        //
-                // ------------------------------------------------------ //
 
-                // ------------------------------------------------------ //
-                //          THE FOLLOWING IS EXAMPLE CODE - IT            // 
-                //          CHECKS THE FIRST AND LAST PRICES IN           // 
-                //          THE MARKET DATA AND:                          // 
-                //                                                        // 
-                //          FIRST < LAST      ---->      BUY              // 
-                //          FIRST > LAST      ---->      SELL             // 
-                //          FIRST = LAST      ---->      STAY             //
-                //                                                        // 
-                //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
-                //                                                        // 
-                // ------------------------------------------------------ //
+                //List<int> AllMarketData = new List<int>();
 
-                int firstPrice = marketData[0];  // Get the first price 
-                int lastPrice = marketData[numElements-1];  // Get the last price
 
-                if (firstPrice < lastPrice)
+                //Find the elements after the elements in another array.
+                //GetOnlyNewData();
+
+                double sum = 0;
+
+                for (int i = 0; i < TempMarketData.Length - 1; i++)
                 {
-                    // The price has risen from the first to the last data point, 
-                    // so the trend is rising - buy!
-                    //Buy();
+                    sum += TempMarketData[i];
                 }
-                else if (firstPrice > lastPrice)
+
+                double average = sum / TempMarketData.Length;
+                
+                if (prevPrice > average && price < average)
                 {
-                    // The price has fallen from the first to the last data point, 
-                    // so the trend is falling - sell!
-                    //Sell();
+                    Buy();
                 }
+
+                if (prevPrice < average && price > average)
+                {
+                    Sell();
+                }
+
+                Console.WriteLine("Price: {0}, Average: {1}, Prev price: {2}.", price, average, prevPrice);
+
+
+                prevPrice = price;
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /*
+        List<int> GetOnlyNewData (int[] oldArray, int[] newArray)
+        {
+            List<int> result = new List<int>();
+            int offset = 0;
+            bool offsetFound = false;
+            while (offsetFound == null)
+            {
+                //if (oldArray[oldArray.Length - 1] == )
+            }
+            return result;
+        }
+        */
 
 
 

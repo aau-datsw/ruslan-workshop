@@ -53,7 +53,6 @@ namespace Temp
                 {
                     Sell();
                 }
-                Console.WriteLine(DateTime.Now);
                 Console.WriteLine("Price: {0}, Average: {1}, Prev price: {2}.", price, average, prevPrice);
 
 

@@ -16,7 +16,7 @@ namespace CowStonk
 
                 int local_size = numElements * 0.1;
                 int dip_size = numElements * 0.01;
-                int critical_point = marketData[dip_size]
+                int critical_point = marketData[dip_size];
                 int dip_check = 0;
                 int total = 0;
                 int local_total = 0;

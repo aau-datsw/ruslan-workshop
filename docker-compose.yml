@@ -9,7 +9,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   fittyfitty-trader:
@@ -19,7 +19,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   henta1inc-trader:
@@ -29,7 +29,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   temp-trader:
@@ -39,7 +39,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   magnus-trader:
@@ -49,7 +49,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   bearcoin-trader:
@@ -59,7 +59,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   pyramid-trader:
@@ -69,7 +69,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   jeffbezos-trader:
@@ -79,7 +79,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   buttcoin-trader:
@@ -89,7 +89,7 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
 
 
   janskreditfond-trader:
@@ -99,4 +99,14 @@ services:
       dockerfile: ./Dockerfile
     environment: 
       RUSLAN_API_PORT: "3000"
-      RUSLAN_API_HOST: "172.25.19.158"
+      RUSLAN_API_HOST: "market-place"
+
+
+  leet-trader:
+    image: leet-trader:latest
+    build:
+      context: ./services/LeetService
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place"

@@ -20,7 +20,7 @@ namespace BearCoin
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("X-Token", "a9167c5d-6532-4ffd-b833-533ace4a02e3");
             _port = "";
-            _host = "7717-130-225-198-158.ngrok.io";
+            _host = Environment.GetEnvironmentVariable("RUSLAN_API_HOST") ?? "market-place";
             Console.WriteLine($"Successfully started a Stonk Trader for {_grpName} using port {_port}...");
         }
 

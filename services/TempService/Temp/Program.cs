@@ -39,7 +39,17 @@ namespace Temp
                     Buy();
                 }
 
+                if (prevPrice > average && price > average)
+                {
+                    Buy();  
+                }
+
                 if (prevPrice < average && price > average)
+                {
+                    Sell();
+                }
+
+                if (prevPrice < average && price < average)
                 {
                     Sell();
                 }

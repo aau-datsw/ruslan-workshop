@@ -14,7 +14,7 @@ namespace CowStonk
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
-                int local_size = (int) numElements / 100 * 10;
+                int local_size = (int) numElements / 100 * 5;
                 int dip_size = (int) numElements / 100;
                 int critical_point = marketData[dip_size];
                 int dip_check = 0;
@@ -25,9 +25,10 @@ namespace CowStonk
                 Console.WriteLine(current_price);
 
                 //finding total of sales over time
-                foreach (int i in marketData)
+                for (int i = 0; i < 150; i++)
                 {
-                    total += i;
+                    int value = marketData[i];
+                    total += value;
                 }
 
                 // finding total of local sales over time

@@ -15,6 +15,7 @@ namespace Temp
             int[] prevMarketData = TempMarketData ?? null;
             while (true) 
             {
+                try {
                 TempMarketData = GetMarketData();
                 price = TempMarketData[TempMarketData.Length - 1];
 
@@ -57,6 +58,9 @@ namespace Temp
 
 
                 prevPrice = price;
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
+                }
             }
         }
 

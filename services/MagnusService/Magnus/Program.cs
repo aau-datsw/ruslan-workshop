@@ -10,11 +10,15 @@ namespace Magnus
 
         private static void Main(string[] args)
         {
+            try {
             while (true)
             {
                 int[] marketData = GetMarketData();
                 if (marketData[marketData.Length - 1] < marketData.Average()) Buy();
                 else Sell();
+            }
+            } catch (Exception e) {
+                Console.WriteLine("{0} First exception caught.", e);
             }
         }
 

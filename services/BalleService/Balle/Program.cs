@@ -11,6 +11,7 @@ namespace Balle
         {
             while (true) 
             {
+                try {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
                 int local_percentage = 50;
@@ -48,6 +49,9 @@ namespace Balle
                 if (local_avg > global_avg && new_avg < local_avg)
                 {
                     Sell();
+                }
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
                 }
             }
         }

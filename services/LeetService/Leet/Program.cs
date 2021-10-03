@@ -11,6 +11,7 @@ namespace Leet
         {
             while (true) 
             {
+                try {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
@@ -46,6 +47,9 @@ namespace Leet
                     // The price has fallen from the first to the last data point, 
                     // so the trend is falling - sell!
                     //Sell();
+                }
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
                 }
             }
         }

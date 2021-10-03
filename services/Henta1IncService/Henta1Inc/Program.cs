@@ -12,6 +12,7 @@ namespace Henta1Inc
             bool a = true;
             while (true) 
             {
+                try {
                 if(a == true){
                     a = false;
                     Buy();
@@ -20,6 +21,9 @@ namespace Henta1Inc
                 {
                     a = true;
                     Sell();
+                }
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
                 }
             }
         }

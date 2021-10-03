@@ -11,6 +11,7 @@ namespace CowStonk
         {
             while (true) 
             {
+                try {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
@@ -67,7 +68,9 @@ namespace CowStonk
                         Buy();
                     }
                 }
-
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
+                }
             }
         }
 

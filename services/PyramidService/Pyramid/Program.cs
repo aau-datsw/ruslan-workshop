@@ -11,6 +11,7 @@ namespace Pyramid
         {
             while (true) 
             {
+                try {
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
@@ -77,6 +78,9 @@ namespace Pyramid
                 //          FEEL FREE TO REPLACE WITH YOUR OWN!           //
                 //                                                        // 
                 // ------------------------------------------------------ //
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
+                }
             }
         }
 

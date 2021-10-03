@@ -131,32 +131,31 @@ services:
       RUSLAN_API_PORT: "3000"
       RUSLAN_API_HOST: "market-place:3000"
 
+  backup1-trader:
+    image: backup1-trader:latest
+    build:
+      context: ./services/Backup1Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place:3000"
 
-#  backup1-trader:
-#    image: backup1-trader:latest
-#    build:
-#      context: ./services/Backup1Service
-#      dockerfile: ./Dockerfile
-#    environment: 
-#      RUSLAN_API_PORT: "3000"
-#      RUSLAN_API_HOST: "market-place:3000"
-#
-#
-#  backup2-trader:
-#    image: backup2-trader:latest
-#    build:
-#      context: ./services/Backup2Service
-#      dockerfile: ./Dockerfile
-#    environment: 
-#      RUSLAN_API_PORT: "3000"
-#      RUSLAN_API_HOST: "market-place:3000"
-#
-#
-#  backup3-trader:
-#    image: backup3-trader:latest
-#    build:
-#      context: ./services/Backup3Service
-#      dockerfile: ./Dockerfile
-#    environment: 
-#      RUSLAN_API_PORT: "3000"
-#      RUSLAN_API_HOST: "market-place:3000"
+
+  backup2-trader:
+    image: backup2-trader:latest
+    build:
+      context: ./services/Backup2Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place:3000"
+
+
+  backup3-trader:
+    image: backup3-trader:latest
+    build:
+      context: ./services/Backup3Service
+      dockerfile: ./Dockerfile
+    environment: 
+      RUSLAN_API_PORT: "3000"
+      RUSLAN_API_HOST: "market-place:3000"

@@ -11,11 +11,13 @@ namespace ButtCoin
 
         static void Main(string[] args)
         {
+            
             double average = 0;
             int i = 0;
             LinkedList<double> averagelist = new LinkedList<double>();
             while (true)
             {
+                try {
                 // Gettin the market data
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
@@ -47,6 +49,9 @@ namespace ButtCoin
                 {
                     Console.WriteLine("Sell");
                     Sell();
+                }
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
                 }
             }
         }

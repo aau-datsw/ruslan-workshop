@@ -11,6 +11,7 @@ namespace FittyFitty
         {
             while (true)
             {
+                try {
                 var marketData = GetMarketData();
                 var marketLength = marketData.Length;
                 var delta = 0;
@@ -24,6 +25,9 @@ namespace FittyFitty
                     Buy();
                 else
                     Sell();
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
+                }
             }
         }
 

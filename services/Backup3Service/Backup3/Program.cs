@@ -11,19 +11,23 @@ namespace Backup3
         {
             while (true)
             {
-                var marketData = GetMarketData();
-                var marketLength = marketData.Length;
-                var delta = 0;
+                try {
+                    var marketData = GetMarketData();
+                    var marketLength = marketData.Length;
+                    var delta = 0;
 
-                for (var i = 1; i < 6; i++)
-                {
-                    delta += marketData[marketLength - i] - marketData[marketLength- i - 1];
+                    for (var i = 1; i < 6; i++)
+                    {
+                        delta += marketData[marketLength - i] - marketData[marketLength- i - 1];
+                    }
+
+                    if (delta > 0)
+                        Buy();
+                    else
+                        Sell();
+                } catch (Exception e) {
+                    Console.WriteLine("{0} First exception caught.", e);
                 }
-
-                if (delta > 0)
-                    Buy();
-                else
-                    Sell();
             }
         }
 

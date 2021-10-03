@@ -14,8 +14,8 @@ namespace CowStonk
                 int[] marketData = GetMarketData();
                 int numElements = marketData.Length;
 
-                int local_size = 10;
-                int dip_size = 2;
+                int local_size = (int) numElements / 100 * 10;
+                int dip_size = (int) numElements / 100;
                 int critical_point = marketData[dip_size];
                 int dip_check = 0;
                 int total = 0;
